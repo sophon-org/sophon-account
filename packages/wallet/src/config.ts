@@ -14,7 +14,7 @@ export const WalletConfig = {
   // URL of your wallet domain (e.g. https://dynamic.example.com)
   walletUrl: "https://account.sophon.xyz",
   // Environment ID of your wallet (e.g. 1234567890)
-  environmentId: "767555fd-deac-4852-bdf2-ec4442697ea7",
+  environmentId: "a151466b-a170-4176-9536-b224269b8c00",
   // EIP6963 configuration
   eip6963: {
     // RDNS of your wallet (e.g. com.example.wallet)

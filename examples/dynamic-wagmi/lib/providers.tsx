@@ -6,6 +6,7 @@ import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { config } from "@/lib/wagmi";
+import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 
 export type SophonProviderProps = React.PropsWithChildren<{
   theme?: "auto" | "light" | "dark";
@@ -38,8 +39,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       theme="auto"
       settings={{
         cssOverrides,
-        environmentId: "767555fd-deac-4852-bdf2-ec4442697ea7",
-        walletConnectors: [EthereumWalletConnectors],
+        environmentId: "a151466b-a170-4176-9536-b224269b8c00",
+        walletConnectors: [
+          EthereumWalletConnectors,
+          ZKsyncSmartWalletConnectors,
+        ],
         termsOfServiceUrl: "https://sophon.xyz/terms",
         privacyPolicyUrl: "https://sophon.xyz/privacy",
         customTermsOfServices: (

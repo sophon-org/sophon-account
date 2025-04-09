@@ -64,7 +64,13 @@ export default function DynamicMethods({ isDarkMode }) {
     async function signEthereumMessage() {
         if(!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
-        const signature = await primaryWallet.signMessage("Hello World");
+        const ecdsaClient = primaryWallet.connector.getAccountAbstractionProvider();
+
+        if (!ecdsaClient) {
+          throw new Error('ecdsa client not found');
+        }
+
+        const signature = await ecdsaClient.signMessage("Hello World");
         setResult(signature);
     }
 

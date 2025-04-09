@@ -2,7 +2,7 @@
 
 import { Connector, useAccount, useAccountEffect, useConnectors } from "wagmi";
 import { useEffect, useState } from "react";
-import { SophonWallet, WalletConfig } from "@sophon/wallet";
+import { SophonWallet, WalletConfig } from "@sophon-labs/wallet";
 
 interface Props {
   authenticatedComponent: React.ReactNode;

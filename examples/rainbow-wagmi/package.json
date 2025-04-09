@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.2.4",
-    "@sophon/eip6963": "workspace:*",
-    "@sophon/wallet": "workspace:*",
-    "@sophon/react": "workspace:*",
+    "@sophon-labs/eip6963": "workspace:*",
+    "@sophon-labs/wallet": "workspace:*",
+    "@sophon-labs/react": "workspace:*",
     "@tanstack/react-query": "^5.55.3",
     "next": "^15.1.7",
     "react": "^19.0.0",

@@ -5,6 +5,7 @@ import { DynamicWidget } from "@/lib/dynamic";
 import { useState, useEffect } from 'react';
 import DynamicMethods from "@/app/components/Methods";
 import './page.css';
+import { DeployWallet } from "./components/deploy-wallet";
 
 const checkIsDarkSchemePreferred = () => {
   if (typeof window !== 'undefined') {
@@ -36,6 +37,7 @@ export default function Main() {
       <div className="modal">
         <DynamicWidget />
         <DynamicMethods isDarkMode={isDarkMode} />
+        <DeployWallet />
       </div>
       <div className="footer">
         <div className="footer-text">Made with ❤️ by dynamic</div>

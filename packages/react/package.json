@@ -1,5 +1,5 @@
 {
-  "name": "@sophon/react",
+  "name": "@sophon-labs/react",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
@@ -7,17 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "^4.8.1",
-    "@dynamic-labs/ethereum-aa": "^4.8.1",
-    "@dynamic-labs/global-wallet-client": "^4.8.1",
-    "@dynamic-labs/sdk-api": "^0.0.634",
-    "@dynamic-labs/sdk-react-core": "^4.8.1",
-    "@dynamic-labs/wagmi-connector": "^4.8.1",
-    "@sophon/eip6963": "workspace:^1.0.0",
-    "@sophon/wallet": "workspace:^1.0.0",
+    "@dynamic-labs/ethereum": "4.10.4-preview.0",
+    "@dynamic-labs/ethereum-aa": "4.10.4-preview.0",
+    "@dynamic-labs/global-wallet-client": "4.10.4-preview.0",
+    "@dynamic-labs/sdk-api": "^0.0.656",
+    "@dynamic-labs/sdk-react-core": "4.10.4-preview.0",
+    "@dynamic-labs/wagmi-connector": "4.10.4-preview.0",
+    "@sophon-labs/eip6963": "workspace:^1.0.0",
+    "@sophon-labs/wallet": "workspace:^1.0.0",
+    "clsx": "^2.1.1",
     "react": "^19.0.0",
-    "viem": "^2.23.5",
-    "wagmi": "^2.14.13"
+    "tailwind-merge": "^3.2.0",
+    "viem": "^2.26.0",
+    "wagmi": "^2.14.16"
   },
   "keywords": [],
   "author": "",
@@ -25,9 +27,12 @@
   "exports": {
     ".": "./src/index.ts",
     "./provider": "./src/provider.tsx",
-    "./wagmi": "./src/wagmi.tsx",
+    "./chains": "./src/chains.ts",
     "./utils": "./src/utils.tsx",
-    "./widget": "./src/widget.tsx"
+    "./widget": "./src/widget.tsx",
+    "./wagmi": "./wagmi.tsx",
+    "./hooks": "./src/hooks/index.ts",
+    "./components": "./src/components/index.ts"
   },
   "devDependencies": {
     "@types/react": "^19.0.10"

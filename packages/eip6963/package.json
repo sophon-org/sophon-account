@@ -1,5 +1,5 @@
 {
-  "name": "@sophon/eip6963",
+  "name": "@sophon-labs/eip6963",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@sophon/wallet": "workspace:^1.0.0",
+    "@sophon-labs/wallet": "workspace:^1.0.0",
     "@dynamic-labs/global-wallet-client": "^4.5.1"
   },
   "keywords": [],

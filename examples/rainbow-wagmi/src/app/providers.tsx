@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import "@sophon/eip6963";
+import "@sophon-labs/eip6963";
 
 import { config } from "../wagmi";
 

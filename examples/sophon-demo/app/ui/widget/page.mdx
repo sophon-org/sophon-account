@@ -1,0 +1,73 @@
+import { ExampleWithCode } from "@/components/example-with-code";
+import { SophonWidget } from "@sophon-labs/react";
+import WidgetWithDropdown from "@/examples/ui/sophon-widget/WidgetWithDropdown";
+import WidgetWithModal from "@/examples/ui/sophon-widget/WidgetWithModal";
+import WidgetCustom from "@/examples/ui/sophon-widget/WidgetCustom";
+import { getFileContent } from "@/actions/file";
+
+# Sophon Widget
+
+## General Usage
+
+Once a user connects their wallet, you may want to display a navigation component to show the current wallet and connected network. Additionally, you may want to display the user’s profile so they can edit their information, add additional wallets, and more.
+
+The `SophonWidget` is the parent component that has all these features available in it. If you want to explore sub-components for more granular control, then see `SophonConnectButton`, `SophonUserProfile` and the `SophonNav` components.
+
+If you need to embed the modal directly into your site without the need for button first, then we recommend exploring the `SophonEmbeddedWidget` instead.
+
+## Widget With Dropdown
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "WidgetWithDropdown.tsx",
+      code: await getFileContent("ui/sophon-widget/WidgetWithDropdown.tsx"),
+    },
+  ]}
+>
+  <WidgetWithDropdown />
+</ExampleWithCode>
+
+## Widget With Modal
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "WidgetWithModal.tsx",
+      code: await getFileContent("ui/sophon-widget/WidgetWithModal.tsx"),
+    },
+  ]}
+>
+  <WidgetWithModal />
+</ExampleWithCode>
+
+## Custom Widget
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "WidgetCustom.tsx",
+      code: await getFileContent("ui/sophon-widget/WidgetCustom.tsx"),
+    },
+    {
+            language: "tsx",
+            fileName: "Provider.tsx",
+            code: `const cssOverrides = \`
+  .partner-custom-button {
+    background-color: #ea3f3f;
+  }
+
+.partner-custom-button:hover:enabled {
+background-color: #ee6969c7;
+}
+\`;`,
+},
+]}
+
+>
+
+  <WidgetCustom />
+</ExampleWithCode>

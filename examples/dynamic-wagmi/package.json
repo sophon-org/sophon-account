@@ -9,23 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dynamic-labs/ethereum": "4.9.13-preview.1",
+    "@dynamic-labs/ethereum-aa": "4.9.13-preview.1",
+    "@dynamic-labs/sdk-react-core": "4.9.13-preview.1",
+    "@dynamic-labs/wagmi-connector": "4.9.13-preview.1",
+    "@tanstack/react-query": "^5.27.5",
+    "next": "15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.2",
-    "@dynamic-labs/sdk-react-core": "*",
     "viem": "*",
-    "@dynamic-labs/wagmi-connector": "*",
-    "@tanstack/react-query": "^5.27.5",
-    "wagmi": "^2.5.7",
-    "@dynamic-labs/ethereum": "*"
+    "wagmi": "^2.5.7"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }
