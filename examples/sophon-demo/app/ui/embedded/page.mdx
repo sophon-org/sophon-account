@@ -1,0 +1,104 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import EmbeddedNoBackground from "@/examples/ui/embedded/EmbeddedNoBackground";
+import EmbeddedWithBackground from "@/examples/ui/embedded/EmbeddedWithBackground";
+import EmbeddedBorderBackground from "@/examples/ui/embedded/EmbeddedBorderBackground";
+import EmbeddedWithCustomStyle from "@/examples/ui/embedded/EmbeddedWithCustomStyle";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonEmbeddedWidget } from "@sophon-labs/react";
+
+<EyeBrown label="UI & Layout" />
+
+# Embedded Panel
+
+This component will render the signup/login UI as well as the user profile all in one on the page. It's useful as an alternative to `SophonWidget`, which first renders a button that brings up the flow.
+
+## Properties
+
+<ComponentPropertyTable
+  componentClass={SophonEmbeddedWidget}
+  properties={[
+    {
+      name: "background",
+      type: "'none' | 'default' | 'with-border'",
+      description: "The variant name of the widget",
+    },
+    {
+      name: "className",
+      type: "string",
+      description:
+        "The CSS class name of the widget, it must exists in the shadow DOM",
+    },
+    {
+      name: "style",
+      type: "CSSProperties",
+      description: "The custom CSS styles to be applied to the embedded widget",
+    },
+  ]}
+/>
+
+## Embedded Panel Without Background
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "EmbeddedNoBackground.tsx",
+      code: await getFileContent("ui/embedded/EmbeddedNoBackground.tsx"),
+    },
+  ]}
+>
+  <Box className="my-10">
+    <EmbeddedNoBackground />
+  </Box>
+</ExampleWithCode>
+
+## Embedded Panel With Background
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "EmbeddedWithBackground.tsx",
+      code: await getFileContent("ui/embedded/EmbeddedWithBackground.tsx"),
+    },
+  ]}
+>
+  <Box className="my-10">
+    <EmbeddedWithBackground />
+  </Box>
+</ExampleWithCode>
+
+## Embedded Panel With Border
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "EmbeddedBorderBackground.tsx",
+      code: await getFileContent("ui/embedded/EmbeddedBorderBackground.tsx"),
+    },
+  ]}
+>
+  <Box className="my-10">
+    <EmbeddedBorderBackground />
+  </Box>
+</ExampleWithCode>
+
+## Embedded Panel With Custom Styles
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "EmbeddedWithCustomStyle.tsx",
+      code: await getFileContent("ui/embedded/EmbeddedWithCustomStyle.tsx"),
+    },
+  ]}
+>
+  <Box className="my-10">
+    <EmbeddedWithCustomStyle />
+  </Box>
+</ExampleWithCode>

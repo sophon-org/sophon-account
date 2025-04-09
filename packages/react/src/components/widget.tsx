@@ -5,7 +5,7 @@ import { cn } from "../utils";
 type ViewProps = React.ComponentProps<typeof DynamicWidget>;
 
 interface Props {
-  variant: ViewProps["variant"];
+  variant?: ViewProps["variant"];
   label?: ViewProps["innerButtonComponent"];
   className?: string;
   containerClassName?: string;

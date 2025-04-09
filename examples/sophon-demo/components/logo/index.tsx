@@ -10,7 +10,12 @@ export function Logo() {
         width={54}
         height={24}
       />
-      <Text ml={-12}>Sophon &lt;dev /&gt;</Text>
+      <Text ml={-12}>
+        Sophon{" "}
+        <Text span c="dimmed" size="sm">
+          &lt;dev /&gt;
+        </Text>
+      </Text>
     </Group>
   );
 }

@@ -1,0 +1,37 @@
+import { EyeBrown } from "@/components/eyebrown";
+
+<EyeBrown label="UI & Layout" />
+
+# Overview
+
+Within the Sophon Account SDK we provide you some visual components that you can use to build your own UI. You have the choice of using the all in one UI component (Sophon Widget), or individual components.
+
+```tsx
+import { SophonWidget } from "@sophon-labs/react";
+```
+
+## Sophon Widget
+
+The `SophonWidget` combines all three parts of the UI into one out of the box widget.
+
+The three parts of the UI which are bundled into the Widget are listed below along with their standalone components if you wish to use them seperately.
+
+## The Connect button
+
+`SophonConnectButton` is a standalone button to handle connecting wallets. It shows up by default with the text “Connect Wallet”.
+
+## The User Profile
+
+`SophonUserProfile` is responsible for displaying the dialog or dropdown of the user's profile information, connected wallets, and more.
+
+## The Navigation
+
+`SophonWidgetNav` is responsible for rendering the network picker and the connected account field.
+
+## Dynamic Embedded Widget
+
+`SophonEmbeddedWidget` is a standalone component that renders the signup/login flow along with the user profile directly.
+
+## Bridge Widget
+
+The `SophonBridgeWidget` is a standalone component that renders a bridge UI so that users can bridge accross different chains.

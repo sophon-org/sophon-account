@@ -4,6 +4,10 @@ import WidgetWithDropdown from "@/examples/ui/sophon-widget/WidgetWithDropdown";
 import WidgetWithModal from "@/examples/ui/sophon-widget/WidgetWithModal";
 import WidgetCustom from "@/examples/ui/sophon-widget/WidgetCustom";
 import { getFileContent } from "@/actions/file";
+import { EyeBrown } from "@/components/eyebrown";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+
+<EyeBrown label="UI & Layout" />
 
 # Sophon Widget
 
@@ -15,21 +19,40 @@ The `SophonWidget` is the parent component that has all these features available
 
 If you need to embed the modal directly into your site without the need for button first, then we recommend exploring the `SophonEmbeddedWidget` instead.
 
-## Widget With Dropdown
+## Properties
 
-<ExampleWithCode
-  code={[
+<ComponentPropertyTable
+  componentClass={SophonWidget}
+  properties={[
     {
-      language: "tsx",
-      fileName: "WidgetWithDropdown.tsx",
-      code: await getFileContent("ui/sophon-widget/WidgetWithDropdown.tsx"),
+      name: "variant",
+      type: "'modal' | 'dropdown'",
+      description: "The variant name of the widget",
+    },
+    {
+      name: "label",
+      type: "ReactNode",
+      description:
+        "The label of the widget, if not provided, the default label will be used",
+    },
+    {
+      name: "className",
+      type: "string",
+      description:
+        "The CSS class name of the widget, it must exists in the shadow DOM",
+    },
+    {
+      name: "containerClassName",
+      type: "string",
+      description:
+        "The CSS class name of the widget container, it must exists in the shadow DOM",
     },
   ]}
->
-  <WidgetWithDropdown />
-</ExampleWithCode>
+/>
 
 ## Widget With Modal
+
+This is the default expecience, once clicked the widget will open the login or profile page on a modal in the center of the screen.
 
 <ExampleWithCode
   code={[
@@ -43,7 +66,26 @@ If you need to embed the modal directly into your site without the need for butt
   <WidgetWithModal />
 </ExampleWithCode>
 
+## Widget With Dropdown
+
+For a more compact expecience, you can use the `WidgetWithDropdown` component. This will open the login or profile page closer to the click location.
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "WidgetWithDropdown.tsx",
+      code: await getFileContent("ui/sophon-widget/WidgetWithDropdown.tsx"),
+    },
+  ]}
+>
+  <WidgetWithDropdown />
+</ExampleWithCode>
+
 ## Custom Widget
+
+You can also customize the widget to your needs, but because we use `ShadowDom` for ui isolation, you need to override the css in the provider. This is useful if you want to match the design of your site.
+Out of the box, you can use the `partner-custom-button` class to override the styles of the button.
 
 <ExampleWithCode
   code={[

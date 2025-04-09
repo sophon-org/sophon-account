@@ -1,5 +1,3 @@
-import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import { Box, Container, Group } from "@mantine/core";
 
@@ -13,7 +11,6 @@ export const CommonLayout = ({ children }: { children: React.ReactNode }) => {
             <Box className="flex-grow">{children}</Box>
           </Group>
         </Container>
-        <Footer />
       </Box>
     </Box>
   );

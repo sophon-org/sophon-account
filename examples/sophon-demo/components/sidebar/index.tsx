@@ -1,16 +1,12 @@
 "use client";
 
-import { Code, Group, ScrollArea } from "@mantine/core";
+import { Code, Group, ScrollArea, Text } from "@mantine/core";
 import { LinksGroup } from "./group";
 import { Logo } from "../logo";
 import classes from "./index.module.css";
 import {
   BlocksIcon,
-  CalendarCogIcon,
   CogIcon,
-  GaugeIcon,
-  NotebookTabsIcon,
-  PresentationIcon,
   RadioIcon,
   ScrollTextIcon,
   StarIcon,
@@ -20,12 +16,12 @@ import {
 } from "lucide-react";
 import { version } from "../../../../package.json";
 import { cn } from "@sophon-labs/react";
+import { usePathname, useRouter } from "next/navigation";
 
 const menu = [
   {
     label: "Getting Started",
     icon: StarIcon,
-    initiallyOpened: true,
     links: [
       { label: "Welcome", link: "/getting-started" },
       { label: "Best Practices", link: "/getting-started/best-practices" },
@@ -86,7 +82,11 @@ const menu = [
 ];
 
 export function Sidebar() {
-  const links = menu.map((item) => <LinksGroup {...item} key={item.label} />);
+  const pathname = usePathname();
+  const links = menu.map((item) => {
+    const isOpen = (item.links ?? []).some((link) => pathname === link.link);
+    return <LinksGroup {...item} key={item.label} initiallyOpened={isOpen} />;
+  });
 
   return (
     <nav className={cn(classes.navbar, "h-screen")}>
@@ -101,7 +101,11 @@ export function Sidebar() {
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      <div className={classes.footer}></div>
+      <div className={classes.footer}>
+        <Text c="dimmed" size="sm" ta="center">
+          Made with ❤️ by Sophon
+        </Text>
+      </div>
     </nav>
   );
 }

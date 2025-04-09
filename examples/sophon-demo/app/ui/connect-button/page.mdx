@@ -1,0 +1,43 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="UI & Layout" />
+
+# Connect Button Widget
+
+With this component you have total control of the UI to adapt to your needs.
+
+## Properties
+
+<ComponentPropertyTable
+  componentClass={SophonConnectButtonWidget}
+  properties={[
+    {
+      name: "children",
+      type: "ReactNode",
+      description:
+        "Your actual component to be rendered that will dispatch the login flow",
+    },
+  ]}
+/>
+
+## Custom Connect Button Flow
+
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "ConnectButtonCustom.tsx",
+      code: await getFileContent("ui/connect-button/ConnectButtonCustom.tsx"),
+    },
+  ]}
+>
+  <Box className="my-10">
+    <ConnectButtonCustom />
+  </Box>
+</ExampleWithCode>
