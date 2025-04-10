@@ -1,1 +1,69 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Provider & Connector" />
+
+# SophonContextProvider
+
+## Settings
+
+Passed in using the "settings" prop, available when you first initialize `SophonContextProvider` in your App.
+
+### partnerId
+
+**Type:** `string`
+
+**Description:** You will need to specify your app's partner ID, which refers to a unique partner and its settings in Sophon. To get your partner ID, get in contact with the Sophon team.
+
+### cssOverrides
+
+**Type:** `string | JSX.Element`
+
+**Description:** Allows for custom CSS overrides via ShadowDom.
+
+### debugError
+
+**Type:** `boolean`
+
+**Description:** When enabled, errors caught during the authentication step and their stack trace will be set in a state and displayed in the front end.
+
+### events
+
+**Type:** `SophonEvents`
+
+**Description:** This prop allows custom event callbacks after important events during the authentication flows for Sophon's React SDK.
+
+### logLevel
+
+**Type:** `keyof typeof LogLevel`
+
+**Description:** The log level to use for client side logging with our SDK. Defaults to WARN
+
+### onboardingImageUrl
+
+**Type:** `string`
+
+**Description:** When provided, this image will be shown during the customer information capture step after a wallet successfully authenticates with Sophon and the environment requires additional information from the user.
+
+### privacyPolicyUrl
+
+**Type:** `string`
+
+**Description:** When provided, this will display a privacy policy URL on the signing step. This should be set to a URL of your organization's privacy policy web page.
+
+### redirectUrl
+
+**Type:** `string`
+
+**Description:** When provided, this will redirect the user to the specified URL after the user has successfully gone through an oauth flow (social login or social account linking).
+
+### termsOfServiceUrl
+
+**Type:** `string`
+
+**Description:** When provided, this will display a terms of service URL on the signing step. This should be set to a URL of your organization's terms of service web page.

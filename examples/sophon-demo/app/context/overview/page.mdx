@@ -1,1 +1,19 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Provider & Connector" />
+
+# Overview
+
+## Sophon Context Provider
+
+The `SophonContextProvider` is a provider component provides the context for the rest of the components to work. It must wrap all Sophon related components of your application.
+
+## Sophon Wagmi Connector
+
+The `SophonWagmiConnnector` is responsible for helping your Sophon application to integrate with Wagmi out of the box.

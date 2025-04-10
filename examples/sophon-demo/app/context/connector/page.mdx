@@ -1,1 +1,32 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Provider & Connector" />
+
+# SophonWagmiConnector
+
+The `SophonWagmiConnector` component integrates your Dynamic project settings with Wagmi
+
+### Usage
+
+```tsx
+import {
+  SophonWagmiConnector,
+  SophonContextProvider,
+} from "@sophon-labs/react";
+
+function App() {
+  return (
+    <SophonContextProvider settings={{ partnerId: "your_partner_id" }}>
+      <SophonWagmiConnector>
+        <YourRoutes />
+      </SophonWagmiConnector>
+    </SophonContextProvider>
+  );
+}
+```

@@ -1,14 +1,35 @@
-import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import {
+  DynamicContextProvider,
+  DynamicEventsCallbacks,
+} from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
+import { JSX } from "react";
 
 interface Props {
   children: React.ReactNode;
   partnerId: string;
-  cssOverrides?: string;
+  cssOverrides?: string | JSX.Element;
+  debugError?: boolean;
+  events?: DynamicEventsCallbacks;
+  logLevel?: "DEBUG" | "INFO" | "WARN" | "ERROR" | "MUTE";
+  privacyPolicyUrl?: string;
+  termsOfServiceUrl?: string;
+  redirectUrl?: string;
+  onboardingImageUrl?: string;
 }
 
-export const SophonContextProvider = ({ children, cssOverrides }: Props) => {
+export const SophonContextProvider = ({
+  children,
+  cssOverrides,
+  debugError,
+  logLevel,
+  events,
+  privacyPolicyUrl,
+  termsOfServiceUrl,
+  redirectUrl,
+  onboardingImageUrl,
+}: Props) => {
   const sophonOverrides = `
   ${cssOverrides ?? ""} 
 
@@ -32,18 +53,24 @@ export const SophonContextProvider = ({ children, cssOverrides }: Props) => {
     <DynamicContextProvider
       theme="auto"
       settings={{
+        debugError,
+        logLevel,
+        events,
+        redirectUrl,
+        onboardingImageUrl,
         cssOverrides: sophonOverrides,
         environmentId: "a151466b-a170-4176-9536-b224269b8c00",
+        initialAuthenticationMode: "connect-and-sign",
         walletConnectors: [
           EthereumWalletConnectors,
           ZKsyncSmartWalletConnectors,
         ],
-        termsOfServiceUrl: "https://sophon.xyz/terms",
-        privacyPolicyUrl: "https://sophon.xyz/privacy",
+        termsOfServiceUrl: termsOfServiceUrl ?? "https://sophon.xyz/terms",
+        privacyPolicyUrl: privacyPolicyUrl ?? "https://sophon.xyz/privacy",
         customTermsOfServices: (
           <a
             className="powered-by-dynamic powered-by-dynamic--center"
-            href="https://sophon.xyz/terms"
+            href="https://sophon.xyz"
             style={{
               marginTop: "8px",
             }}
