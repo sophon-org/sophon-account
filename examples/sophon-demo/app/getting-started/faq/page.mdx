@@ -1,1 +1,114 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+
+<EyeBrown label="FAQ" />
+
+# Frequently Asked Questions
+
+## General Questions
+
+### What is Sophon Account?
+
+Sophon Account is a comprehensive SDK built on top of Dynamic that provides tools for user authentication and wallet management in Web3 applications.
+
+### What chains are supported?
+
+Sophon Account supports multiple EVM-compatible chains, including Sophon mainnet and testnet. You can also add custom chains to the configuration.
+
+### Is Sophon Account free to use?
+
+Yes, Sophon Account is free to use for development and testing. For production use, please check our pricing plans.
+
+## Technical Questions
+
+### How do I handle wallet connection errors?
+
+You can use the `onError` callback in the `SophonWidget` or `SophonConnectButton` components to handle connection errors:
+
+```tsx
+<SophonWidget
+  onError={(error) => {
+    console.error("Connection error:", error);
+    // Handle the error appropriately
+  }}
+/>
+```
+
+### Can I customize the UI components?
+
+Yes, all UI components can be customized using CSS classes and theme properties. See the [UI Components](/ui/overview) documentation for more details.
+
+### How do I switch between chains?
+
+You can use the `SophonWidgetNav` component which includes a network picker, or implement your own chain switching logic using the `useChain` hook:
+
+```tsx
+import { useChain } from "@sophon-labs/react";
+
+function ChainSwitcher() {
+  const { chain, switchChain } = useChain();
+
+  return <button onClick={() => switchChain("sophon")}>Switch to Sophon</button>;
+}
+```
+
+## Security Questions
+
+### How are user credentials stored?
+
+User credentials are securely stored using industry-standard encryption methods. We never store private keys in plain text.
+
+### Is the SDK audited?
+
+Yes, the SDK undergoes regular security audits. You can find the latest audit reports in our [Security Guidelines](/getting-started/secutiry).
+
+### How do I handle wallet recovery?
+
+Embedded wallets can be recovered using the recovery phrase. The `SophonEmbeddedWidget` component includes a recovery flow, or you can implement your own using the `useWalletRecovery` hook.
+
+## Integration Questions
+
+### Can I use Sophon Account with other authentication providers?
+
+Yes, Sophon Account can be used alongside other authentication providers. The SDK is designed to be flexible and interoperable.
+
+### How do I test my integration?
+
+We provide a testnet environment for development and testing. You can also use our [testing tools](/configuration/testing) to simulate different scenarios.
+
+### What browsers are supported?
+
+Sophon Account supports all modern browsers, including Chrome, Firefox, Safari, and Edge. For mobile applications, we recommend using our React Native SDK.
+
+## Troubleshooting
+
+### I'm getting a "WagmiProviderNotFoundError" error
+
+This error occurs when the Wagmi provider is not properly set up. Make sure you have:
+
+1. Installed all required dependencies
+2. Set up the providers in the correct order
+3. Wrapped your application with the necessary providers
+
+### The UI components are not rendering correctly
+
+Check that you have:
+
+1. Imported the required CSS files
+2. Set up the theme provider correctly
+3. Used the components within the proper context
+
+### Authentication is not working
+
+Verify that:
+
+1. Your partner ID is correct
+2. The required environment variables are set
+3. Your network connection is stable
+
+## Need More Help?
+
+If you can't find the answer to your question here, please:
+
+- Check our [documentation](/)
+- Join our [Discord community](https://discord.gg/sophon)
+- Contact our [support team](mailto:support@sophon.xyz)
