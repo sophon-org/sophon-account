@@ -1,1 +1,166 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { Alert } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
+
+<EyeBrown label="Wagmi Configuration" />;
+
+# Wagmi Configuration
+
+Sophon Account uses Wagmi for wallet connection and chain management. This guide shows how to configure Wagmi in your application.
+
+<Alert
+  variant="light"
+  color="yellow"
+  title="Chain Configuration Required"
+  icon={<IconInfoCircle />}
+>
+  Only chains that are configured in your project's Dynamic dashboard will be supported. Make sure
+  to add the desired chains in your Dynamic dashboard before configuring them here.
+</Alert>
+
+## Basic Configuration
+
+Create a `wagmi.ts` file in your project:
+
+```tsx
+import { http, createConfig } from "wagmi";
+import { sophon, sophonTestnet } from "@sophon-labs/react";
+
+export const config = createConfig({
+  chains: [sophon, sophonTestnet],
+  multiInjectedProviderDiscovery: false,
+  ssr: true,
+  transports: {
+    [sophon.id]: http(),
+    [sophonTestnet.id]: http(),
+  },
+});
+
+declare module "wagmi" {
+  interface Register {
+    config: typeof config;
+  }
+}
+```
+
+## Provider Setup
+
+Wrap your application with the necessary providers:
+
+```tsx
+"use client";
+
+import { WagmiProvider } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { config } from "@/lib/wagmi";
+import { SophonContextProvider, SophonWagmiConnector } from "@sophon-labs/react";
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const queryClient = new QueryClient();
+
+  return (
+    <SophonContextProvider partnerId="YOUR_PARTNER_ID">
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <SophonWagmiConnector>{children}</SophonWagmiConnector>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </SophonContextProvider>
+  );
+}
+```
+
+## Using Wagmi Hooks
+
+Once configured, you can use Wagmi hooks in your components:
+
+```tsx
+import { useAccount, useChainId } from "wagmi";
+
+export default function WalletInfo() {
+  const { address, isConnected } = useAccount();
+  const chainId = useChainId();
+
+  return (
+    <div>
+      {isConnected ? (
+        <div>
+          <p>Address: {address}</p>
+          <p>Chain ID: {chainId}</p>
+        </div>
+      ) : (
+        <p>Not connected</p>
+      )}
+    </div>
+  );
+}
+```
+
+## Chain Configuration
+
+### Adding Custom Chains
+
+To add custom chains to the configuration:
+
+```tsx
+import { http, createConfig } from "wagmi";
+import { sophon, sophonTestnet } from "@sophon-labs/react";
+import { mainnet } from "wagmi/chains";
+
+export const config = createConfig({
+  chains: [sophon, sophonTestnet, mainnet],
+  multiInjectedProviderDiscovery: false,
+  ssr: true,
+  transports: {
+    [sophon.id]: http(),
+    [sophonTestnet.id]: http(),
+    [mainnet.id]: http(),
+  },
+});
+```
+
+### Switching Chains
+
+Use the `useSwitchChain` hook to switch between chains:
+
+```tsx
+import { useSwitchChain } from "wagmi";
+
+export default function ChainSwitcher() {
+  const { switchChain } = useSwitchChain();
+
+  return <button onClick={() => switchChain({ chainId: sophon.id })}>Switch to Sophon</button>;
+}
+```
+
+## Common Issues
+
+### WagmiProviderNotFoundError
+
+This error occurs when the Wagmi provider is not properly set up. Ensure:
+
+1. The providers are in the correct order:
+
+   ```tsx
+   <SophonContextProvider>
+     <WagmiProvider>
+       <QueryClientProvider>
+         <SophonWagmiConnector>{children}</SophonWagmiConnector>
+       </QueryClientProvider>
+     </WagmiProvider>
+   </SophonContextProvider>
+   ```
+
+2. All required dependencies are installed:
+
+   ```bash
+   pnpm add wagmi viem @tanstack/react-query
+   ```
+
+3. The configuration is properly exported and imported
+
+## Next Steps
+
+- [UI Components](/ui/overview)
+- [Authentication](/getting-started)
+- [Wallet Management](/configuration/wallets)

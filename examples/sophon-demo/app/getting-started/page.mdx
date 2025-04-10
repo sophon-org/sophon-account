@@ -1,1 +1,78 @@
+import { EyeBrown } from "@/components/eyebrown";
+
+<EyeBrown label="Getting Started" />
+
 # Welcome to Sophon Account SDK
+
+Sophon Account is a comprehensive SDK built on top of Dynamic, designed to provide a seamless and secure way to manage user accounts and authentication in your Web3 applications.
+
+## Quick Start
+
+1. Install the required packages:
+
+```bash
+pnpm add @sophon-labs/react @sophon-labs/wallet wagmi viem @tanstack/react-query
+```
+
+2. Set up the providers in your application:
+
+```tsx
+import { WagmiProvider } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { config } from "@/lib/wagmi";
+import { SophonContextProvider, SophonWagmiConnector } from "@sophon-labs/react";
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const queryClient = new QueryClient();
+
+  return (
+    <SophonContextProvider partnerId="YOUR_PARTNER_ID">
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <SophonWagmiConnector>{children}</SophonWagmiConnector>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </SophonContextProvider>
+  );
+}
+```
+
+3. Use the Sophon Widget in your application:
+
+```tsx
+import { SophonWidget } from "@sophon-labs/react";
+
+export default function Home() {
+  return (
+    <div>
+      <SophonWidget />
+    </div>
+  );
+}
+```
+
+## Key Features
+
+- **Unified Authentication**: Seamless integration of Web2 and Web3 authentication methods
+- **Smart Wallet Management**: Advanced wallet management with embedded and external wallet support
+- **Chain Agnostic**: Support for multiple EVM-compatible chains
+- **Developer-Friendly**: Simple API and comprehensive documentation
+- **Customizable UI**: Flexible UI components that can be styled to match your application
+
+## UI Components
+
+The SDK provides several UI components that you can use individually or together:
+
+- **SophonWidget**: All-in-one component for authentication and wallet management
+- **SophonConnectButton**: Standalone button for connecting wallets
+- **SophonUserProfile**: Component for displaying user profile information
+- **SophonWidgetNav**: Navigation component with network picker and account field
+- **SophonEmbeddedWidget**: Signup/login flow and user profile component
+- **SophonBridgeWidget**: Bridge UI for cross-chain transactions
+
+## Next Steps
+
+- [Best Practices](/getting-started/best-practices)
+- [Security Guidelines](/getting-started/secutiry)
+- [Rate Limits](/getting-started/rate-limits)
+- [FAQ](/getting-started/faq)

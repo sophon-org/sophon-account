@@ -1,1 +1,160 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { Alert } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
+
+<EyeBrown label="Ethers Configuration" />;
+
+# Ethers Configuration
+
+Sophon Account provides Ethers.js integration through Dynamic's SDK for interacting with Ethereum-compatible blockchains.
+
+<Alert
+  variant="light"
+  color="yellow"
+  title="Chain Configuration Required"
+  icon={<IconInfoCircle />}
+>
+  Only chains that are configured in your project's Dynamic dashboard will be supported. Make sure
+  to add the desired chains in your Dynamic dashboard before using them with Ethers.js.
+</Alert>
+
+## Basic Usage
+
+### Using the Primary Wallet
+
+Access the primary wallet through the `useSophonContext` hook:
+
+```tsx
+import { useSophonContext, isEthereumWallet } from "@sophon-labs/react";
+
+export function WalletExample() {
+  const { primaryWallet } = useSophonContext();
+
+  const handleTransaction = async () => {
+    if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
+
+    try {
+      const walletClient = await primaryWallet.getWalletClient();
+      // Use the wallet client for transactions
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  return (
+    <div>
+      <p>Wallet Address: {primaryWallet?.address}</p>
+      <button onClick={handleTransaction}>Send Transaction</button>
+    </div>
+  );
+}
+```
+
+### Signing Messages
+
+You can sign messages using the primary wallet:
+
+```tsx
+import { useSophonContext, isEthereumWallet, isZKsyncConnector } from "@sophon-labs/react";
+
+export function SignMessage() {
+  const { primaryWallet } = useSophonContext();
+  const [signature, setSignature] = useState<string>();
+
+  const handleSign = async () => {
+    if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
+
+    try {
+      if (!isZKsyncConnector(primaryWallet.connector)) {
+        // Regular wallet
+        const signature = await primaryWallet.signMessage("Hello World");
+        setSignature(signature);
+      } else {
+        // ZKSync wallet
+        const ecdsaClient = primaryWallet.connector.getAccountAbstractionProvider();
+        const signature = await ecdsaClient.signMessage({
+          message: "Hello World!",
+        });
+        setSignature(signature);
+      }
+    } catch (error) {
+      console.error("Error signing message:", error);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleSign}>Sign Message</button>
+      {signature && <p>Signature: {signature}</p>}
+    </div>
+  );
+}
+```
+
+### Getting Wallet Clients
+
+Access the public and wallet clients:
+
+```tsx
+import { useSophonContext, isEthereumWallet } from "@sophon-labs/react";
+
+export function WalletClients() {
+  const { primaryWallet } = useSophonContext();
+
+  const getClients = async () => {
+    if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
+
+    try {
+      const publicClient = await primaryWallet.getPublicClient();
+      const walletClient = await primaryWallet.getWalletClient();
+
+      // Use the clients for blockchain interactions
+      console.log("Public Client:", publicClient);
+      console.log("Wallet Client:", walletClient);
+    } catch (error) {
+      console.error("Error getting clients:", error);
+    }
+  };
+
+  return <button onClick={getClients}>Get Clients</button>;
+}
+```
+
+## Best Practices
+
+1. **Type Checking**: Always check for wallet type using `isEthereumWallet`
+2. **Error Handling**: Implement proper error handling for all wallet operations
+3. **Loading States**: Show loading indicators during wallet operations
+4. **Wallet Availability**: Check for wallet presence before operations
+5. **Chain Support**: Verify chain support in Dynamic dashboard
+
+## Common Issues
+
+### Wallet Not Connected
+
+Ensure the wallet is connected and available:
+
+```tsx
+const { primaryWallet } = useSophonContext();
+if (!primaryWallet || !isEthereumWallet(primaryWallet)) {
+  console.error("No Ethereum wallet connected");
+  return;
+}
+```
+
+### Wrong Network
+
+Make sure you're on the correct network:
+
+```tsx
+const { network } = useSophonContext();
+if (network !== expectedChainId) {
+  console.error("Please switch to the correct network");
+  return;
+}
+```
+
+## Next Steps
+
+- [UI Components](/ui/overview)
+- [Wagmi Configuration](/configuration/wagmi)
