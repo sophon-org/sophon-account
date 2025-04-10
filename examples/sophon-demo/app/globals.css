@@ -1,4 +1,11 @@
-@import "tailwindcss";
+@layer reset, theme, base, mantine, modules, components, utilities;
+
+@import "@mantine/core/styles.layer.css";
+@import "@mantine/code-highlight/styles.css";
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 body {
     height: 100vh;
