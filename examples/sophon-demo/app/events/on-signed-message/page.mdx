@@ -1,0 +1,31 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onSignedMessage
+
+This callback will be called after a user has signed a message, and it allows you to act on that message.
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onSignedMessage: ({ signatureHash, signedMessage }) => {
+        console.log(
+          `onSignedMessage was called: ${signatureHash}, ${signedMessage}`
+        );
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

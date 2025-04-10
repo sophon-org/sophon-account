@@ -1,1 +1,67 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# Sophon Account Events
+
+## Sophon Events
+
+An alternative to using event callbacks or useDynamicEvents react hook is to use dynamicEvents emitter directly.
+
+```tsx
+sophonEvents.on(eventName, listener);
+```
+
+## Events Callback
+
+You do not need to import anything extra to make use of event callbacks, instead simply add them using the events field inside the settings prop on `SophonContextProvider`.
+
+If you are looking for synchronous actions that will block the user until completion, please look at Handlers
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      // events callbacks go here
+    },
+  }}
+>
+  ...
+</SophonContextProvider4>
+```
+
+These are the available callbacks:
+
+`onAuthFlowCancel`: Called when the auth modal is closed before authentication is successful (alongside onAuthFlowClose).
+
+`onAuthFlowClose`: Called whenever the auth flow modal is closed.
+
+`onAuthFlowOpen`: Called after the auth flow modal is opened.
+
+`onAuthFailure`: Called when authentication fails.
+
+`onAuthInit`: Called when an authentication process begins.
+
+`onAuthSuccess`: Called after the user successfully authenticates.
+
+`onEmbeddedWalletCreated`: Called after embedded wallet created for user.
+
+`onLogout`: Called after the user logs out.
+
+`onOtpVerificationResult`: Called when an email or SMS OTP verification succeeds or fails.
+
+`onSignedMessage`: Called when the user signs a message and it allows you to act on that message.
+
+`onUserProfileUpdate`: Called when the user successfully updated their profile.
+
+`onWalletAdded`: Called when a new wallet is added to the user wallets.
+
+`onWalletRemoved`: Called when a wallet is removed from the user wallets.
+
+`onWalletTabSelected`: Called when a wallet tab is selected by the user.

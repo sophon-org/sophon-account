@@ -10,10 +10,41 @@ import { SophonConnectButtonWidget } from "@sophon-labs/react";
 
 # useSophonEvents
 
-The useSophonEvents hook can be used to subscribe to events emitted by Sophon SDK.
+The `useSophonEvents` hook can be used to subscribe to events emitted by Sophon SDK.
 
 ## Authentication Events
 
+These are the functions and states available to help you handle authentication events.
+
+| Event             |                    Arguments                     | Description                                                                                            |
+| :---------------- | :----------------------------------------------: | :----------------------------------------------------------------------------------------------------- |
+| authFailure       | `reason: 'user-cancelled' \| { error: unknown }` | Triggered whenever the auth process fails                                                              |
+| authFlowCancelled |                      `none`                      | Triggered when auth is attempted but fails like when user rejects connection or the network call fails |
+| authFlowClose     |                      `none`                      | Triggered when the modal is closed during an authentication process, regardless of failure or success  |
+| authFlowOpen      |                      `none`                      | Triggered when the modal is opened during an authentication process, regardless of failure or success  |
+| authInit          |                 `method: string`                 | Informs an auth attempt initialized, and provides insight into which auth option it is                 |
+| logout            |                      `none`                      | Triggered when the user logs out                                                                       |
+
 ## Wallet Events
 
+These are the functions and states available when the user is handling wallets.
+
+| Event                       |                                                Arguments                                                | Description                                                                                                                                                                                  |
+| :-------------------------- | :-----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| walletAdded                 |                                           `newWallet: Wallet`                                           | Triggered whenever a wallet is added to the user profile                                                                                                                                     |
+| walletRemoved               |                                         `removedWallet: Wallet`                                         | Triggered whenever a wallet is removed from the user profile                                                                                                                                 |
+| embeddedWalletCreated       | `wallet: Wallet, verifiedCredential: JwtVerifiedCredential \ undefined, user: UserProfile \| undefined` | Triggered when an embedded wallet is created                                                                                                                                                 |
+| primaryWalletChanged        |                                       `newPrimaryWallet: Wallet`                                        | Triggered whenever the primary wallet changes                                                                                                                                                |
+| primaryWalletNetworkChanged |                                     `newNetwork: number \| string`                                      | Triggered whenever the primary wallet network changes                                                                                                                                        |
+| userWalletsChanged          |                                   `params: UserWalletsChangedParams`                                    | Triggered whenever a wallet is added or removed from the user profile, the primary wallet changes to another one, the primary wallet network changes or a non-primary wallet network changes |
+
 ## OTP Events
+
+These are the functions and states available when the user is handling OTPs.
+
+| Event                   |            Arguments            | Description                                                  |
+| :---------------------- | :-----------------------------: | :----------------------------------------------------------- |
+| emailVerificationResult | `param: boolean, email: string` | Triggered when the email verification result is received     |
+| smsVerificationResult   | `param: boolean, phone: string` | Triggered when the sms verification result is received       |
+| mfaCompletionFailure    |   `args: { error: unknown }`    | Emitted when there is an error verifiyng the MFA challenge   |
+| mfaCompletionSuccess    |  `args: { mfaToken?: string }`  | Emitted when the user succesfully completes an MFA challenge |

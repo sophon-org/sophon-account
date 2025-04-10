@@ -10,73 +10,43 @@ import { SophonConnectButtonWidget } from "@sophon-labs/react";
 
 # useSophonContext
 
-Sophon's React Context which is set via `SophonContextProvider`
+Sophon's React Context which is set via `SophonContextProvider` that have all the information about the current user and the SDK state.
 
 ## Properties
 
 ### accountSwitchState
 
-Type: AccountSwitchState
-
 This enum type specifies the current state of switching or linking wallets in a multi-wallet enabled environment. This can be idle, linking_new_wallet, switching_primary, primary_not_connected
 
 ### authMode
-
-Type: AuthModeType
 
 This enum type specifies whether the SDK's users will need to sign to authenticate and prove ownership of their account, or just connect is enough. This can be connect-only or connect-and-sign
 
 ### awaitingSignatureState
 
-Type: AwaitingSignatureState
-
 This enum type specifies the current state while waiting for a signature of a new wallet to link in a multi-wallet enabled environment. This can be idle, linking_new_wallet, transferring_wallet
 
 ### handleLogOut
 
-Type: () => Promise
-
 A helper-method to log-out the currently authenticated user account.
 
-### handleUnlinkWallet
-
-Type: (walletId: string) => Promise
-
-Helper function to unlink a wallet given a wallet ID from the user account.
-
 ### isVerificationInProgress
-
-Type: boolean
 
 Whether any verifications are in progress for the current user (ex. connect, sign and email login verifications).
 
 ### loadingNetwork
 
-Type: boolean
-
 Returns true when the SDK is looking for the network of the primary wallet's wallet connector.
 
-### multiWalletWidgetState
-
-Type: MultiWalletWidgetState
-
-This enum type specifies the current state of the widget in a multi-wallet enabled environment. This can be idle, awaiting_account_switch, awaiting_connection, awaiting_signature, detected_known_secondary_wallet, detected_new_wallet
-
 ### network
-
-Type: number | undefined
 
 This represents the current network selected for the primary wallet
 
 ### networkConfigurations
 
-Type: NetworkConfigurationMap | undefined
-
 This contains the current network configurations for various EVM and Solana chains. These information includes chain ID, RPC URLs, and other important information.
 
 ### primaryWallet
-
-Type: Wallet | null
 
 An instance of a Wallet that represents the most recent connected Wallet.
 
@@ -90,80 +60,36 @@ An instance of a Wallet that represents the most recent connected Wallet.
   ]}
 />
 
-### qrcodeUri
-
-Type: string
-
-URI for the QR code to scan in the current modal.
-
-### redirectUrl
-
-Type: string | undefined
-
-URL used for redirecting back after connecting with farcaster
-
 ### sdkHasLoaded
-
-Type: boolean
 
 Whether the sdk's data is done loading — useful for avoiding stale data flashes by not rendering until the sdk is done loading.
 
-### selectedTabIndex
-
-Type: number
-
-The selected tab index when using the wallet list view tabs feature
+<ExampleWithCode
+  code={[
+    {
+      language: "tsx",
+      fileName: "SDKHasLoadedUsage.tsx",
+      code: await getFileContent("hooks/context/SDKHasLoadedUsage.tsx"),
+    },
+  ]}
+/>
 
 ### setAuthMode
 
-`Type: Dispatch<SetStateAction<AuthModeType>>`
-
 Sets the current authentication mode of branded wallets (“connect-and-sign” or “connect-only”). Note: does nothing if the user is already logged in. You might also want to toggle the initialAuthenticationMode prop.
-
-### setMultiWalletWidgetState
-
-Type: MultiWalletWidgetStateSetter
-
-It controls the intended state for a multi-wallet enabled environment.
-
-### setSelectedTabIndex
-
-`Type: Dispatch<SetStateAction<number>>`
-
-Sets the selected tab index when using the wallet list view tabs feature
 
 ### setShowAuthFlow
 
-`Type: Dispatch<SetStateAction>`
-
 It controls whether or not to display the DynamicAuthFlow SDK component.
-
-### setShowQrcodeModal
-
-`Type: Dispatch<SetStateAction>`
-
-It controls whether or not to display a QR code modal.
 
 ### showAuthFlow
 
-Type: boolean
-
 The value set by setShowAuthFlow, it controls whether or not to display the DynamicAuthFlow SDK component.
 
-### showQrcodeModal
-
-Type: boolean
-
-Value set by setShowQrcodeModal, it controls whether or not to display a QR code modal.
-
 ### user
-
-Type: UserProfile | null
 
 The user object of the currently authenticated user.
 
 ### userWithMissingInfo
-
-Type: UserProfile | undefined
 
 Present if the user is authenticated but hasn't finished onboarding (i.e. mandatory info capture/MFA), undefined if the user hasn't started the login/signup process or has already fully completed it.

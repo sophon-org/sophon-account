@@ -1,0 +1,35 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# Sophon Events
+
+An alternative to using event callbacks or `useSophonEvents` react hook is to use sophonEvents emitter directly.
+
+It can used anywhere, even outside of a React component.
+
+If you want to listen to events in a React component, you might want to use the `useSophonEvents` hook instead, as it will automatically unsubscribe when the component is unmounted.
+
+## Usage
+
+```tsx
+import { sophonEvents } from "@sophon-labs/react";
+
+sophonEvents.on("primaryWalletChanged", (newPrimaryWallet) => {
+  console.log("primaryWalletChanged was called", newPrimaryWallet);
+});
+
+sophonEvents.on("primaryWalletNetworkChanged", (newNetwork) => {
+  console.log("primaryWalletNetworkChanged was called", newNetwork);
+});
+
+sophonEvents.on("userWalletsChanged", (params) => {
+  console.log("userWalletsChanged was called", params);
+});
+```

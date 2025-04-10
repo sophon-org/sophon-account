@@ -1,0 +1,32 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onAuthSuccess
+
+This callback will be called after the user successfully authenticates.
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onAuthSuccess: (args) => {
+        console.log("onAuthSuccess was called", args);
+        // you can get the jwt by calling the getAuthToken helper function
+        const authToken = getAuthToken();
+        console.log("authToken", authToken);
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

@@ -1,0 +1,31 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onLogout
+
+This callback will be called after the user logs out.
+
+It will be called either when the user explicitly logged out by calling `handleLogOut` or when the user's token expired.
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onLogout: (args) => {
+        console.log("onLogout was called", args);
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

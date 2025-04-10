@@ -1,0 +1,29 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onAuthFlowCancel
+
+This callback will be called when the auth modal is closed before authentication is successful. Note that onAuthFlowClose will also still be called — if you want an event that is fired whenever the auth modal is closed, you should listen to it.
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onAuthFlowCancel: () => {
+        console.log("Authentication was cancelled");
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

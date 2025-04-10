@@ -1,0 +1,33 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onAuthFailure
+
+This callback will be called when an authentication process fails.
+
+This can be either caused by an error or by the user cancelling the process.
+
+​
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onAuthFailure: (method, reason) => {
+        console.log("onAuthFailure was called", method, reason);
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

@@ -1,5 +1,15 @@
 import { CodeHighlight, InlineCodeHighlight } from "@mantine/code-highlight";
-import { Title, Image, ImageProps, Anchor, Text } from "@mantine/core";
+import {
+  Title,
+  Image,
+  ImageProps,
+  Anchor,
+  Text,
+  Table,
+  TableTr,
+  TableTd,
+  TableTh,
+} from "@mantine/core";
 import type { MDXComponents } from "mdx/types";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -41,6 +51,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: (props) => <Image {...(props as ImageProps)} />,
     a: ({ children, href }) => <Anchor href={href}>{children}</Anchor>,
     p: ({ children }) => <Text mb={20}>{children}</Text>,
+    table: ({ children }) => (
+      <Table highlightOnHover striped>
+        {children}
+      </Table>
+    ),
+    th: ({ children }) => <TableTh>{children}</TableTh>,
+    td: ({ children }) => <TableTd>{children}</TableTd>,
+    tr: ({ children }) => <TableTr>{children}</TableTr>,
 
     ...components,
   };

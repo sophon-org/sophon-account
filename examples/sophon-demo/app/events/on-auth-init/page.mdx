@@ -1,0 +1,33 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="Events" />
+
+# onAuthInit
+
+This callback will be called when an authentication process initiates.
+
+For wallets, this is when signature is requested.
+For email and SMS, this is as soon as user provides the phone number or email address.
+For social, this is as soon as user selects a social provider.
+
+## Usage
+
+```tsx
+<SophonContextProvider
+  settings={{
+    events: {
+      onAuthInit: (args) => {
+        console.log("onAuthInit was called", args);
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
+```

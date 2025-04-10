@@ -1,1 +1,17 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="React Hooks" />
+
+# useReinitialize
+
+Used to manually reinitialize the whole SDK at any point in time. It will reset not just the user state (as `useRefreshUser` does), but the whole SDK state including wallets, the `primaryWallet`, user state, etc.
+
+An example of where this hook can be helpful is if you have multiple seperate windows (things like a Chrome extension popup and a Chrome page for the same extension) where Sophon is active and you want to ensure they are all in sync.
+
+While in process, the `sdkHasLoaded` boolean on `useSophonContext` will be false, and once completed, it will be true.

@@ -6,15 +6,24 @@ import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCusto
 import { ComponentPropertyTable } from "@/components/component-property-table";
 import { SophonConnectButtonWidget } from "@sophon-labs/react";
 
-<EyeBrown label="Utilities" />
+<EyeBrown label="Events" />
 
-# shortenAddress
+# onAuthFlowOpen
 
-Helper function that will format a full Ethereum address to a shortened version.
+This callback will be called after the auth flow modal is opened.
+
+## Usage
 
 ```tsx
-import { shortenAddress } from "@sophon-labs/react";
-
-shortenAddress("0x1234567890123456789012345678901234567890");
-// "0x123...7890"
+<SophonContextProvider
+  settings={{
+    events: {
+      onAuthFlowOpen: () => {
+        console.log("onAuthFlowOpen was called");
+      },
+    },
+  }}
+>
+  {/* ... rest of your app ... */}
+</SophonContextProvider>
 ```

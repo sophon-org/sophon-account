@@ -63,12 +63,11 @@ const menu = [
     icon: WebhookIcon,
     links: [
       { label: "Overview", link: "/hooks/overview" },
+      { label: "useSophonContext", link: "/hooks/use-sophon-context" },
       { label: "useIsLoggedIn", link: "/hooks/use-is-logged-in" },
+      { label: "useUserEvents", link: "/hooks/use-sophon-events" },
       { label: "useRefreshUser", link: "/hooks/use-refresh-user" },
       { label: "useReinitialize", link: "/hooks/use-reinitialize" },
-      { label: "useSophonContext", link: "/hooks/use-sophon-context" },
-      { label: "useUserEvents", link: "/hooks/use-sophon-events" },
-      { label: "useUserWallets", link: "/hooks/use-user-wallets" },
     ],
   },
   {
@@ -76,7 +75,16 @@ const menu = [
     icon: RadioIcon,
     links: [
       { label: "Overview", link: "/events/overview" },
-      { label: "useSophon", link: "/events/use-sophon" },
+      { label: "Sophon Events", link: "/events/sophon-events" },
+      { label: "onAuthFlowCancel", link: "/events/on-auth-flow-cancel" },
+      { label: "onAuthFlowClose", link: "/events/on-auth-flow-close" },
+      { label: "onAuthFlowOpen", link: "/events/on-auth-flow-open" },
+      { label: "onAuthFailure", link: "/events/on-auth-failure" },
+      { label: "onAuthInit", link: "/events/on-auth-init" },
+      { label: "onAuthSuccess", link: "/events/on-auth-success" },
+      { label: "onLogout", link: "/events/on-logout" },
+      { label: "onSignedMessage", link: "/events/on-signed-message" },
+      { label: "onUserProfileUpdate", link: "/events/on-user-profile-update" },
     ],
   },
   {

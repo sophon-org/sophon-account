@@ -1,1 +1,17 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="React Hooks" />
+
+# useIsLoggedIn
+
+This hook determines whether a user is logged in or not. The hook needs to be initialized within a child of `SophonContextProvider`.
+
+The hook first checks if the user object exists or if the authMode is 'connect-only' and a primaryWallet exists. If either of these conditions is true, the user is considered logged in.
+
+Next, it checks the user should have a primaryWallet due to embedded wallets being enabled. If the user should have a promaryWallet and it doesn't exist, the user is not considered logged in, otherwise, they are considered logged in.
