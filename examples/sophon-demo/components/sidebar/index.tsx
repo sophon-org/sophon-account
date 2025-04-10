@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { version } from "../../../../package.json";
 import { cn } from "@sophon-labs/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const menu = [
   {

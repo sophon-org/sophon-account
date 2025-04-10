@@ -128,7 +128,7 @@ export default function ExampleMethods({
                   className="btn btn-primary"
                   onClick={signEthereumMessage}
                 >
-                  Sign "Hello World" on Ethereum
+                  Sign &quot;Hello World&quot; on Ethereum
                 </button>
               </>
             )}

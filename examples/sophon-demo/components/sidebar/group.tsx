@@ -10,11 +10,11 @@ import {
   UnstyledButton,
 } from "@mantine/core";
 import classes from "./group.module.css";
-import { CalendarClockIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 interface LinksGroupProps {
-  icon: React.FC<any>;
+  icon: React.FC<unknown>;
   label: string;
   initiallyOpened?: boolean;
   link?: string;

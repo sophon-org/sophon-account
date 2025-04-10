@@ -17,7 +17,7 @@ interface Property {
 }
 
 interface Props {
-  componentClass: React.ComponentType<any>;
+  componentClass: React.ComponentType<unknown>;
   properties: Property[];
 }
 

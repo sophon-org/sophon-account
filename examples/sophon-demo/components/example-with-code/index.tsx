@@ -1,5 +1,5 @@
-import { Box, Code, Paper, Tabs } from "@mantine/core";
-import { CodeHighlight, CodeHighlightTabs } from "@mantine/code-highlight";
+import { Box, Paper } from "@mantine/core";
+import { CodeHighlightTabs } from "@mantine/code-highlight";
 import { TypescriptIcon } from "../icons/typescript";
 import { CssIcon } from "../icons/css";
 import { cn } from "@sophon-labs/react";
