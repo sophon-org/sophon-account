@@ -44,16 +44,18 @@ export const ExampleWithCode = ({ code, children, className }: Props) => {
 
   return (
     <Paper withBorder className="my-4">
-      <Box
-        className={cn(
-          `p-4 content-center justify-items-center min-h-20`,
-          className
-        )}
-      >
-        {children}
-      </Box>
+      {!!children && (
+        <Box
+          className={cn(
+            `p-4 content-center justify-items-center min-h-20`,
+            className
+          )}
+        >
+          {children}
+        </Box>
+      )}
       <CodeHighlightTabs
-        className="border-t border-[#cbc4c4ee]"
+        className={!!children ? "border-t border-[#cbc4c4ee]" : ""}
         code={mappedCode}
       />
     </Paper>

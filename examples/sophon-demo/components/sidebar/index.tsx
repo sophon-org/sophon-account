@@ -63,7 +63,12 @@ const menu = [
     icon: WebhookIcon,
     links: [
       { label: "Overview", link: "/hooks/overview" },
-      { label: "useSophon", link: "/hooks/use-sophon" },
+      { label: "useIsLoggedIn", link: "/hooks/use-is-logged-in" },
+      { label: "useRefreshUser", link: "/hooks/use-refresh-user" },
+      { label: "useReinitialize", link: "/hooks/use-reinitialize" },
+      { label: "useSophonContext", link: "/hooks/use-sophon-context" },
+      { label: "useUserEvents", link: "/hooks/use-sophon-events" },
+      { label: "useUserWallets", link: "/hooks/use-user-wallets" },
     ],
   },
   {
