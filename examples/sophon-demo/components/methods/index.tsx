@@ -19,7 +19,7 @@ export default function ExampleMethods({
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
 
-  const safeStringify = (obj) => {
+  const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
       obj,

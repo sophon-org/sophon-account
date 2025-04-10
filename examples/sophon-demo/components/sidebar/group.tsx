@@ -14,7 +14,8 @@ import { ChevronRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 interface LinksGroupProps {
-  icon: React.FC<unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: React.FC<any>;
   label: string;
   initiallyOpened?: boolean;
   link?: string;
