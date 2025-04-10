@@ -3,7 +3,6 @@ import "./index.module.css";
 import {
   useSophonContext,
   useIsLoggedIn,
-  useUserWallets,
   isEthereumWallet,
   isZKsyncConnector,
 } from "@sophon-labs/react";
@@ -15,7 +14,6 @@ export default function ExampleMethods({
 }) {
   const isLoggedIn = useIsLoggedIn();
   const { sdkHasLoaded, primaryWallet, user } = useSophonContext();
-  const userWallets = useUserWallets();
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
 
@@ -50,10 +48,6 @@ export default function ExampleMethods({
 
   function showUser() {
     setResult(safeStringify(user));
-  }
-
-  function showUserWallets() {
-    setResult(safeStringify(userWallets));
   }
 
   async function fetchPublicClient() {
@@ -111,9 +105,6 @@ export default function ExampleMethods({
           <div className="methods-container">
             <button className="btn btn-primary" onClick={showUser}>
               Fetch User
-            </button>
-            <button className="btn btn-primary" onClick={showUserWallets}>
-              Fetch User Wallets
             </button>
 
             {primaryWallet && isEthereumWallet(primaryWallet) && (

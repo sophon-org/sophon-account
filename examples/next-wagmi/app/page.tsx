@@ -19,7 +19,6 @@ const checkIsDarkSchemePreferred = () => {
 
 export default function Main() {
   const [isDarkMode, setIsDarkMode] = useState(checkIsDarkSchemePreferred);
-  const { setShowSophonAccountProfile } = useSophonContext();
 
   const token = getAuthToken();
   console.log("token", token);
@@ -38,16 +37,6 @@ export default function Main() {
       <div className="modal">
         <SophonWidget />
         <ExampleMethods isDarkMode={isDarkMode} />
-      </div>
-      <div>
-        <SophonEmbeddedWidget />
-      </div>
-      <div>
-        <h2>Account Profile</h2>
-        <button onClick={() => setShowSophonAccountProfile(true)}>
-          Show Profile
-        </button>
-        <SophonAccountProfile />
       </div>
       <div className="footer">
         <div className="footer-text">Made with ❤️ by Sophon Team</div>
