@@ -1,6 +1,6 @@
 "use client";
 
-import { Code, Group, ScrollArea, Text } from "@mantine/core";
+import { Code, Group, ScrollArea, Text, UnstyledButton } from "@mantine/core";
 import { LinksGroup } from "./group";
 import { Logo } from "../logo";
 import classes from "./index.module.css";
@@ -17,6 +17,7 @@ import {
 import { version } from "../../../../package.json";
 import { cn } from "@sophon-labs/react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const menu = [
   {
@@ -94,7 +95,7 @@ const menu = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({ className }: { className?: string }) {
   const pathname = usePathname();
   const links = menu.map((item) => {
     const isOpen = (item.links ?? []).some((link) => pathname === link.link);
@@ -102,12 +103,14 @@ export function Sidebar() {
   });
 
   return (
-    <nav className={cn(classes.navbar, "h-screen")}>
+    <nav className={cn(classes.navbar, className)}>
       <div className={classes.header}>
-        <Group justify="space-between">
-          <Logo />
-          <Code fw={700}>v{version}</Code>
-        </Group>
+        <UnstyledButton component={Link} href="/">
+          <Group justify="space-between">
+            <Logo />
+            <Code fw={700}>v{version}</Code>
+          </Group>
+        </UnstyledButton>
       </div>
 
       <ScrollArea className={classes.links}>
