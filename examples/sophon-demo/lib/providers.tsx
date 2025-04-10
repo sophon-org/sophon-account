@@ -23,7 +23,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
 
   return (
-    <MantineProvider>
+    <MantineProvider
+      classNamesPrefix="sophon-"
+      withCssVariables
+      withGlobalClasses
+    >
       <SophonContextProvider
         partnerId="a151466b-a170-4176-9536-b224269b8c00"
         cssOverrides={cssOverrides}
