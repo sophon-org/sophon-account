@@ -38,7 +38,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <CodeHighlight language={lang} code={children.props.children} />;
     },
     h6: ({ children }) => <Title order={6}>{children}</Title>,
-    img: (props) => <Image {...(props as ImageProps)} />,
+    img: (props) => <Image {...(props as ImageProps)} alt="" />,
     a: ({ children, href }) => <Anchor href={href}>{children}</Anchor>,
     p: ({ children }) => <Text mb={20}>{children}</Text>,
 
