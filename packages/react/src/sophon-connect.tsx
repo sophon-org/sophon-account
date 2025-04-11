@@ -24,7 +24,7 @@ export const SophonConnectButton: React.FC<Props> = ({
 
   useEffect(() => {
     const sophonConnector = connectors.find(
-      (connector) => connector.id === WalletConfig.eip6963.rdns
+      (connector) => connector.id === WalletConfig.eip6963.rdns,
     );
     if (sophonConnector) {
       setConnector(sophonConnector);

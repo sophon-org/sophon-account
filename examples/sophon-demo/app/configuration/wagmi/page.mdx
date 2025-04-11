@@ -14,8 +14,9 @@ Sophon Account uses Wagmi for wallet connection and chain management. This guide
   title="Chain Configuration Required"
   icon={<IconInfoCircle />}
 >
-  Only chains that are configured in your project's Dynamic dashboard will be supported. Make sure
-  to add the desired chains in your Dynamic dashboard before configuring them here.
+  Only chains that are configured in your project's Dynamic dashboard will be
+  supported. Make sure to add the desired chains in your Dynamic dashboard
+  before configuring them here.
 </Alert>
 
 ## Basic Configuration
@@ -53,7 +54,10 @@ Wrap your application with the necessary providers:
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { config } from "@/lib/wagmi";
-import { SophonContextProvider, SophonWagmiConnector } from "@sophon-labs/react";
+import {
+  SophonContextProvider,
+  SophonWagmiConnector,
+} from "@sophon-labs/react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
@@ -129,7 +133,11 @@ import { useSwitchChain } from "wagmi";
 export default function ChainSwitcher() {
   const { switchChain } = useSwitchChain();
 
-  return <button onClick={() => switchChain({ chainId: sophon.id })}>Switch to Sophon</button>;
+  return (
+    <button onClick={() => switchChain({ chainId: sophon.id })}>
+      Switch to Sophon
+    </button>
+  );
 }
 ```
 

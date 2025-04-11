@@ -14,8 +14,9 @@ Sophon Account provides Ethers.js integration through Dynamic's SDK for interact
   title="Chain Configuration Required"
   icon={<IconInfoCircle />}
 >
-  Only chains that are configured in your project's Dynamic dashboard will be supported. Make sure
-  to add the desired chains in your Dynamic dashboard before using them with Ethers.js.
+  Only chains that are configured in your project's Dynamic dashboard will be
+  supported. Make sure to add the desired chains in your Dynamic dashboard
+  before using them with Ethers.js.
 </Alert>
 
 ## Basic Usage
@@ -55,7 +56,11 @@ export function WalletExample() {
 You can sign messages using the primary wallet:
 
 ```tsx
-import { useSophonContext, isEthereumWallet, isZKsyncConnector } from "@sophon-labs/react";
+import {
+  useSophonContext,
+  isEthereumWallet,
+  isZKsyncConnector,
+} from "@sophon-labs/react";
 
 export function SignMessage() {
   const { primaryWallet } = useSophonContext();
@@ -71,7 +76,8 @@ export function SignMessage() {
         setSignature(signature);
       } else {
         // ZKSync wallet
-        const ecdsaClient = primaryWallet.connector.getAccountAbstractionProvider();
+        const ecdsaClient =
+          primaryWallet.connector.getAccountAbstractionProvider();
         const signature = await ecdsaClient.signMessage({
           message: "Hello World!",
         });

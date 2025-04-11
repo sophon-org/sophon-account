@@ -47,7 +47,9 @@ import { useChain } from "@sophon-labs/react";
 function ChainSwitcher() {
   const { chain, switchChain } = useChain();
 
-  return <button onClick={() => switchChain("sophon")}>Switch to Sophon</button>;
+  return (
+    <button onClick={() => switchChain("sophon")}>Switch to Sophon</button>
+  );
 }
 ```
 

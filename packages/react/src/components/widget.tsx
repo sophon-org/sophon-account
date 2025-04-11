@@ -39,7 +39,7 @@ export const SophonWidget: React.FC<Props> = ({
         buttonClassName={cn("sophon-widget", className)}
         buttonContainerClassName={cn(
           "sophon-widget-container",
-          containerClassName
+          containerClassName,
         )}
       />
     </>
