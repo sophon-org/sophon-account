@@ -25,10 +25,8 @@ const menu = [
     icon: StarIcon,
     links: [
       { label: "Welcome", link: "/getting-started" },
-      { label: "Best Practices", link: "/getting-started/best-practices" },
       { label: "Security", link: "/getting-started/security" },
       { label: "FAQ", link: "/getting-started/faq" },
-      { label: "Rate Limits", link: "/getting-started/rate-limits" },
     ],
   },
   { label: "Changelog", icon: ScrollTextIcon, link: "/changelog" },

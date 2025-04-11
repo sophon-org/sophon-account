@@ -9,6 +9,8 @@ import {
   TableTr,
   TableTd,
   TableTh,
+  List,
+  ListItem,
 } from "@mantine/core";
 import type { MDXComponents } from "mdx/types";
 
@@ -59,7 +61,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     th: ({ children }) => <TableTh>{children}</TableTh>,
     td: ({ children }) => <TableTd>{children}</TableTd>,
     tr: ({ children }) => <TableTr>{children}</TableTr>,
-
+    ul: ({ children }) => (
+      <List type="unordered" listStyleType="disc" my={20}>
+        {children}
+      </List>
+    ),
+    ol: ({ children }) => (
+      <List type="ordered" listStyleType="decimal" my={20}>
+        {children}
+      </List>
+    ),
+    li: ({ children }) => <ListItem>{children}</ListItem>,
     ...components,
   };
 }

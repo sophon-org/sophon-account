@@ -1,17 +1,90 @@
 import { EyeBrown } from "@/components/eyebrown";
+import { Alert, Text } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 <EyeBrown label="Getting Started" />
 
 # Welcome to Sophon Account SDK
 
-Sophon Account is a comprehensive SDK built on top of Dynamic, designed to provide a seamless and secure way to manage user accounts and authentication in your Web3 applications.
+<Alert
+  variant="light"
+  color="yellow"
+  icon={<IconInfoCircle />}
+  radius={10}
+  title="Beta Notice"
+  mb={20}
+>
+  Please keep in mind that the SDK is still in beta and some features might be
+  unstable.
+</Alert>
 
-## Quick Start
+The **Sophon Account SDK** is a comprehensive SDK built on top of [dynamic.xyz](https://dynamic.xyz/), designed to provide a seamless and secure way to manage user accounts and authentication in your Web3 applications.
+
+## Key Features
+
+- **Smart Wallet Management**: Advanced wallet management with embedded and external wallet support
+- **Unified Authentication**: Seamless integration of Web2 and Web3 authentication methods
+- **Developer-Friendly**: Simple API and comprehensive documentation
+- **Customizable UI**: Flexible UI components that can be styled to match your application, when using the complete SDK
+
+We offer two ways of integration with the Sophon Account:
+
+- **EIP6963** - Simple integration with a single button to connect a wallet with your current system, no complexities, just import the connector and use it in your application.
+- **ReactSDK** - A complete SDK with possibility to customize the UI and add more features to your application. Requires a Partner ID to be set up.
+
+## Sophon Account via EIP6963
+
+### Quick Start
+
+1. Install the required packages:
+
+```sh
+pnpm add @sophon-labs/eip6963
+```
+
+2. Import the connector and use it in your application:
+
+```tsx
+"use client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider } from "wagmi";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import "@sophon-labs/eip6963";
+
+import { config } from "../wagmi";
+
+export default function AppProviders({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const client = new QueryClient();
+
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={client}>
+        <RainbowKitProvider
+          appInfo={{
+            appName: "Rainbowkit Demo",
+            learnMoreUrl: "https://learnaboutcryptowallets.example",
+          }}
+        >
+          {children}
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+## Sophon Account via React SDK
+
+### Quick Start
 
 1. Install the required packages:
 
 ```bash
-pnpm add @sophon-labs/react @sophon-labs/wallet wagmi viem @tanstack/react-query
+pnpm add @sophon-labs/react
 ```
 
 2. Set up the providers in your application:
@@ -20,7 +93,10 @@ pnpm add @sophon-labs/react @sophon-labs/wallet wagmi viem @tanstack/react-query
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { config } from "@/lib/wagmi";
-import { SophonContextProvider, SophonWagmiConnector } from "@sophon-labs/react";
+import {
+  SophonContextProvider,
+  SophonWagmiConnector,
+} from "@sophon-labs/react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
@@ -51,15 +127,7 @@ export default function Home() {
 }
 ```
 
-## Key Features
-
-- **Unified Authentication**: Seamless integration of Web2 and Web3 authentication methods
-- **Smart Wallet Management**: Advanced wallet management with embedded and external wallet support
-- **Chain Agnostic**: Support for multiple EVM-compatible chains
-- **Developer-Friendly**: Simple API and comprehensive documentation
-- **Customizable UI**: Flexible UI components that can be styled to match your application
-
-## UI Components
+### UI Components
 
 The SDK provides several UI components that you can use individually or together:
 

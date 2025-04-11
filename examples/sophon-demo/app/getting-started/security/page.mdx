@@ -1,5 +1,29 @@
+import { EyeBrown } from "@/components/eyebrown";
+import { Alert } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
+
+<EyeBrown label="Getting Started" />
+
 # Security
 
-Sophon Account SDK inherits its security considerations from Dynamic. For detailed information on the security measures and best practices implemented by Dynamic, please refer to their [Security Overview](https://docs.dynamic.xyz/security/overview).
+<Alert
+  variant="light"
+  color="yellow"
+  icon={<IconInfoCircle />}
+  radius={10}
+  title="Beta Notice"
+  mb={20}
+>
+  **Sophon Account SDK** uses bellow the hood [dynamic](https://dynamic.xyz) for
+  authentication and account management. Most of the security measures and best
+  practices implemented by [dynamic](https://dynamic.xyz) are also inherited by
+  **Sophon Account SDK**.
+</Alert>
 
-By leveraging Dynamic's robust security infrastructure, Sophon Account SDK ensures that your Web3 applications are protected against common threats and vulnerabilities. This includes secure authentication methods, data encryption, and regular security audits to maintain the highest standards of security.
+## Overall Security
+
+By leveraging Dynamic's robust security infrastructure, **Sophon Account SDK** ensures that your Web3 applications are protected against common threats and vulnerabilities. This includes secure authentication methods, data encryption, and regular security audits to maintain the highest standards of security. If you want to know more about the security measures implemented by Dynamic, please refer to their [Security Overview](https://docs.dynamic.xyz/security/overview).
+
+## Rate Limits
+
+Until our own API system is in place, the rate limits defined by [dynamic](https://dynamic.xyz) will apply to all requests made through the **Sophon Account SDK**. This ensures that your applications adhere to the same usage policies and limitations as those set by [dynamic](https://dynamic.xyz), providing a consistent and reliable experience. If you want to know more about the rate limits implemented by Dynamic, please refer to their [Rate Limits Overview](https://docs.dynamic.xyz/developer-dashboard/rate-limits).
