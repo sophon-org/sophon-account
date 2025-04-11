@@ -13,6 +13,10 @@
   "license": "ISC",
   "type": "module",
   "packageManager": "pnpm@10.2.1",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
