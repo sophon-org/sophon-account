@@ -6,15 +6,11 @@ import { SophonEIP6963Emitter } from "@sophon-labs/eip6963";
 
 import { config } from "../wagmi";
 
-export default function AppProviders({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const client = new QueryClient();
+// Initialize EIP-6963 emitter before creating providers
+SophonEIP6963Emitter();
 
-  // Initialize EIP-6963 emitter
-  SophonEIP6963Emitter();
+export default function AppProviders({ children }: { children: React.ReactNode }) {
+  const client = new QueryClient();
 
   return (
     <WagmiProvider config={config}>
