@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@sophon-labs/wallet": "workspace:^1.0.0",
+    "@sophon-labs/wallet": "workspace:*",
     "@dynamic-labs/global-wallet-client": "^4.5.1"
   },
   "keywords": [],

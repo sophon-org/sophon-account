@@ -2,15 +2,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import "@sophon-labs/eip6963";
+import { SophonEIP6963Emitter } from "@sophon-labs/eip6963";
 
 import { config } from "../wagmi";
 
-export default function AppProviders({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Initialize EIP-6963 emitter before creating providers
+SophonEIP6963Emitter();
+
+export default function AppProviders({ children }: { children: React.ReactNode }) {
   const client = new QueryClient();
 
   return (

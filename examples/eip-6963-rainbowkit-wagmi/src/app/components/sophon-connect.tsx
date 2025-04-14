@@ -8,9 +8,7 @@ interface Props {
   authenticatedComponent: React.ReactNode;
 }
 
-export const SophonConnectButton: React.FC<Props> = ({
-  authenticatedComponent,
-}) => {
+export const SophonConnectButton: React.FC<Props> = ({ authenticatedComponent }) => {
   const { isConnected } = useAccount();
   const [connector, setConnector] = useState<Connector>();
 
@@ -28,6 +26,8 @@ export const SophonConnectButton: React.FC<Props> = ({
     );
     if (sophonConnector) {
       setConnector(sophonConnector);
+    } else {
+      console.log("Sophon connector not found");
     }
   }, [connectors]);
 

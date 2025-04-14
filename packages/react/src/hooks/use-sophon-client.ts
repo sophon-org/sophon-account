@@ -19,7 +19,7 @@ export const useSophonClient = () => {
         console.log(
           "no primary wallet or sdk loaded",
           sdkHasLoaded,
-          primaryWallet
+          primaryWallet,
         );
         return;
       }
@@ -27,7 +27,7 @@ export const useSophonClient = () => {
       console.log(
         "what?",
         isEthereumWallet(primaryWallet),
-        isZKsyncConnector(primaryWallet.connector)
+        isZKsyncConnector(primaryWallet.connector),
       );
       if (isZKsyncConnector(primaryWallet.connector)) {
         const ecdsaClient =

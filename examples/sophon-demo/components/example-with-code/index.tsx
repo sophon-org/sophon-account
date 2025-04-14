@@ -48,7 +48,7 @@ export const ExampleWithCode = ({ code, children, className }: Props) => {
         <Box
           className={cn(
             `p-4 content-center justify-items-center min-h-20`,
-            className
+            className,
           )}
         >
           {children}

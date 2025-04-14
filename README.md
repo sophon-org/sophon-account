@@ -69,7 +69,7 @@ This will automatically:
 
 ### Working with Wallet Connection Libraries
 
-Most modern wallet connection libraries, like RainbowKit, wagmi, or Web3Modal, support EIP-6963. Here's how to connect with wagmi:
+Most modern wallet connection libraries, like RainbowKit, wagmi, or Reown Appkit, support EIP-6963. Here's how to connect with wagmi:
 
 ```javascript
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";

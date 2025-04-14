@@ -24,7 +24,7 @@ export default function Main() {
   console.log("token", token);
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     );
     const handleChange = () => setIsDarkMode(checkIsDarkSchemePreferred());
 
