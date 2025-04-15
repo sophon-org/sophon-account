@@ -12,5 +12,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "exports": {
+    ".": "./src/index.ts",
+    "./mainnet": "./src/mainnet.ts",
+    "./testnet": "./src/testnet.ts"
+  }
 }

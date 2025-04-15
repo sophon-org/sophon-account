@@ -11,8 +11,8 @@
     "build:cjs": "tsc --project ./tsconfig.json --module commonjs --moduleResolution node --outDir ./dist/cjs --removeComments --verbatimModuleSyntax false"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "^4.10.4-preview.0",
-    "@dynamic-labs/global-wallet-client": "^4.10.4-preview.0",
+    "@dynamic-labs/ethereum": "^4.12.0",
+    "@dynamic-labs/global-wallet-client": "^4.12.0",
     "tsc-alias": "^1.8.10"
   },
   "devDependencies": {

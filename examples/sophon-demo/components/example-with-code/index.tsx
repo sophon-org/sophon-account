@@ -46,10 +46,7 @@ export const ExampleWithCode = ({ code, children, className }: Props) => {
     <Paper withBorder className="my-4">
       {!!children && (
         <Box
-          className={cn(
-            `p-4 content-center justify-items-center min-h-20`,
-            className,
-          )}
+          className={`p-4 content-center justify-items-center min-h-20 ${className}`}
         >
           {children}
         </Box>

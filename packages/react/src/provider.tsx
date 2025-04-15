@@ -5,6 +5,7 @@ import {
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 import { JSX } from "react";
+import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/wallet";
 
 interface Props {
   children: React.ReactNode;
@@ -17,6 +18,8 @@ interface Props {
   termsOfServiceUrl?: string;
   redirectUrl?: string;
   onboardingImageUrl?: string;
+  sandboxDisabled?: boolean;
+  theme?: "light" | "dark" | "auto";
 }
 
 export const SophonContextProvider = ({
@@ -29,6 +32,8 @@ export const SophonContextProvider = ({
   termsOfServiceUrl,
   redirectUrl,
   onboardingImageUrl,
+  sandboxDisabled,
+  theme,
 }: Props) => {
   const sophonOverrides = `
   ${cssOverrides ?? ""} 
@@ -51,7 +56,7 @@ export const SophonContextProvider = ({
 
   return (
     <DynamicContextProvider
-      theme="auto"
+      theme={theme ?? "auto"}
       settings={{
         debugError,
         logLevel,
@@ -59,7 +64,9 @@ export const SophonContextProvider = ({
         redirectUrl,
         onboardingImageUrl,
         cssOverrides: sophonOverrides,
-        environmentId: "a151466b-a170-4176-9536-b224269b8c00",
+        environmentId: sandboxDisabled
+          ? WalletConfig.environmentId
+          : WalletTestnetConfig.environmentId,
         initialAuthenticationMode: "connect-and-sign",
         walletConnectors: [
           EthereumWalletConnectors,

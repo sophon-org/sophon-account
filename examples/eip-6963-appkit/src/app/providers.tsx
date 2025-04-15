@@ -6,7 +6,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { sophon, sophonTestnet } from "@reown/appkit/networks";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { State, WagmiProvider } from "wagmi";
-import { SophonEIP6963Emitter } from "@sophon-labs/eip6963";
+import { SophonTestnetEIP6963Emitter } from "@sophon-labs/eip6963";
 
 // Get projectId from <https://cloud.reown.com>
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
@@ -24,10 +24,11 @@ const metadata = {
 };
 
 // Initialize EIP-6963 emitter
-SophonEIP6963Emitter();
+SophonTestnetEIP6963Emitter();
 
 const wagmiAdapter = new WagmiAdapter({
   networks: [sophon, sophonTestnet],
+  multiInjectedProviderDiscovery: false,
   projectId,
 });
 

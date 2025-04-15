@@ -5,6 +5,5 @@ export * from "./wagmi";
 export * from "./hooks";
 export * from "./ethereum";
 export * from "./components";
-export * from "./utils";
 import "./global.css";
 export * from "./formatters";

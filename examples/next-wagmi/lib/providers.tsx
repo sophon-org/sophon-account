@@ -12,7 +12,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
 
   return (
-    <SophonContextProvider>
+    <SophonContextProvider partnerId="your-partner-id">
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <SophonWagmiConnector>{children}</SophonWagmiConnector>

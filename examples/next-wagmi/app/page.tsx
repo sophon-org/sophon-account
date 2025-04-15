@@ -35,7 +35,7 @@ export default function Main() {
   return (
     <div className={`container ${isDarkMode ? "dark" : "light"}`}>
       <div className="modal">
-        <SophonWidget />
+        <SophonWidget variant="dropdown" />
         <ExampleMethods isDarkMode={isDarkMode} />
       </div>
       <div className="footer">

@@ -15,7 +15,6 @@ import {
   WrenchIcon,
 } from "lucide-react";
 import { version } from "../../../../package.json";
-import { cn } from "@sophon-labs/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -101,7 +100,7 @@ export function Sidebar({ className }: { className?: string }) {
   });
 
   return (
-    <nav className={cn(classes.navbar, className)}>
+    <nav className={`${classes.navbar} ${className}`}>
       <div className={classes.header}>
         <UnstyledButton component={Link} href="/">
           <Group justify="space-between">

@@ -23,6 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <ConnectButton />
         <SophonConnectButton authenticatedComponent={<ConnectButton />} />
         {isConnected && <SignMessage />}
 
