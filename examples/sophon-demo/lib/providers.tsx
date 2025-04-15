@@ -29,7 +29,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       withGlobalClasses
     >
       <SophonContextProvider
-        partnerId="a151466b-a170-4176-9536-b224269b8c00"
+        partnerId="123b216c-678e-4611-af9a-2d5b7b061258"
         cssOverrides={cssOverrides}
       >
         <WagmiProvider config={config}>

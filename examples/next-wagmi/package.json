@@ -15,7 +15,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "viem": "2.26.0",
-    "wagmi": "^2.14.16"
+    "wagmi": "^2.14.16",
+    "zksync-sso": "0.0.0-beta.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

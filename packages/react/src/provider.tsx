@@ -6,6 +6,7 @@ import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 import { JSX } from "react";
 import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/wallet";
+import { PartnerGate } from "./partner-gate";
 
 interface Props {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export const SophonContextProvider = ({
+  partnerId,
   children,
   cssOverrides,
   debugError,
@@ -89,7 +91,9 @@ export const SophonContextProvider = ({
         ),
       }}
     >
-      {children}
+      <PartnerGate partnerId={partnerId} sandboxDisabled={!!sandboxDisabled}>
+        {children}
+      </PartnerGate>
     </DynamicContextProvider>
   );
 };

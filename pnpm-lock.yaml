@@ -7051,6 +7051,17 @@ packages:
       typescript:
         optional: true
 
+  zksync-sso@0.0.0-beta.14:
+    resolution: {integrity: sha512-IZopGxLrQ6jb/k133l53YlYFGw2O8gUR0HtqohXzJzbIANinGjQWpgooDwhfxli/dsWvqp9RZCLCFbm6wBrySQ==}
+    peerDependencies:
+      '@simplewebauthn/browser': 10.x
+      '@simplewebauthn/server': 10.x
+      '@wagmi/core': 2.x
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
@@ -16793,6 +16804,22 @@ snapshots:
       ms: 2.1.3
     optionalDependencies:
       typescript: 5.8.3
+    transitivePeerDependencies:
+      - zod
+
+  zksync-sso@0.0.0-beta.14(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.16.7(@tanstack/query-core@5.71.5)(@types/react@19.1.0)(react@19.1.0)(typescript@5.8.2)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.26.0(bufferutil@4.0.9)(typescript@5.8.2)(utf-8-validate@5.0.10)(zod@3.24.2)))(typescript@5.8.2)(zod@3.24.2):
+    dependencies:
+      '@peculiar/asn1-ecc': 2.3.15
+      '@peculiar/asn1-schema': 2.3.15
+      '@simplewebauthn/browser': 10.0.0
+      '@simplewebauthn/server': 10.0.1
+      '@wagmi/core': 2.16.7(@tanstack/query-core@5.71.5)(@types/react@19.1.0)(react@19.1.0)(typescript@5.8.2)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.26.0(bufferutil@4.0.9)(typescript@5.8.2)(utf-8-validate@5.0.10)(zod@3.24.2))
+      abitype: 1.0.8(typescript@5.8.2)(zod@3.24.2)
+      bigint-conversion: 2.4.3
+      buffer: 6.0.3
+      ms: 2.1.3
+    optionalDependencies:
+      typescript: 5.8.2
     transitivePeerDependencies:
       - zod
 

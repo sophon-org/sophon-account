@@ -2,13 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "./page.css";
-import {
-  SophonWidget,
-  SophonEmbeddedWidget,
-  SophonAccountProfile,
-  useSophonContext,
-  getAuthToken,
-} from "@sophon-labs/react";
+import { SophonWidget } from "@sophon-labs/react";
 import ExampleMethods from "@/components/methods";
 const checkIsDarkSchemePreferred = () => {
   if (typeof window !== "undefined") {
@@ -20,11 +14,9 @@ const checkIsDarkSchemePreferred = () => {
 export default function Main() {
   const [isDarkMode, setIsDarkMode] = useState(checkIsDarkSchemePreferred);
 
-  const token = getAuthToken();
-  console.log("token", token);
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia(
-      "(prefers-color-scheme: dark)",
+      "(prefers-color-scheme: dark)"
     );
     const handleChange = () => setIsDarkMode(checkIsDarkSchemePreferred());
 
