@@ -1,3 +1,5 @@
+"use client";
+
 export * from "./connect";
 export * from "./embedded";
 export * from "./profile";

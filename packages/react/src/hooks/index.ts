@@ -1,3 +1,5 @@
+"use client";
+
 export * from "./use-sophon-context";
 export {
   useRefreshUser,

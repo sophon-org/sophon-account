@@ -1,3 +1,5 @@
+"use client";
+
 export * from "./sophon-connect";
 export * from "./provider";
 export * from "./chains";

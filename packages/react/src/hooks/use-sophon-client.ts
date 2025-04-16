@@ -3,10 +3,17 @@
 import { useEffect, useState } from "react";
 import { useSophonContext } from "./use-sophon-context";
 import { isEthereumWallet } from "@dynamic-labs/ethereum";
-import { parseEther, PublicClient, WalletClient } from "viem";
+import { PublicClient, WalletClient } from "viem";
 import { isZKsyncConnector } from "@dynamic-labs/ethereum-aa";
+import { Wallet } from "@dynamic-labs/sdk-react-core";
 
-export const useSophonClient = () => {
+interface ReturnType {
+  sophonWallet: Wallet;
+  publicClient: PublicClient;
+  walletClient: WalletClient;
+}
+
+export const useSophonClient = (): ReturnType => {
   const { primaryWallet, sdkHasLoaded } = useSophonContext();
   const [publicClient, setPublicClient] = useState<PublicClient | null>(null);
   const [walletClient, setWalletClient] = useState<WalletClient | null>(null);
@@ -19,7 +26,7 @@ export const useSophonClient = () => {
         console.log(
           "no primary wallet or sdk loaded",
           sdkHasLoaded,
-          primaryWallet,
+          primaryWallet
         );
         return;
       }
@@ -27,7 +34,7 @@ export const useSophonClient = () => {
       console.log(
         "what?",
         isEthereumWallet(primaryWallet),
-        isZKsyncConnector(primaryWallet.connector),
+        isZKsyncConnector(primaryWallet.connector)
       );
       if (isZKsyncConnector(primaryWallet.connector)) {
         const ecdsaClient =

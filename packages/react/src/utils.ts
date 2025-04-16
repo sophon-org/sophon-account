@@ -1,6 +1,6 @@
 export const isValidPartner = async (
   partnerId: string,
-  sandboxDisabled: boolean,
+  sandboxDisabled: boolean
 ) => {
   if (!partnerId) {
     return false;
