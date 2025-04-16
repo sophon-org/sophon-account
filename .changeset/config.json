@@ -7,5 +7,10 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@sophon-labs/account-sdk-demo",
+    "@sophon-labs/examples-eip6963-appkit",
+    "@sophon-labs/examples-eip6963-rainbow-wagmi",
+    "@sophon-labs/examples-next-wagmi"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "appkit-example",
+  "name": "@sophon-labs/examples-eip6963-appkit",
   "version": "0.0.1",
   "private": true,
   "scripts": {

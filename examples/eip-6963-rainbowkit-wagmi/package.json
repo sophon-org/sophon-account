@@ -1,5 +1,5 @@
 {
-  "name": "@sophon/examples-rainbow-wagmi",
+  "name": "@sophon-labs/examples-eip6963-rainbow-wagmi",
   "private": true,
   "version": "0.0.1",
   "scripts": {
