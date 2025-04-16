@@ -1,8 +1,4 @@
-<p align="center">
-    <img width="200" src="https://portal.sophon.xyz/img/logo-sophon.svg" alt="Sophon Logo">
-</p>
-
-# Sophon Account SDK - EIP6963
+# Sophon Account via EIP6963
 
 Implementation of the EIP-6963 standard (Multi Injected Provider Discovery) for Sophon wallet. This enables applications to discover the Sophon wallet alongside other wallets in a standardized way.
 
@@ -26,7 +22,7 @@ The Sophon SDK addresses several key challenges in blockchain application develo
 
 To integrate the Sophon wallet with EIP-6963 support in your project:
 
-```bash
+```sh
 # Using npm
 npm install @sophon-labs/eip6963
 
@@ -42,7 +38,7 @@ EIP-6963 is a standard that allows multiple Ethereum wallet providers to be disc
 
 1. Import and initialize the EIP-6963 emitter in your application entry point:
 
-```javascript
+```ts
 import "@sophon-labs/eip6963/testnet";
 
 // The Sophon wallet will now announce itself via the EIP-6963 protocol
@@ -59,7 +55,7 @@ This will automatically:
 
 Most modern wallet connection libraries, like RainbowKit, wagmi, or Reown Appkit, support EIP-6963. Here's how to connect with wagmi:
 
-```javascript
+```ts
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { sophonTestnet, sophon } from "wagmi/chains";
 import "@sophon-labs/eip6963/testnet"; // Import to announce the Sophon provider
