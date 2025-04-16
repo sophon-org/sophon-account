@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "dist/index.cjs",
@@ -96,8 +96,8 @@
     "tsup": "^8.4.0"
   },
   "peerDependencies": {
-    "@sophon-labs/eip6963": ">=1.0.0",
-    "@sophon-labs/wallet": ">=1.0.0",
+    "@sophon-labs/eip6963": ">=1.0.1",
+    "@sophon-labs/wallet": ">=1.0.1",
     "react": ">=19.1.0"
   }
 }
