@@ -11,28 +11,29 @@ import {
   SophonTestnetWallet,
 } from "@sophon-labs/wallet";
 
-export const SophonEIP6963Emitter = () => {
+export const createSophonEIP6963Emitter = (
+  network: "mainnet" | "testnet",
+  uuidOverride?: string
+) => {
+  const isSSR = () => typeof window === "undefined";
+  if (isSSR()) {
+    console.log("EIP6963 emitter isSSR call");
+    return;
+  }
+
+  const isMainnet = network === "mainnet";
+  const config = isMainnet ? WalletConfig : WalletTestnetConfig;
+  const wallet = isMainnet ? SophonWallet : SophonTestnetWallet;
+
+  console.log("creating emitter for", network, config);
+
   announceEip6963Provider({
     info: {
-      icon: WalletConfig.walletIcon,
-      name: WalletConfig.walletName,
-      rdns: WalletConfig.eip6963.rdns,
-      uuid: "sophon",
+      icon: config.walletIcon,
+      name: config.walletName,
+      rdns: config.eip6963.rdns,
+      uuid: uuidOverride ?? `sophon-${network}`,
     },
-
-    provider: createEIP1193Provider(SophonWallet),
-  });
-};
-
-export const SophonTestnetEIP6963Emitter = () => {
-  announceEip6963Provider({
-    info: {
-      icon: WalletTestnetConfig.walletIcon,
-      name: WalletTestnetConfig.walletName,
-      rdns: WalletTestnetConfig.eip6963.rdns,
-      uuid: "sophonTestnet",
-    },
-
-    provider: createEIP1193Provider(SophonTestnetWallet),
+    provider: createEIP1193Provider(wallet),
   });
 };

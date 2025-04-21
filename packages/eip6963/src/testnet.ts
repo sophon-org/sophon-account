@@ -1,5 +1,3 @@
-"use client";
+import { createSophonEIP6963Emitter } from "./emitter";
 
-import { SophonTestnetEIP6963Emitter } from "./emitter";
-
-SophonTestnetEIP6963Emitter();
+createSophonEIP6963Emitter("testnet");
