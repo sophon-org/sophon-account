@@ -21,10 +21,9 @@
     "@dynamic-labs/wallet-connector-core": "4.12.4",
     "@sophon-labs/eip6963": "workspace:*",
     "@sophon-labs/wallet": "workspace:*",
+    "@wagmi/core": "^2.16.7",
     "clsx": "^2.1.1",
-    "react": "^19.1.0",
-    "viem": "^2.26.0",
-    "wagmi": "^2.14.16"
+    "react": "^19.1.0"
   },
   "keywords": [],
   "author": "",
@@ -99,7 +98,7 @@
     "@sophon-labs/eip6963": ">=1.0.3",
     "@sophon-labs/wallet": ">=1.0.3",
     "react": ">=18.0.0",
-    "wagmi": ">=2.14.0",
-    "viem": ">=2.26.0"
+    "viem": ">=2.26.0",
+    "@wagmi/core": ">=2.14.0"
   }
 }

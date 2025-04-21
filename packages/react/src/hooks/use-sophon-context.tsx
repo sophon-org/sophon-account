@@ -1,5 +1,3 @@
-"use client";
-
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import "@dynamic-labs/wallet-connector-core";
 
