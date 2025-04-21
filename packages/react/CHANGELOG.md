@@ -1,5 +1,14 @@
 # @sophon-labs/react
 
+## 1.0.3
+
+### Patch Changes
+
+- Peer dependencies
+- Updated dependencies
+  - @sophon-labs/eip6963@1.0.3
+  - @sophon-labs/wallet@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

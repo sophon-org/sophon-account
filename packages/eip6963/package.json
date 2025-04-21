@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/eip6963",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "type": "module",
   "main": "dist/index.cjs",
@@ -50,7 +50,7 @@
     }
   },
   "peerDependencies": {
-    "@sophon-labs/wallet": ">=1.0.2"
+    "@sophon-labs/wallet": ">=1.0.3"
   },
   "devDependencies": {
     "tsup": "^8.4.0"

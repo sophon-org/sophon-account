@@ -1,5 +1,11 @@
 # @sophon-labs/wallet
 
+## 1.0.3
+
+### Patch Changes
+
+- Peer dependencies
+
 ## 1.0.2
 
 ### Patch Changes
