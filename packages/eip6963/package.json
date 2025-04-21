@@ -11,7 +11,7 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/global-wallet-client": "^4.5.1",
+    "@dynamic-labs/global-wallet-client": "^4.12.4",
     "@sophon-labs/wallet": "workspace:*"
   },
   "keywords": [],
