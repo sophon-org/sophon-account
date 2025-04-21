@@ -1,4 +1,5 @@
 import { defineConfig } from "tsup";
+import path from "path";
 
 export default defineConfig((options) => {
   return {
@@ -10,5 +11,6 @@ export default defineConfig((options) => {
     dts: true,
     format: ["esm", "cjs"],
     outDir: "dist",
+    tsconfig: path.resolve(__dirname, "./tsconfig.json"),
   };
 });
