@@ -1,5 +1,13 @@
 # @sophon-labs/eip6963
 
+## 1.0.5
+
+### Patch Changes
+
+- Testing
+- Updated dependencies
+  - @sophon-labs/wallet@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes

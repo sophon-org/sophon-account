@@ -1,5 +1,11 @@
 # @sophon-labs/wallet
 
+## 1.0.5
+
+### Patch Changes
+
+- Testing
+
 ## 1.0.4
 
 ### Patch Changes
