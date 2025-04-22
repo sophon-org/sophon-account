@@ -1,5 +1,14 @@
 # @sophon-labs/react
 
+## 1.0.12
+
+### Patch Changes
+
+- Adding auth helpers
+- Updated dependencies
+  - @sophon-labs/eip6963@1.0.12
+  - @sophon-labs/wallet@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

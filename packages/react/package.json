@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/react",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "type": "module",
   "main": "dist/index.cjs",
@@ -23,6 +23,8 @@
     "@sophon-labs/wallet": "workspace:*",
     "@wagmi/core": "^2.16.7",
     "clsx": "^2.1.1",
+    "cookie": "^1.0.2",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.0",
     "wagmi": "^2.14.16"
   },
@@ -92,15 +94,17 @@
     }
   },
   "devDependencies": {
+    "@types/cookie": "^1.0.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^19.1.0",
     "tsup": "^8.4.0"
   },
   "peerDependencies": {
-    "@sophon-labs/eip6963": ">=1.0.11",
-    "@sophon-labs/wallet": ">=1.0.11",
+    "@sophon-labs/eip6963": ">=1.0.12",
+    "@sophon-labs/wallet": ">=1.0.12",
+    "@wagmi/core": ">=2.14.0",
     "react": ">=18.0.0",
     "viem": ">=2.26.0",
-    "@wagmi/core": ">=2.14.0",
     "wagmi": ">=2.14.16"
   }
 }

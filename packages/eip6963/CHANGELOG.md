@@ -1,5 +1,13 @@
 # @sophon-labs/eip6963
 
+## 1.0.12
+
+### Patch Changes
+
+- Adding auth helpers
+- Updated dependencies
+  - @sophon-labs/wallet@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

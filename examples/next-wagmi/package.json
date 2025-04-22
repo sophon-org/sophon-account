@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sophon-labs/react": "1.0.11",
+    "@sophon-labs/react": "1.0.12",
     "@tanstack/react-query": "^5.27.5",
     "next": "15.2.2",
     "react": "^19.0.0",
