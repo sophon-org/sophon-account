@@ -1,5 +1,14 @@
 # @sophon-labs/react
 
+## 1.0.7
+
+### Patch Changes
+
+- Small changes
+- Updated dependencies
+  - @sophon-labs/eip6963@1.0.7
+  - @sophon-labs/wallet@1.0.7
+
 ## 1.0.6
 
 ### Patch Changes
