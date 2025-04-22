@@ -1,1 +1,33 @@
-# TODO
+import { EyeBrown } from "@/components/eyebrown";
+import { ExampleWithCode } from "@/components/example-with-code";
+import { getFileContent } from "@/actions/file";
+import { Box } from "@mantine/core";
+import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
+import { ComponentPropertyTable } from "@/components/component-property-table";
+import { SophonConnectButtonWidget } from "@sophon-labs/react";
+
+<EyeBrown label="React Hooks Overview" />
+
+# Overview of Sophon Hooks
+
+This document provides an overview of the various hooks available in the Sophon SDK. These hooks are designed to help manage user authentication, SDK state, and wallet interactions within your application.
+
+## Hooks
+
+### useIsLoggedIn
+
+Determines whether a user is logged in. It checks for the existence of a user object or a primary wallet when the auth mode is 'connect-only'.
+
+### useSophonContext
+
+Provides access to Sophon's React Context, containing information about the current user and SDK state.
+
+### useReinitialize
+
+Allows manual reinitialization of the entire SDK, resetting user state, wallets, and more.
+
+### useRefreshUser
+
+Enables manual refreshing of the user state while maintaining the overall SDK state.
+
+Each hook is designed to be used within a child of `SophonContextProvider` to ensure proper context and state management.
