@@ -1,3 +1,5 @@
 packages:
   - "examples/*"
   - "packages/*"
+overrides:
+  "wagmi": "^2.14.16"

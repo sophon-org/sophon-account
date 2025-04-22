@@ -3,9 +3,9 @@ import { DynamicEmbeddedWidget } from "@dynamic-labs/sdk-react-core";
 type ViewProps = React.ComponentProps<typeof DynamicEmbeddedWidget>;
 
 interface Props {
-  background?: ViewProps["background"];
-  className?: string;
-  style?: ViewProps["style"];
+  background?: ViewProps["background"] | null;
+  className?: string | null;
+  style?: ViewProps["style"] | null;
 }
 
 export const SophonEmbeddedWidget = ({

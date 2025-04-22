@@ -2,7 +2,6 @@ import { Box, Paper } from "@mantine/core";
 import { CodeHighlightTabs } from "@mantine/code-highlight";
 import { TypescriptIcon } from "../icons/typescript";
 import { CssIcon } from "../icons/css";
-import { cn } from "@sophon-labs/react";
 
 export enum SourceLanguage {
   TSX = "tsx",
@@ -46,10 +45,7 @@ export const ExampleWithCode = ({ code, children, className }: Props) => {
     <Paper withBorder className="my-4">
       {!!children && (
         <Box
-          className={cn(
-            `p-4 content-center justify-items-center min-h-20`,
-            className,
-          )}
+          className={`p-4 content-center justify-items-center min-h-20 ${className}`}
         >
           {children}
         </Box>

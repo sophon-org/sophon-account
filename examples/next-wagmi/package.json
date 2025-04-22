@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/examples-next-wagmi",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -9,13 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sophon-labs/react": "workspace:*",
+    "@sophon-labs/react": "1.0.11",
     "@tanstack/react-query": "^5.27.5",
     "next": "15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "viem": "2.26.0",
-    "wagmi": "^2.14.16"
+    "wagmi": "^2.14.16",
+    "zksync-sso": "0.0.0-beta.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,5 +26,10 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "typescript": "^5"
+  },
+  "peerDependencies": {
+    "viem": ">=2.26.0",
+    "@wagmi/core": ">=2.14.0",
+    "wagmi": ">=2.14.16"
   }
 }

@@ -1,40 +1,106 @@
 {
   "name": "@sophon-labs/react",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "",
-  "main": "src/index.ts",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "4.10.4-preview.0",
-    "@dynamic-labs/ethereum-aa": "4.10.4-preview.0",
-    "@dynamic-labs/global-wallet-client": "4.10.4-preview.0",
-    "@dynamic-labs/sdk-api": "^0.0.656",
-    "@dynamic-labs/sdk-react-core": "4.10.4-preview.0",
-    "@dynamic-labs/wagmi-connector": "4.10.4-preview.0",
-    "@sophon-labs/eip6963": "workspace:^1.0.0",
-    "@sophon-labs/wallet": "workspace:^1.0.0",
+    "@dynamic-labs/ethereum": "4.12.4",
+    "@dynamic-labs/ethereum-aa": "4.12.4",
+    "@dynamic-labs/global-wallet-client": "4.12.4",
+    "@dynamic-labs/sdk-api": "^0.0.659",
+    "@dynamic-labs/sdk-react-core": "4.12.4",
+    "@dynamic-labs/types": "4.12.4",
+    "@dynamic-labs/wagmi-connector": "4.12.4",
+    "@dynamic-labs/wallet-connector-core": "4.12.4",
+    "@sophon-labs/eip6963": "workspace:*",
+    "@sophon-labs/wallet": "workspace:*",
+    "@wagmi/core": "^2.16.7",
     "clsx": "^2.1.1",
-    "react": "^19.0.0",
-    "tailwind-merge": "^3.2.0",
-    "viem": "^2.26.0",
+    "react": "^19.1.0",
     "wagmi": "^2.14.16"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "exports": {
-    ".": "./src/index.ts",
-    "./provider": "./src/provider.tsx",
-    "./chains": "./src/chains.ts",
-    "./utils": "./src/utils.tsx",
-    "./widget": "./src/widget.tsx",
-    "./wagmi": "./wagmi.tsx",
-    "./hooks": "./src/hooks/index.ts",
-    "./components": "./src/components/index.ts"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "require": "./dist/index.cjs"
+      }
+    },
+    "./provider": {
+      "import": {
+        "types": "./dist/provider.d.ts",
+        "import": "./dist/provider.js"
+      },
+      "require": {
+        "types": "./dist/provider.d.cts",
+        "require": "./dist/provider.cjs"
+      }
+    },
+    "./chains": {
+      "import": {
+        "types": "./dist/chains.d.ts",
+        "import": "./dist/chains.js"
+      },
+      "require": {
+        "types": "./dist/chains.d.cts",
+        "require": "./dist/chains.cjs"
+      }
+    },
+    "./wagmi": {
+      "import": {
+        "types": "./dist/wagmi.d.ts",
+        "import": "./dist/wagmi.js"
+      },
+      "require": {
+        "types": "./dist/wagmi.d.cts",
+        "require": "./dist/wagmi.cjs"
+      }
+    },
+    "./hooks": {
+      "import": {
+        "types": "./dist/hooks/index.d.ts",
+        "import": "./dist/hooks/index.js"
+      },
+      "require": {
+        "types": "./dist/hooks/index.d.cts",
+        "require": "./dist/hooks/index.cjs"
+      }
+    },
+    "./components": {
+      "import": {
+        "types": "./dist/components/index.d.ts",
+        "import": "./dist/components/index.js"
+      },
+      "require": {
+        "types": "./dist/components/index.d.cts",
+        "require": "./dist/components/index.cjs"
+      }
+    }
   },
   "devDependencies": {
-    "@types/react": "^19.0.10"
+    "@types/react": "^19.1.0",
+    "tsup": "^8.4.0"
+  },
+  "peerDependencies": {
+    "@sophon-labs/eip6963": ">=1.0.11",
+    "@sophon-labs/wallet": ">=1.0.11",
+    "react": ">=18.0.0",
+    "viem": ">=2.26.0",
+    "@wagmi/core": ">=2.14.0",
+    "wagmi": ">=2.14.16"
   }
 }

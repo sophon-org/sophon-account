@@ -2,13 +2,24 @@
 
 import { Connector, useAccount, useAccountEffect, useConnectors } from "wagmi";
 import { useEffect, useState } from "react";
-import { SophonWallet, WalletConfig } from "@sophon-labs/wallet";
+import {
+  SophonTestnetWallet,
+  WalletConfig,
+  WalletTestnetConfig,
+} from "@sophon-labs/wallet";
 
 interface Props {
   authenticatedComponent: React.ReactNode;
 }
 
-export const SophonConnectButton: React.FC<Props> = ({ authenticatedComponent }) => {
+const VALID_CONNECTOR_IDS = [
+  WalletTestnetConfig.eip6963.rdns,
+  WalletConfig.eip6963.rdns,
+];
+
+export const SophonConnectButton: React.FC<Props> = ({
+  authenticatedComponent,
+}) => {
   const { isConnected } = useAccount();
   const [connector, setConnector] = useState<Connector>();
 
@@ -16,13 +27,13 @@ export const SophonConnectButton: React.FC<Props> = ({ authenticatedComponent })
 
   useAccountEffect({
     onDisconnect() {
-      SophonWallet.disconnect();
+      SophonTestnetWallet.disconnect();
     },
   });
 
   useEffect(() => {
-    const sophonConnector = connectors.find(
-      (connector) => connector.id === WalletConfig.eip6963.rdns
+    const sophonConnector = connectors.find((connector) =>
+      VALID_CONNECTOR_IDS.includes(connector.id)
     );
     if (sophonConnector) {
       setConnector(sophonConnector);

@@ -30,7 +30,7 @@ export default function ExampleMethods({
         }
         return value;
       },
-      2,
+      2
     );
   };
 
@@ -68,13 +68,11 @@ export default function ExampleMethods({
     if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
     if (!isZKsyncConnector(primaryWallet.connector)) {
-      console.log("sigining with normal client", primaryWallet.address);
       const signature = await primaryWallet.signMessage("Hello World");
       setResult(signature!);
     } else {
       const ecdsaClient =
         primaryWallet.connector.getAccountAbstractionProvider();
-      console.log("sigining with ecdsaClient", ecdsaClient.account.address);
       const signature = await ecdsaClient.signMessage({
         message: "Hello World!",
       });

@@ -1,5 +1,5 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { sophonTestnet, sophon } from "wagmi/chains";
+import { sophonTestnet } from "wagmi/chains";
 
 export const config = getDefaultConfig({
   appName: "RainbowKit App",
@@ -7,6 +7,6 @@ export const config = getDefaultConfig({
   transports: {
     useConnectors: true,
   },
-  chains: [sophon, sophonTestnet],
+  chains: [sophonTestnet],
   ssr: true,
 });

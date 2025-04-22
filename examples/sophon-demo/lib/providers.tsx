@@ -1,13 +1,14 @@
 "use client";
 
-import { WagmiProvider } from "wagmi";
+import { State, WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { config } from "@/lib/wagmi";
+import { getConfig } from "@/lib/wagmi";
 import {
   SophonContextProvider,
   SophonWagmiConnector,
 } from "@sophon-labs/react";
 import { MantineProvider } from "@mantine/core";
+import { useState } from "react";
 
 const cssOverrides = `
 .partner-custom-button {
@@ -19,8 +20,15 @@ const cssOverrides = `
 }
 `;
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  const queryClient = new QueryClient();
+export default function Providers({
+  children,
+  initialState,
+}: {
+  children: React.ReactNode;
+  initialState?: State;
+}) {
+  const [config] = useState(() => getConfig());
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <MantineProvider
@@ -29,10 +37,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       withGlobalClasses
     >
       <SophonContextProvider
-        partnerId="a151466b-a170-4176-9536-b224269b8c00"
+        partnerId="123b216c-678e-4611-af9a-2d5b7b061258"
         cssOverrides={cssOverrides}
       >
-        <WagmiProvider config={config}>
+        <WagmiProvider config={config} initialState={initialState}>
           <QueryClientProvider client={queryClient}>
             <SophonWagmiConnector>{children}</SophonWagmiConnector>
           </QueryClientProvider>

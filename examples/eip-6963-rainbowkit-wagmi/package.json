@@ -1,7 +1,7 @@
 {
-  "name": "@sophon/examples-rainbow-wagmi",
+  "name": "@sophon-labs/examples-eip6963-rainbow-wagmi",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
@@ -9,15 +9,15 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.2.4",
-    "@sophon-labs/eip6963": "workspace:*",
-    "@sophon-labs/wallet": "workspace:*",
-    "@sophon-labs/react": "workspace:*",
+    "@sophon-labs/eip6963": "1.0.11",
+    "@sophon-labs/wallet": "1.0.11",
+    "@sophon-labs/react": "1.0.11",
     "@tanstack/react-query": "^5.55.3",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "viem": "2.23.5",
-    "wagmi": "^2.14.12"
+    "wagmi": "^2.14.16"
   },
   "devDependencies": {
     "@types/node": "^20.14.8",

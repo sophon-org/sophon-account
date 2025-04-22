@@ -1,6 +1,5 @@
 import { DynamicWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
-import styles from "./widget.module.css";
-import { cn } from "../utils";
+import clsx from "clsx";
 
 type ViewProps = React.ComponentProps<typeof DynamicWidget>;
 
@@ -20,9 +19,9 @@ export const SophonWidget: React.FC<Props> = ({
   const { sdkHasLoaded } = useDynamicContext();
   if (!sdkHasLoaded) {
     return (
-      <div className={cn("sophon-widget-container", containerClassName)}>
+      <div className={clsx("sophon-widget-container", containerClassName)}>
         <button
-          className={cn(styles.loadingState, "sophon-widget", className)}
+          className={clsx("sophon-loading-state", "sophon-widget", className)}
           disabled
         >
           Loading...
@@ -36,11 +35,8 @@ export const SophonWidget: React.FC<Props> = ({
       <DynamicWidget
         variant={variant}
         innerButtonComponent={label}
-        buttonClassName={cn("sophon-widget", className)}
-        buttonContainerClassName={cn(
-          "sophon-widget-container",
-          containerClassName,
-        )}
+        buttonClassName={className}
+        buttonContainerClassName={containerClassName}
       />
     </>
   );

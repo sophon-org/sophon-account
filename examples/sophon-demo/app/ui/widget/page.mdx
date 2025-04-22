@@ -66,22 +66,6 @@ This is the default expecience, once clicked the widget will open the login or p
   <WidgetWithModal />
 </ExampleWithCode>
 
-## Widget With Dropdown
-
-For a more compact expecience, you can use the `WidgetWithDropdown` component. This will open the login or profile page closer to the click location.
-
-<ExampleWithCode
-  code={[
-    {
-      language: "tsx",
-      fileName: "WidgetWithDropdown.tsx",
-      code: await getFileContent("ui/sophon-widget/WidgetWithDropdown.tsx"),
-    },
-  ]}
->
-  <WidgetWithDropdown />
-</ExampleWithCode>
-
 ## Custom Widget
 
 You can also customize the widget to your needs, but because we use `ShadowDom` for ui isolation, you need to override the css in the provider. This is useful if you want to match the design of your site.

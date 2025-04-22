@@ -3,10 +3,11 @@
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
-import { sophon, sophonTestnet } from "@reown/appkit/networks";
+import { sophonTestnet } from "@reown/appkit/networks";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { State, WagmiProvider } from "wagmi";
-import { SophonEIP6963Emitter } from "@sophon-labs/eip6963";
+
+import "@sophon-labs/eip6963/testnet";
 
 // Get projectId from <https://cloud.reown.com>
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
@@ -23,11 +24,8 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
 
-// Initialize EIP-6963 emitter
-SophonEIP6963Emitter();
-
 const wagmiAdapter = new WagmiAdapter({
-  networks: [sophon, sophonTestnet],
+  networks: [sophonTestnet],
   projectId,
 });
 
@@ -35,7 +33,7 @@ createAppKit({
   enableWalletConnect: false,
   enableEIP6963: true,
   adapters: [wagmiAdapter],
-  networks: [sophon, sophonTestnet],
+  networks: [sophonTestnet],
   metadata: metadata,
   projectId,
   features: {

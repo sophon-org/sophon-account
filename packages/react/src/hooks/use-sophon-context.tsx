@@ -1,6 +1,17 @@
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import "@dynamic-labs/wallet-connector-core";
 
-export function useSophonContext() {
+type OriginalReturnType = ReturnType<typeof useDynamicContext>;
+interface SophonReturnType
+  extends Omit<
+    OriginalReturnType,
+    "showDynamicUserProfile" | "setShowDynamicUserProfile"
+  > {
+  showSophonAccountProfile: boolean;
+  setShowSophonAccountProfile: (show: boolean) => void;
+}
+
+export function useSophonContext(): SophonReturnType {
   const { showDynamicUserProfile, setShowDynamicUserProfile, ...other } =
     useDynamicContext();
   return {

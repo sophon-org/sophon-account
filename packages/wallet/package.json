@@ -1,22 +1,37 @@
 {
   "name": "@sophon-labs/wallet",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && npm run build:esm && npm run build:cjs && npm run build:types",
-    "build:esm": "tsc --project tsconfig.json --outDir dist/esm && tsc-alias --project tsconfig.json --outDir dist/esm",
-    "build:types": "tsc --project ./tsconfig.json --declarationDir ./dist/types --emitDeclarationOnly --declaration --declarationMap",
-    "build:cjs": "tsc --project ./tsconfig.json --module commonjs --moduleResolution node --outDir ./dist/cjs --removeComments --verbatimModuleSyntax false"
+    "build": "tsup",
+    "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "^4.10.4-preview.0",
-    "@dynamic-labs/global-wallet-client": "^4.10.4-preview.0",
-    "tsc-alias": "^1.8.10"
+    "@dynamic-labs/ethereum": "4.12.4",
+    "@dynamic-labs/ethereum-aa": "4.12.4",
+    "@dynamic-labs/global-wallet-client": "4.12.4"
   },
   "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsc-alias": "^1.8.10",
+    "tsup": "^8.4.0",
     "typescript": "^5.7.3"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "require": "./dist/index.cjs"
+      }
+    }
   },
   "keywords": [],
   "author": "",

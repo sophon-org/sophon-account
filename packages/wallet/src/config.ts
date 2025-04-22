@@ -14,10 +14,26 @@ export const WalletConfig = {
   // URL of your wallet domain (e.g. https://dynamic.example.com)
   walletUrl: "https://account.sophon.xyz",
   // Environment ID of your wallet (e.g. 1234567890)
-  environmentId: "a151466b-a170-4176-9536-b224269b8c00",
+  environmentId: "5d3cc669-95ff-4945-af82-ed29d3f6ff60",
   // EIP6963 configuration
   eip6963: {
     // RDNS of your wallet (e.g. com.example.wallet)
     rdns: "xyz.sophon.account",
+  },
+};
+
+export const WalletTestnetConfig = {
+  // Wallet name will be seen as the Wallet name
+  walletName: "Sophon Testnet Wallet",
+  // Wallet icon will be seen as the Wallet icon
+  walletIcon: icon,
+  // URL of your wallet domain (e.g. https://dynamic.example.com)
+  walletUrl: "https://account.staging.sophon.xyz",
+  // Environment ID of your wallet (e.g. 1234567890)
+  environmentId: "767555fd-deac-4852-bdf2-ec4442697ea7",
+  // EIP6963 configuration
+  eip6963: {
+    // RDNS of your wallet (e.g. com.example.wallet)
+    rdns: "xyz.sophon.staging.account",
   },
 };

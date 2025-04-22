@@ -20,9 +20,6 @@ This callback will be called after the user successfully authenticates.
     events: {
       onAuthSuccess: (args) => {
         console.log("onAuthSuccess was called", args);
-        // you can get the jwt by calling the getAuthToken helper function
-        const authToken = getAuthToken();
-        console.log("authToken", authToken);
       },
     },
   }}
