@@ -1,5 +1,11 @@
 # @sophon-labs/wallet
 
+## 1.0.10
+
+### Patch Changes
+
+- Bumping version
+
 ## 1.0.9
 
 ### Patch Changes

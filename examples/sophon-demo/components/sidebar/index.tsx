@@ -14,7 +14,7 @@ import {
   WebhookIcon,
   WrenchIcon,
 } from "lucide-react";
-import { version } from "../../../../package.json";
+import packageInfo from "../../../../package.json";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -105,7 +105,7 @@ export function Sidebar({ className }: { className?: string }) {
         <UnstyledButton component={Link} href="/">
           <Group justify="space-between">
             <Logo />
-            <Code fw={700}>v{version}</Code>
+            <Code fw={700}>v{packageInfo.version}</Code>
           </Group>
         </UnstyledButton>
       </div>

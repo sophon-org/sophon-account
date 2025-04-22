@@ -1,5 +1,13 @@
 # @sophon-labs/eip6963
 
+## 1.0.10
+
+### Patch Changes
+
+- Bumping version
+- Updated dependencies
+  - @sophon-labs/wallet@1.0.10
+
 ## 1.0.9
 
 ### Patch Changes
