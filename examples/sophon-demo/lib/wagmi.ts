@@ -1,17 +1,22 @@
-import { http, createConfig } from "wagmi";
-import { sophonTestnet } from "@sophon-labs/react";
+import { http, createConfig, createStorage, cookieStorage } from "wagmi";
+import { sophonTestnet } from "wagmi/chains";
 
-export const config = createConfig({
-  chains: [sophonTestnet],
-  multiInjectedProviderDiscovery: false,
-  ssr: true,
-  transports: {
-    [sophonTestnet.id]: http(),
-  },
-});
+export function getConfig() {
+  return createConfig({
+    chains: [sophonTestnet],
+    multiInjectedProviderDiscovery: false,
+    ssr: true,
+    storage: createStorage({
+      storage: cookieStorage,
+    }),
+    transports: {
+      [sophonTestnet.id]: http(),
+    },
+  });
+}
 
 declare module "wagmi" {
   interface Register {
-    config: typeof config;
+    config: ReturnType<typeof getConfig>;
   }
 }

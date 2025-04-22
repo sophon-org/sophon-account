@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm run build -r",
+    "build:core": "pnpm run --stream -r --filter @sophon-labs/wallet --filter @sophon-labs/eip6963 --filter @sophon-labs/react build",
     "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/wallet --filter @sophon-labs/eip6963 --filter @sophon-labs/react dev ",
     "lint": "eslint .",
     "format": "prettier --write ."
