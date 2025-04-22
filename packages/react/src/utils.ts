@@ -11,7 +11,6 @@ export const isValidPartner = async (
   try {
     const url = `https://${baseDns}/partners/sdk/${partnerId}.json`;
     const response = await fetch(url);
-    console.log(" response", response.ok);
     return response.ok;
   } catch (error) {
     console.error("Error fetching partner", error);
