@@ -11,15 +11,24 @@ export default defineConfig((options) => {
       "src/hooks/index.ts",
       "src/components/index.ts",
     ],
-    splitting: false,
+    splitting: true,
+    bundle: true,
     sourcemap: !!options.watch,
     clean: true,
     minify: !options.watch,
     external: ["react"],
-    treeshake: true,
+    treeshake: false,
     dts: true,
     format: ["esm", "cjs"],
     outDir: "dist",
     tsconfig: path.resolve(__dirname, "./tsconfig.json"),
+    banner: {
+      js: `"use client";`,
+    },
+    esbuildOptions(options) {
+      options.banner = {
+        js: '"use client"',
+      };
+    },
   };
 });

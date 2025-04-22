@@ -1,5 +1,3 @@
-"use client";
-
 import {
   announceEip6963Provider,
   createEIP1193Provider,

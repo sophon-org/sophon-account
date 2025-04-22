@@ -1,5 +1,14 @@
 # @sophon-labs/react
 
+## 1.0.11
+
+### Patch Changes
+
+- Bumping Version
+- Updated dependencies
+  - @sophon-labs/eip6963@1.0.11
+  - @sophon-labs/wallet@1.0.11
+
 ## 1.0.10
 
 ### Patch Changes

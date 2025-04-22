@@ -1,1 +1,1 @@
-export { sophon, sophonTestnet } from "@wagmi/core/chains";
+export { sophon, sophonTestnet } from "wagmi/chains";

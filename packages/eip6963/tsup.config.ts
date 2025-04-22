@@ -4,7 +4,7 @@ import path from "path";
 export default defineConfig((options) => {
   return {
     entry: ["src/index.ts", "src/mainnet.ts", "src/testnet.ts"],
-    splitting: false,
+    splitting: true,
     sourcemap: !!options.watch,
     clean: true,
     minify: !options.watch,
@@ -12,5 +12,8 @@ export default defineConfig((options) => {
     format: ["esm", "cjs"],
     outDir: "dist",
     tsconfig: path.resolve(__dirname, "./tsconfig.json"),
+    banner: {
+      js: `"use client";`,
+    },
   };
 });
