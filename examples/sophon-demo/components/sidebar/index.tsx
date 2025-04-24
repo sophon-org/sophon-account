@@ -8,7 +8,6 @@ import {
   BlocksIcon,
   CogIcon,
   RadioIcon,
-  ScrollTextIcon,
   StarIcon,
   WaypointsIcon,
   WebhookIcon,
@@ -28,7 +27,6 @@ const menu = [
       { label: "FAQ", link: "/getting-started/faq" },
     ],
   },
-  // { label: "Changelog", icon: ScrollTextIcon, link: "/changelog" },
   {
     label: "Configuration",
     icon: CogIcon,
