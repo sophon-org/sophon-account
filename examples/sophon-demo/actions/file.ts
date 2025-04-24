@@ -23,17 +23,24 @@ const fileSchema = z.object({
 function getBaseUrl(fallback = "http://localhost:3000"): string {
   const vercelUrl =
     process.env.VERCEL_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
+  console.log(
+    "vercelUrl",
+    vercelUrl,
+    process.env.VERCEL_URL,
+    process.env.NEXT_PUBLIC_VERCEL_URL
+  );
+
+  // Fall back to NEXT_PUBLIC_BASE_URL if available
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL;
+  }
+
   // Check for VERCEL_URL first
   if (vercelUrl) {
     const url = vercelUrl;
     // Use http for localhost, https for everything else
     const protocol = url.includes("localhost") ? "http://" : "https://";
     return `${protocol}${url}`;
-  }
-
-  // Fall back to NEXT_PUBLIC_BASE_URL if available
-  if (process.env.NEXT_PUBLIC_BASE_URL) {
-    return process.env.NEXT_PUBLIC_BASE_URL;
   }
 
   // Use default fallback
