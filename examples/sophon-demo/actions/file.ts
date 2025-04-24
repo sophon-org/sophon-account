@@ -42,7 +42,9 @@ function getBaseUrl(fallback = "http://localhost:3000"): string {
 
 export async function getFileContent(fileName: string): Promise<string> {
   fileSchema.parse({ fileName });
-  const response = await fetch(`${getBaseUrl()}/examples/${fileName}`);
+  const baseUrl = `${getBaseUrl()}/examples/${fileName}`;
+  console.log("baseUrl", baseUrl);
+  const response = await fetch(baseUrl);
   const remoteFileContent = await response.text();
   return remoteFileContent;
 }
