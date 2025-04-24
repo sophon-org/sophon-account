@@ -28,7 +28,7 @@ const menu = [
       { label: "FAQ", link: "/getting-started/faq" },
     ],
   },
-  { label: "Changelog", icon: ScrollTextIcon, link: "/changelog" },
+  // { label: "Changelog", icon: ScrollTextIcon, link: "/changelog" },
   {
     label: "Configuration",
     icon: CogIcon,
