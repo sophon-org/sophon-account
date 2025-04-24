@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
-import "./index.module.css";
+import styles from "./index.module.css";
 import {
   useSophonContext,
   useIsLoggedIn,
   isEthereumWallet,
   isZKsyncConnector,
 } from "@sophon-labs/react";
+import { parseEther, formatEther } from "viem";
 
-export default function ExampleMethods({
-  isDarkMode,
-}: {
-  isDarkMode: boolean;
-}) {
+export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) {
   const isLoggedIn = useIsLoggedIn();
   const { sdkHasLoaded, primaryWallet, user } = useSophonContext();
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
+  const [balance, setBalance] = useState<string>("0");
 
-  const safeStringify = (obj) => {
+  const safeStringify = (obj: any) => {
     const seen = new WeakSet();
     return JSON.stringify(
       obj,
@@ -33,6 +31,23 @@ export default function ExampleMethods({
       2
     );
   };
+
+  useEffect(() => {
+    async function getBalance() {
+      if (primaryWallet && isEthereumWallet(primaryWallet)) {
+        try {
+          const publicClient = await primaryWallet.getPublicClient();
+          const address = primaryWallet.address as `0x${string}`;
+          const balance = await publicClient.getBalance({ address });
+          setBalance(formatEther(balance));
+        } catch (error) {
+          console.error("Error fetching balance:", error);
+          setBalance("0");
+        }
+      }
+    }
+    getBalance();
+  }, [primaryWallet]);
 
   useEffect(() => {
     if (sdkHasLoaded && isLoggedIn && primaryWallet) {
@@ -71,76 +86,135 @@ export default function ExampleMethods({
       const signature = await primaryWallet.signMessage("Hello World");
       setResult(signature!);
     } else {
-      const ecdsaClient =
-        primaryWallet.connector.getAccountAbstractionProvider();
+      const ecdsaClient = primaryWallet.connector.getAccountAbstractionProvider();
       const signature = await ecdsaClient.signMessage({
         message: "Hello World!",
       });
-      // ecdsaClient.sendTransaction({
-      //   to: "0xe5b06bfd663C94005B8b159Cd320Fd7976549f9b",
-      //   // data: "0x",
-      //   value: 10,
-      //   // data: signature,
-      //   // paymasterActions: {
-      //   //   type: "paymaster",
-      //   //   paymaster: "0x0000000000000000000000000000000000000000",
-      //   //   paymasterParams: {
-      //   //     gasPrice: 1000000000,
-      //   //   },
-      //   // },
-      // });
       setResult(signature);
     }
   }
 
-  return (
-    <>
-      {!isLoading && (
-        <div
-          className="dynamic-methods"
-          data-theme={isDarkMode ? "dark" : "light"}
-        >
-          <div className="methods-container">
-            <button className="btn btn-primary" onClick={showUser}>
-              Fetch User
-            </button>
+  async function sendSoph(to: string, amount: number) {
+    if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
-            {primaryWallet && isEthereumWallet(primaryWallet) && (
-              <>
-                <button className="btn btn-primary" onClick={fetchPublicClient}>
-                  Fetch Public Client
-                </button>
-                <button className="btn btn-primary" onClick={fetchWalletClient}>
-                  Fetch Wallet Client
-                </button>
-                <button
-                  className="btn btn-primary"
-                  onClick={signEthereumMessage}
-                >
-                  Sign "Hello World" on Ethereum
-                </button>
-              </>
-            )}
-          </div>
-          {result && (
-            <div className="results-container">
-              <pre className="results-text">
-                {result &&
-                  (typeof result === "string" && result.startsWith("{")
-                    ? JSON.stringify(JSON.parse(result), null, 2)
-                    : result)}
-              </pre>
-            </div>
-          )}
-          {result && (
-            <div className="clear-container">
-              <button className="btn btn-primary" onClick={clearResult}>
-                Clear
+    try {
+      const publicClient = await primaryWallet.getPublicClient();
+      const walletClient = await primaryWallet.getWalletClient();
+
+      console.log(to, amount);
+
+      const transaction = {
+        to: to as `0x${string}`,
+        value: parseEther(amount.toString()),
+      };
+
+      const hash = await walletClient.sendTransaction(transaction);
+
+      console.log(hash);
+
+      const receipt = await publicClient.getTransactionReceipt({
+        hash,
+      });
+
+      console.log(receipt);
+      setResult(`Transaction sent: ${hash}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        setResult(`Error: ${error.message}`);
+      } else {
+        setResult(`Error: ${String(error)}`);
+      }
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner} />
+        <p>Loading wallet...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.methodsContainer} data-theme={isDarkMode ? "dark" : "light"}>
+      <div className={styles.methodsGrid}>
+        <button className={styles.methodButton} onClick={showUser}>
+          Fetch User
+        </button>
+
+        {primaryWallet && isEthereumWallet(primaryWallet) && (
+          <>
+            <div className={styles.balanceDisplay}>Your Balance: {balance} SOPH</div>
+            <button className={styles.methodButton} onClick={fetchPublicClient}>
+              Fetch Public Client
+            </button>
+            <button className={styles.methodButton} onClick={fetchWalletClient}>
+              Fetch Wallet Client
+            </button>
+            <button className={styles.methodButton} onClick={signEthereumMessage}>
+              Sign "Hello World" on Ethereum
+            </button>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
+
+                const formData = new FormData(e.target as HTMLFormElement);
+                const toAddress = formData.get("toAddress") as string;
+                const amount = parseFloat(formData.get("amount") as string);
+
+                if (!toAddress || isNaN(amount) || amount <= 0) {
+                  alert("Please enter a valid address and amount.");
+                  return;
+                }
+
+                await sendSoph(toAddress, amount);
+              }}
+            >
+              <div className={styles.inputGroup} style={{ minWidth: "inherit", width: "100%" }}>
+                <input
+                  type="text"
+                  name="toAddress"
+                  placeholder="Destination Address"
+                  required
+                  className={styles.methodInput}
+                />
+              </div>
+              <div className={styles.inputGroup} style={{ minWidth: "inherit", width: "100%" }}>
+                <input
+                  type="number"
+                  name="amount"
+                  placeholder="Amount in ETH"
+                  step="0.01"
+                  min="0"
+                  required
+                  className={styles.methodInput}
+                />
+              </div>
+              <button type="submit" className={styles.methodButton}>
+                Send ETH
               </button>
-            </div>
-          )}
+            </form>
+          </>
+        )}
+      </div>
+
+      {result && (
+        <div className={styles.resultSection}>
+          <div className={styles.resultHeader}>
+            <h3>Result</h3>
+            <button className={styles.clearButton} onClick={clearResult}>
+              Clear
+            </button>
+          </div>
+          <pre className={styles.resultContent}>
+            {typeof result === "string" && result.startsWith("{")
+              ? JSON.stringify(JSON.parse(result), null, 2)
+              : result}
+          </pre>
         </div>
       )}
-    </>
+    </div>
   );
 }
