@@ -23,8 +23,61 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <ConnectButton />
-        <SophonConnectButton authenticatedComponent={<ConnectButton />} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
+            width: "100%",
+            maxWidth: "800px",
+            marginBottom: "2rem",
+          }}
+        >
+          <section
+            style={{
+              padding: "1.5rem",
+              borderRadius: "12px",
+              border: "1px solid #e1e1e1",
+              backgroundColor: "#ffffff",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "600",
+                marginBottom: "1rem",
+                color: "#333",
+              }}
+            >
+              Connect with RainbowKit
+            </h2>
+            <ConnectButton />
+          </section>
+
+          <section
+            style={{
+              padding: "1.5rem",
+              borderRadius: "12px",
+              border: "1px solid #e1e1e1",
+              backgroundColor: "#ffffff",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "600",
+                marginBottom: "1rem",
+                color: "#333",
+              }}
+            >
+              Connect with Sophon Global Account
+            </h2>
+            <SophonConnectButton authenticatedComponent={<ConnectButton />} />
+          </section>
+        </div>
+
         {isConnected && <SignMessage />}
 
         <h1 className={styles.title}>
