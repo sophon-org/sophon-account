@@ -26,7 +26,7 @@ export default function ExampleMethods({
         }
         return value;
       },
-      2
+      2,
     );
   };
 

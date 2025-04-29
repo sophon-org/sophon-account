@@ -18,7 +18,9 @@ export default function Main() {
   const { address } = useAccount();
 
   useEffect(() => {
-    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    );
     const handleChange = () => setIsDarkMode(checkIsDarkSchemePreferred());
 
     darkModeMediaQuery.addEventListener("change", handleChange);
