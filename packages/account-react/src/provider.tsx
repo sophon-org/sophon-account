@@ -7,7 +7,7 @@ import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa-zksync";
 import { JSX } from "react";
 import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/account-core";
 import { PartnerGate } from "./partner-gate";
-import { ViewsOverrides } from "@dynamic-labs/sdk-react-core/src/lib/context/DynamicContext";
+import type { SdkView } from "@dynamic-labs/sdk-api";
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ interface Props {
   onboardingImageUrl?: string;
   sandboxDisabled?: boolean;
   theme?: "light" | "dark" | "auto";
-  views?: ViewsOverrides[];
+  views?: SdkView[];
   displayWalletOperations?: boolean;
   customAuthUrl?: string;
 }

@@ -19,6 +19,7 @@
     "@dynamic-labs/ethereum-aa-zksync": "4.14.0",
     "@dynamic-labs/global-wallet-client": "4.14.0",
     "@dynamic-labs/wallet-connector-core": "4.14.0",
+    "@dynamic-labs/sdk-api-core": "4.14.0",
     "@dynamic-labs/sdk-api": "^0.0.659",
     "@dynamic-labs/sdk-react-core": "4.14.0",
     "@dynamic-labs/types": "4.14.0",
