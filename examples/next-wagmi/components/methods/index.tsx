@@ -105,8 +105,6 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
 
       const chain = await primaryWallet.getNetwork();
 
-      console.log(chain);
-
       const transaction = {
         to: to as `0x${string}`,
         value: parseEther(amount.toString()),
@@ -114,7 +112,7 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
         paymasterInput: getGeneralPaymasterInput({
           innerInput: `0x`,
         }),
-        data: `0x`,
+        data: `0x` as `0x${string}`,
       };
 
       const hash = await walletClient.extend(eip712WalletActions()).sendTransaction(transaction);
@@ -168,8 +166,6 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
               onSubmit={async (e) => {
                 e.preventDefault();
                 if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
-
-                console.log(primaryWallet);
 
                 const formData = new FormData(e.target as HTMLFormElement);
                 const toAddress = formData.get("toAddress") as string;
