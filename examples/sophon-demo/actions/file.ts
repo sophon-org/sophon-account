@@ -27,7 +27,7 @@ function getBaseUrl(fallback = "http://localhost:3000"): string {
     "vercelUrl",
     vercelUrl,
     process.env.VERCEL_URL,
-    process.env.NEXT_PUBLIC_VERCEL_URL
+    process.env.NEXT_PUBLIC_VERCEL_URL,
   );
 
   // Fall back to NEXT_PUBLIC_BASE_URL if available

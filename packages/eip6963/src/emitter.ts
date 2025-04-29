@@ -11,7 +11,7 @@ import {
 
 export const createSophonEIP6963Emitter = (
   network: "mainnet" | "testnet",
-  uuidOverride?: string
+  uuidOverride?: string,
 ) => {
   const isSSR = () => typeof window === "undefined";
   if (isSSR()) {

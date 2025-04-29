@@ -23,7 +23,7 @@ export default async function RootLayout({
 }) {
   const initialState = cookieToInitialState(
     getConfig(),
-    (await headers()).get("cookie")
+    (await headers()).get("cookie"),
   );
 
   return (

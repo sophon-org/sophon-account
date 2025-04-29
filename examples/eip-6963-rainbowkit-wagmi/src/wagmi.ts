@@ -3,7 +3,7 @@ import { sophonTestnet } from "wagmi/chains";
 
 export const config = getDefaultConfig({
   appName: "RainbowKit App",
-  projectId: "YOUR_PROJECT_ID",
+  projectId: "0cdd2bff477264e03527f8642477a601",
   transports: {
     useConnectors: true,
   },
