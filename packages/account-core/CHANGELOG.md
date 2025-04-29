@@ -1,5 +1,11 @@
 # @sophon-labs/account-core
 
+## 1.1.3
+
+### Patch Changes
+
+- Version bump
+
 ## 1.1.2
 
 ### Patch Changes
