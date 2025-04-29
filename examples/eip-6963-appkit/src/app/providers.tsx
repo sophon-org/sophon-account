@@ -7,7 +7,7 @@ import { sophonTestnet } from "@reown/appkit/networks";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { State, WagmiProvider } from "wagmi";
 
-import "@sophon-labs/eip6963/testnet";
+import "@sophon-labs/account-ei6963/testnet";
 
 // Get projectId from <https://cloud.reown.com>
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:core": "pnpm run --stream -r --filter @sophon-labs/wallet --filter @sophon-labs/eip6963 --filter @sophon-labs/react build",
-    "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/wallet --filter @sophon-labs/eip6963 --filter @sophon-labs/react dev ",
+    "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-ei6963 --filter @sophon-labs/account-react build",
+    "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-ei6963 --filter @sophon-labs/account-react dev ",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
@@ -33,5 +33,9 @@
   },
   "dependencies": {
     "@changesets/cli": "^2.29.1"
+  },
+  "resolutions": {
+    "wagmi": "2.15.0",
+    "@wagmi/core": "2.17.0"
   }
 }

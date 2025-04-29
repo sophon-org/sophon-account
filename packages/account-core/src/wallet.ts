@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createGlobalWalletClient,
   GlobalWalletClient,

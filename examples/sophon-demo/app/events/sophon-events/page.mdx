@@ -4,7 +4,7 @@ import { getFileContent } from "@/actions/file";
 import { Box } from "@mantine/core";
 import ConnectButtonCustom from "@/examples/ui/connect-button/ConnectButtonCustom";
 import { ComponentPropertyTable } from "@/components/component-property-table";
-import { SophonConnectButtonWidget } from "@sophon-labs/react";
+import { SophonConnectButtonWidget } from "@sophon-labs/account-react";
 
 <EyeBrown label="Events" />
 
@@ -19,7 +19,7 @@ If you want to listen to events in a React component, you might want to use the 
 ## Usage
 
 ```tsx
-import { sophonEvents } from "@sophon-labs/react";
+import { sophonEvents } from "@sophon-labs/account-react";
 
 sophonEvents.on("primaryWalletChanged", (newPrimaryWallet) => {
   console.log("primaryWalletChanged was called", newPrimaryWallet);

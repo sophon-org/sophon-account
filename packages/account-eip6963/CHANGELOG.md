@@ -1,4 +1,4 @@
-# @sophon-labs/react
+# @sophon-labs/account-ei6963
 
 ## 1.0.13
 
@@ -6,8 +6,7 @@
 
 - Bumping version
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.13
-  - @sophon-labs/wallet@1.0.13
+  - @sophon-labs/account-core@1.0.13
 
 ## 1.0.12
 
@@ -15,8 +14,7 @@
 
 - Adding auth helpers
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.12
-  - @sophon-labs/wallet@1.0.12
+  - @sophon-labs/account-core@1.0.12
 
 ## 1.0.11
 
@@ -24,8 +22,7 @@
 
 - Bumping Version
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.11
-  - @sophon-labs/wallet@1.0.11
+  - @sophon-labs/account-core@1.0.11
 
 ## 1.0.10
 
@@ -33,8 +30,7 @@
 
 - Bumping version
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.10
-  - @sophon-labs/wallet@1.0.10
+  - @sophon-labs/account-core@1.0.10
 
 ## 1.0.9
 
@@ -42,8 +38,7 @@
 
 - version bump
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.9
-  - @sophon-labs/wallet@1.0.9
+  - @sophon-labs/account-core@1.0.9
 
 ## 1.0.8
 
@@ -51,8 +46,7 @@
 
 - Bump version
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.8
-  - @sophon-labs/wallet@1.0.8
+  - @sophon-labs/account-core@1.0.8
 
 ## 1.0.7
 
@@ -60,8 +54,7 @@
 
 - Small changes
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.7
-  - @sophon-labs/wallet@1.0.7
+  - @sophon-labs/account-core@1.0.7
 
 ## 1.0.6
 
@@ -69,8 +62,7 @@
 
 - bumping version
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.6
-  - @sophon-labs/wallet@1.0.6
+  - @sophon-labs/account-core@1.0.6
 
 ## 1.0.5
 
@@ -78,8 +70,7 @@
 
 - Testing
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.5
-  - @sophon-labs/wallet@1.0.5
+  - @sophon-labs/account-core@1.0.5
 
 ## 1.0.4
 
@@ -87,8 +78,7 @@
 
 - Package fixes
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.4
-  - @sophon-labs/wallet@1.0.4
+  - @sophon-labs/account-core@1.0.4
 
 ## 1.0.3
 
@@ -96,8 +86,7 @@
 
 - Peer dependencies
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.3
-  - @sophon-labs/wallet@1.0.3
+  - @sophon-labs/account-core@1.0.3
 
 ## 1.0.2
 
@@ -105,8 +94,7 @@
 
 - Dependencies update
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.2
-  - @sophon-labs/wallet@1.0.2
+  - @sophon-labs/account-core@1.0.2
 
 ## 1.0.1
 
@@ -114,8 +102,7 @@
 
 - Updating deployment artifacts for commonJS
 - Updated dependencies
-  - @sophon-labs/eip6963@1.0.1
-  - @sophon-labs/wallet@1.0.1
+  - @sophon-labs/account-core@1.0.1
 
 ## 1.0.0
 
@@ -126,5 +113,4 @@
 ### Patch Changes
 
 - Updated dependencies [f0f0807]
-  - @sophon-labs/eip6963@1.0.0
-  - @sophon-labs/wallet@1.0.0
+  - @sophon-labs/account-core@1.0.0

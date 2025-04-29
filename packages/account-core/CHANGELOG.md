@@ -1,4 +1,4 @@
-# @sophon-labs/wallet
+# @sophon-labs/account-core
 
 ## 1.0.13
 

@@ -24,10 +24,10 @@ To integrate the Sophon wallet with EIP-6963 support in your project:
 
 ```sh
 # Using npm
-npm install @sophon-labs/eip6963
+npm install @sophon-labs/account-ei6963
 
 # Using yarn
-yarn add @sophon-labs/eip6963
+yarn add @sophon-labs/account-ei6963
 ```
 
 ## Using the EIP-6963 Package
@@ -39,7 +39,7 @@ EIP-6963 is a standard that allows multiple Ethereum wallet providers to be disc
 1. Import and initialize the EIP-6963 emitter in your application entry point:
 
 ```ts
-import "@sophon-labs/eip6963/testnet";
+import "@sophon-labs/account-ei6963/testnet";
 
 // The Sophon wallet will now announce itself via the EIP-6963 protocol
 // No additional setup is required
@@ -58,7 +58,7 @@ Most modern wallet connection libraries, like RainbowKit, wagmi, or Reown Appkit
 ```ts
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { sophonTestnet, sophon } from "wagmi/chains";
-import "@sophon-labs/eip6963/testnet"; // Import to announce the Sophon provider
+import "@sophon-labs/account-ei6963/testnet"; // Import to announce the Sophon provider
 
 export const config = getDefaultConfig({
   appName: "Your Application",

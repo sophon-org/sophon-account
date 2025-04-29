@@ -39,7 +39,7 @@ We offer two ways of integration with the Sophon Account:
 1. Install the required packages:
 
 ```sh
-pnpm add @sophon-labs/eip6963
+pnpm add @sophon-labs/account-ei6963
 ```
 
 2. Import the connector and use it in your application:
@@ -49,7 +49,7 @@ pnpm add @sophon-labs/eip6963
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import "@sophon-labs/eip6963";
+import "@sophon-labs/account-ei6963";
 
 import { config } from "../wagmi";
 
@@ -84,7 +84,7 @@ export default function AppProviders({
 1. Install the required packages:
 
 ```bash
-pnpm add @sophon-labs/react
+pnpm add @sophon-labs/account-react
 ```
 
 2. Set up the providers in your application:
@@ -93,10 +93,8 @@ pnpm add @sophon-labs/react
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { config } from "@/lib/wagmi";
-import {
-  SophonContextProvider,
-  SophonWagmiConnector,
-} from "@sophon-labs/react";
+import { SophonContextProvider } from "@sophon-labs/account-react";
+import { SophonWagmiConnector } from "@sophon-labs/account-wagmi";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
@@ -116,7 +114,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 3. Use the Sophon Widget in your application:
 
 ```tsx
-import { SophonWidget } from "@sophon-labs/react";
+import { SophonWidget } from "@sophon-labs/account-react";
 
 export default function Home() {
   return (

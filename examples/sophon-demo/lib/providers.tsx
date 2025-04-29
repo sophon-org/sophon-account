@@ -3,10 +3,8 @@
 import { State, WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getConfig } from "@/lib/wagmi";
-import {
-  SophonContextProvider,
-  SophonWagmiConnector,
-} from "@sophon-labs/react";
+import { SophonContextProvider } from "@sophon-labs/account-react";
+import { SophonWagmiConnector } from "@sophon-labs/account-wagmi";
 import { MantineProvider } from "@mantine/core";
 import { useState } from "react";
 

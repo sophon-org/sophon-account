@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import "./index.module.css";
-import {
-  useSophonContext,
-  useIsLoggedIn,
-  isEthereumWallet,
-  isZKsyncConnector,
-} from "@sophon-labs/react";
+import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
+import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 
 export default function ExampleMethods({
   isDarkMode,
@@ -17,7 +13,7 @@ export default function ExampleMethods({
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
 
-  const safeStringify = (obj) => {
+  const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
       obj,
@@ -117,7 +113,7 @@ export default function ExampleMethods({
                   className="btn btn-primary"
                   onClick={signEthereumMessage}
                 >
-                  Sign "Hello World" on Ethereum
+                  Sign &quot;Hello World&quot; on Ethereum
                 </button>
               </>
             )}

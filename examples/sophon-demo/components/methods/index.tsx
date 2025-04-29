@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import "./index.module.css";
-import {
-  useSophonContext,
-  useIsLoggedIn,
-  isEthereumWallet,
-  isZKsyncConnector,
-} from "@sophon-labs/react";
+import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
+import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 
 export default function ExampleMethods({
   isDarkMode,

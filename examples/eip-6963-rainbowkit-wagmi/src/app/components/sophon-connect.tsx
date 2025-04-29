@@ -6,7 +6,7 @@ import {
   SophonTestnetWallet,
   WalletConfig,
   WalletTestnetConfig,
-} from "@sophon-labs/wallet";
+} from "@sophon-labs/account-core";
 
 interface Props {
   authenticatedComponent: React.ReactNode;

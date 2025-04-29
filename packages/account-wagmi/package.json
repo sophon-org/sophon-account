@@ -1,0 +1,23 @@
+{
+  "name": "@sophon-labs/account-wagmi",
+  "version": "1.0.13",
+  "description": "",
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "pnpm run build --watch"
+  },
+  "dependencies": {
+    "@dynamic-labs/wagmi-connector": "4.14.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "tsup": "^8.4.0"
+  }
+}

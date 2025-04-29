@@ -7,7 +7,7 @@ import {
   SophonWallet,
   WalletTestnetConfig,
   SophonTestnetWallet,
-} from "@sophon-labs/wallet";
+} from "@sophon-labs/account-core";
 
 export const createSophonEIP6963Emitter = (
   network: "mainnet" | "testnet",

@@ -1,8 +1,11 @@
 {
-  "name": "@sophon-labs/wallet",
+  "name": "@sophon-labs/account-core",
   "version": "1.0.13",
   "description": "",
   "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,9 +14,10 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "4.12.4",
-    "@dynamic-labs/ethereum-aa": "4.12.4",
-    "@dynamic-labs/global-wallet-client": "4.12.4"
+    "@dynamic-labs/ethereum": "4.14.0",
+    "@dynamic-labs/ethereum-aa": "4.14.0",
+    "@dynamic-labs/ethereum-aa-zksync": "4.14.0",
+    "@dynamic-labs/global-wallet-client": "4.14.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
@@ -32,8 +36,5 @@
         "require": "./dist/index.cjs"
       }
     }
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
