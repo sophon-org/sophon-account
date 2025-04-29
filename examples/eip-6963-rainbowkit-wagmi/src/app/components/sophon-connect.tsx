@@ -33,7 +33,7 @@ export const SophonConnectButton: React.FC<Props> = ({
 
   useEffect(() => {
     const sophonConnector = connectors.find((connector) =>
-      VALID_CONNECTOR_IDS.includes(connector.id)
+      VALID_CONNECTOR_IDS.includes(connector.id),
     );
     if (sophonConnector) {
       setConnector(sophonConnector);
