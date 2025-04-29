@@ -15,9 +15,7 @@ export default function Main() {
   const [isDarkMode, setIsDarkMode] = useState(checkIsDarkSchemePreferred);
 
   useEffect(() => {
-    const darkModeMediaQuery = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    );
+    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => setIsDarkMode(checkIsDarkSchemePreferred());
 
     darkModeMediaQuery.addEventListener("change", handleChange);
@@ -27,7 +25,7 @@ export default function Main() {
   return (
     <div className={`container ${isDarkMode ? "dark" : "light"}`}>
       <div className="modal">
-        <SophonWidget variant="dropdown" />
+        <SophonWidget variant="modal" />
         <ExampleMethods isDarkMode={isDarkMode} />
       </div>
       <div className="footer">

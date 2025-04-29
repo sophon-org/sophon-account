@@ -7,10 +7,12 @@ import {
   isZKsyncConnector,
 } from "@sophon-labs/react";
 import { parseEther, formatEther } from "viem";
+import { eip712WalletActions, getGeneralPaymasterInput } from "viem/zksync";
 
 export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) {
   const isLoggedIn = useIsLoggedIn();
   const { sdkHasLoaded, primaryWallet, user } = useSophonContext();
+
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
   const [balance, setBalance] = useState<string>("0");
@@ -101,14 +103,21 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
       const publicClient = await primaryWallet.getPublicClient();
       const walletClient = await primaryWallet.getWalletClient();
 
-      console.log(to, amount);
+      const chain = await primaryWallet.getNetwork();
+
+      console.log(chain);
 
       const transaction = {
         to: to as `0x${string}`,
         value: parseEther(amount.toString()),
+        paymaster: `0x98546B226dbbA8230cf620635a1e4ab01F6A99B2`,
+        paymasterInput: getGeneralPaymasterInput({
+          innerInput: `0x`,
+        }),
+        data: `0x`,
       };
 
-      const hash = await walletClient.sendTransaction(transaction);
+      const hash = await walletClient.extend(eip712WalletActions()).sendTransaction(transaction);
 
       console.log(hash);
 
@@ -159,6 +168,8 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
               onSubmit={async (e) => {
                 e.preventDefault();
                 if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
+
+                console.log(primaryWallet);
 
                 const formData = new FormData(e.target as HTMLFormElement);
                 const toAddress = formData.get("toAddress") as string;
