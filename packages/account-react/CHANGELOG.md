@@ -1,5 +1,16 @@
 # @sophon-labs/account-react
 
+## 2.0.0
+
+### Minor Changes
+
+- Renaming packages, separating concerns.
+
+### Patch Changes
+
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.0
+
 ## 1.0.13
 
 ### Patch Changes

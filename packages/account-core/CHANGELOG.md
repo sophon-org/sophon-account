@@ -1,5 +1,11 @@
 # @sophon-labs/account-core
 
+## 1.1.0
+
+### Minor Changes
+
+- Renaming packages, separating concerns.
+
 ## 1.0.13
 
 ### Patch Changes
