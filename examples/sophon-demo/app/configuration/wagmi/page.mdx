@@ -25,7 +25,7 @@ Create a `wagmi.ts` file in your project:
 
 ```tsx
 import { http, createConfig } from "wagmi";
-import { sophon, sophonTestnet } from "@sophon-labs/react";
+import { sophon, sophonTestnet } from "@sophon-labs/account-react";
 
 export const config = createConfig({
   chains: [sophon, sophonTestnet],
@@ -54,10 +54,8 @@ Wrap your application with the necessary providers:
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { config } from "@/lib/wagmi";
-import {
-  SophonContextProvider,
-  SophonWagmiConnector,
-} from "@sophon-labs/react";
+import { SophonContextProvider } from "@sophon-labs/account-react";
+import { SophonWagmiConnector } from "@sophon-labs/account-wagmi";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
@@ -108,7 +106,7 @@ To add custom chains to the configuration:
 
 ```tsx
 import { http, createConfig } from "wagmi";
-import { sophon, sophonTestnet } from "@sophon-labs/react";
+import { sophon, sophonTestnet } from "@sophon-labs/account-react";
 import { mainnet } from "wagmi/chains";
 
 export const config = createConfig({

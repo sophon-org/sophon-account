@@ -1,12 +1,17 @@
 import {
   DynamicContextProvider,
+  DynamicContextProps,
   DynamicEventsCallbacks,
 } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
-import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
+import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa-zksync";
 import { JSX } from "react";
-import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/wallet";
+import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/account-core";
 import { PartnerGate } from "./partner-gate";
+import type { SdkView } from "@dynamic-labs/sdk-api";
+
+export type CustomViewsType =
+  DynamicContextProps["settings"]["overrides"]["views"];
 
 interface Props {
   children: React.ReactNode;
@@ -21,7 +26,23 @@ interface Props {
   onboardingImageUrl?: string;
   sandboxDisabled?: boolean;
   theme?: "light" | "dark" | "auto";
+  views?: CustomViewsType;
+  displayWalletOperations?: boolean;
+  customAuthUrl?: string;
 }
+
+const hideWalletOperationsStyle = `
+.dynamic-widget-wallet-header__wallet-info {
+  padding-bottom: 0px !important;
+}
+.dynamic-widget-wallet-header__wallet-actions {
+  display: none;
+}
+
+.account-and-security-settings-view__delete-account-container, .settings-view__delete-account-container {
+  display: none !important;
+}
+`;
 
 export const SophonContextProvider = ({
   partnerId,
@@ -36,6 +57,9 @@ export const SophonContextProvider = ({
   onboardingImageUrl,
   sandboxDisabled,
   theme,
+  views,
+  displayWalletOperations,
+  customAuthUrl,
 }: Props) => {
   const sophonOverrides = `
   ${cssOverrides ?? ""} 
@@ -44,25 +68,20 @@ export const SophonContextProvider = ({
     display: none;
   } 
 
-  .dynamic-widget-wallet-header__wallet-info {
-    padding-bottom: 0px !important;
-  }
-  .dynamic-widget-wallet-header__wallet-actions {
-    display: none;
-  }
-
-  .account-and-security-settings-view__delete-account-container, .settings-view__delete-account-container {
-    display: none !important;
-  }
+  ${!displayWalletOperations ? hideWalletOperationsStyle : ""}
   `;
 
   return (
     <DynamicContextProvider
       theme={theme ?? "auto"}
       settings={{
+        apiBaseUrl: customAuthUrl,
         debugError,
         logLevel,
         events,
+        overrides: {
+          views: views ?? [],
+        },
         redirectUrl,
         onboardingImageUrl,
         cssOverrides: sophonOverrides,

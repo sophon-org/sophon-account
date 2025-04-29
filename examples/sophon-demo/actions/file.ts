@@ -23,12 +23,6 @@ const fileSchema = z.object({
 function getBaseUrl(fallback = "http://localhost:3000"): string {
   const vercelUrl =
     process.env.VERCEL_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
-  console.log(
-    "vercelUrl",
-    vercelUrl,
-    process.env.VERCEL_URL,
-    process.env.NEXT_PUBLIC_VERCEL_URL
-  );
 
   // Fall back to NEXT_PUBLIC_BASE_URL if available
   if (process.env.NEXT_PUBLIC_BASE_URL) {
@@ -50,7 +44,6 @@ function getBaseUrl(fallback = "http://localhost:3000"): string {
 export async function getFileContent(fileName: string): Promise<string> {
   fileSchema.parse({ fileName });
   const baseUrl = `${getBaseUrl()}/examples/${fileName}`;
-  console.log("baseUrl", baseUrl);
   const response = await fetch(baseUrl);
   const remoteFileContent = await response.text();
   return remoteFileContent;

@@ -26,7 +26,8 @@ Sophon Account provides Ethers.js integration through Dynamic's SDK for interact
 Access the primary wallet through the `useSophonContext` hook:
 
 ```tsx
-import { useSophonContext, isEthereumWallet } from "@sophon-labs/react";
+import { useSophonContext } from "@sophon-labs/account-react";
+import { isEthereumWallet } from "@sophon-labs/account-core";
 
 export function WalletExample() {
   const { primaryWallet } = useSophonContext();
@@ -56,11 +57,8 @@ export function WalletExample() {
 You can sign messages using the primary wallet:
 
 ```tsx
-import {
-  useSophonContext,
-  isEthereumWallet,
-  isZKsyncConnector,
-} from "@sophon-labs/react";
+import { useSophonContext } from "@sophon-labs/account-react";
+import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 
 export function SignMessage() {
   const { primaryWallet } = useSophonContext();
@@ -102,7 +100,8 @@ export function SignMessage() {
 Access the public and wallet clients:
 
 ```tsx
-import { useSophonContext, isEthereumWallet } from "@sophon-labs/react";
+import { useSophonContext } from "@sophon-labs/account-react";
+import { isEthereumWallet } from "@sophon-labs/account-core";
 
 export function WalletClients() {
   const { primaryWallet } = useSophonContext();

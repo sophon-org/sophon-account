@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import "./index.module.css";
+import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
+import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 import styles from "./index.module.css";
-import {
-  useSophonContext,
-  useIsLoggedIn,
-  isEthereumWallet,
-  isZKsyncConnector,
-} from "@sophon-labs/react";
 import { parseEther, formatEther } from "viem";
 import { eip712WalletActions, getGeneralPaymasterInput } from "viem/zksync";
 
-export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) {
+export default function ExampleMethods({
+  isDarkMode,
+}: {
+  isDarkMode: boolean;
+}) {
   const isLoggedIn = useIsLoggedIn();
   const { sdkHasLoaded, primaryWallet, user } = useSophonContext();
 
@@ -17,7 +18,7 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
   const [result, setResult] = useState("");
   const [balance, setBalance] = useState<string>("0");
 
-  const safeStringify = (obj: any) => {
+  const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
       obj,
@@ -30,7 +31,7 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
         }
         return value;
       },
-      2
+      2,
     );
   };
 
@@ -88,7 +89,8 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
       const signature = await primaryWallet.signMessage("Hello World");
       setResult(signature!);
     } else {
-      const ecdsaClient = primaryWallet.connector.getAccountAbstractionProvider();
+      const ecdsaClient =
+        primaryWallet.connector.getAccountAbstractionProvider();
       const signature = await ecdsaClient.signMessage({
         message: "Hello World!",
       });
@@ -115,7 +117,9 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
         data: `0x` as `0x${string}`,
       };
 
-      const hash = await walletClient.extend(eip712WalletActions()).sendTransaction(transaction);
+      const hash = await walletClient
+        .extend(eip712WalletActions())
+        .sendTransaction(transaction);
 
       console.log(hash);
 
@@ -144,7 +148,10 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
   }
 
   return (
-    <div className={styles.methodsContainer} data-theme={isDarkMode ? "dark" : "light"}>
+    <div
+      className={styles.methodsContainer}
+      data-theme={isDarkMode ? "dark" : "light"}
+    >
       <div className={styles.methodsGrid}>
         <button className={styles.methodButton} onClick={showUser}>
           Fetch User
@@ -152,14 +159,19 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
 
         {primaryWallet && isEthereumWallet(primaryWallet) && (
           <>
-            <div className={styles.balanceDisplay}>Your Balance: {balance} SOPH</div>
+            <div className={styles.balanceDisplay}>
+              Your Balance: {balance} SOPH
+            </div>
             <button className={styles.methodButton} onClick={fetchPublicClient}>
               Fetch Public Client
             </button>
             <button className={styles.methodButton} onClick={fetchWalletClient}>
               Fetch Wallet Client
             </button>
-            <button className={styles.methodButton} onClick={signEthereumMessage}>
+            <button
+              className={styles.methodButton}
+              onClick={signEthereumMessage}
+            >
               Sign "Hello World" on Ethereum
             </button>
             <form
@@ -179,7 +191,10 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
                 await sendSoph(toAddress, amount);
               }}
             >
-              <div className={styles.inputGroup} style={{ minWidth: "inherit", width: "100%" }}>
+              <div
+                className={styles.inputGroup}
+                style={{ minWidth: "inherit", width: "100%" }}
+              >
                 <input
                   type="text"
                   name="toAddress"
@@ -188,7 +203,10 @@ export default function ExampleMethods({ isDarkMode }: { isDarkMode: boolean }) 
                   className={styles.methodInput}
                 />
               </div>
-              <div className={styles.inputGroup} style={{ minWidth: "inherit", width: "100%" }}>
+              <div
+                className={styles.inputGroup}
+                style={{ minWidth: "inherit", width: "100%" }}
+              >
                 <input
                   type="number"
                   name="amount"

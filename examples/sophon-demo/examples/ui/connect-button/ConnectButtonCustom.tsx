@@ -7,7 +7,7 @@ import {
   SophonUserProfile,
   useIsLoggedIn,
   useSophonContext,
-} from "@sophon-labs/react";
+} from "@sophon-labs/account-react";
 import { DogIcon, RabbitIcon } from "lucide-react";
 
 export default function ExampleComponent() {

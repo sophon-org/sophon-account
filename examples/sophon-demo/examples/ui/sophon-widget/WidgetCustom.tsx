@@ -1,6 +1,6 @@
 "use client";
 
-import { SophonWidget } from "@sophon-labs/react";
+import { SophonWidget } from "@sophon-labs/account-react";
 import { RabbitIcon } from "lucide-react";
 
 export default function ExampleComponent() {

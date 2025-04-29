@@ -7,11 +7,11 @@ import {
   SophonWallet,
   WalletTestnetConfig,
   SophonTestnetWallet,
-} from "@sophon-labs/wallet";
+} from "@sophon-labs/account-core";
 
 export const createSophonEIP6963Emitter = (
   network: "mainnet" | "testnet",
-  uuidOverride?: string
+  uuidOverride?: string,
 ) => {
   const isSSR = () => typeof window === "undefined";
   if (isSSR()) {

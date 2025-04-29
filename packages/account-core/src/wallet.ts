@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createGlobalWalletClient,
   GlobalWalletClient,
@@ -17,5 +19,5 @@ export const SophonTestnetWallet: GlobalWalletClient = createGlobalWalletClient(
     popup: {
       url: WalletTestnetConfig.walletUrl,
     },
-  }
+  },
 );
