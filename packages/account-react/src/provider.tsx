@@ -1,5 +1,6 @@
 import {
   DynamicContextProvider,
+  DynamicContextProps,
   DynamicEventsCallbacks,
 } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
@@ -8,6 +9,9 @@ import { JSX } from "react";
 import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/account-core";
 import { PartnerGate } from "./partner-gate";
 import type { SdkView } from "@dynamic-labs/sdk-api";
+
+export type CustomViewsType =
+  DynamicContextProps["settings"]["overrides"]["views"];
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +26,7 @@ interface Props {
   onboardingImageUrl?: string;
   sandboxDisabled?: boolean;
   theme?: "light" | "dark" | "auto";
-  views?: SdkView[];
+  views?: CustomViewsType;
   displayWalletOperations?: boolean;
   customAuthUrl?: string;
 }

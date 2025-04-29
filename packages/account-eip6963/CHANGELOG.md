@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.6
+
+### Patch Changes
+
+- Bump version
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.6
+
 ## 1.1.5
 
 ### Patch Changes
