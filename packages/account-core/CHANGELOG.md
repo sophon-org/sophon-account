@@ -1,5 +1,11 @@
 # @sophon-labs/account-core
 
+## 1.1.4
+
+### Patch Changes
+
+- Exposing more types
+
 ## 1.1.3
 
 ### Patch Changes
