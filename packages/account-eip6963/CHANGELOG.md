@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.5
+
+### Patch Changes
+
+- Fixing type export
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.5
+
 ## 1.1.4
 
 ### Patch Changes
