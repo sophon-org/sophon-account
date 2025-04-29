@@ -1,4 +1,4 @@
-# @sophon-labs/account-ei6963
+# @sophon-labs/account-eip6963
 
 ## 1.1.1
 

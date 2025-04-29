@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
-import "@sophon-labs/account-ei6963/testnet";
+import "@sophon-labs/account-eip6963/testnet";
 
 import { config } from "../wagmi";
 

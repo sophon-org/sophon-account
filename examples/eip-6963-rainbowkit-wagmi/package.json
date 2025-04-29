@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.2.4",
-    "@sophon-labs/account-ei6963": "workspace:*",
+    "@sophon-labs/account-eip6963": "workspace:*",
     "@sophon-labs/account-core": "workspace:*",
     "@sophon-labs/account-react": "workspace:*",
     "@tanstack/react-query": "^5.55.3",
