@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.7
+
+### Patch Changes
+
+- Updating dynamic deps to latest
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.7
+
 ## 1.1.6
 
 ### Patch Changes
