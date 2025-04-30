@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.8
+
+### Patch Changes
+
+- Updated readme
+
 ## 1.1.7
 
 ### Patch Changes
