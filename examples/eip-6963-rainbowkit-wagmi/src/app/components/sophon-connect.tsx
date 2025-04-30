@@ -27,7 +27,7 @@ export const SophonConnectButton: React.FC<Props> = ({
 
   useAccountEffect({
     onDisconnect() {
-      SophonTestnetWallet.disconnect();
+      SophonTestnetWallet?.disconnect();
     },
   });
 

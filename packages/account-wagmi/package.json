@@ -14,7 +14,7 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/wagmi-connector": "4.14.0"
+    "@dynamic-labs/wagmi-connector": "4.15.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.0",
