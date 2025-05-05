@@ -8,7 +8,7 @@ The Sophon SDK provides tools and interfaces to integrate Sophon Global Wallet i
 
 ## Receiving a Partner ID
 
-Local development does not require a separate partner ID, you can use the default one `123b216c-678e-4611-af9a-2d5b7b061258`. For production, you will need to receive a partner ID from us. Please reach out to us to get a partner ID.
+Local development does not require a separate partner ID, you can use the default one `123b216c-678e-4611-af9a-2d5b7b061258`. For production, you will need to receive a partner ID from us. Please reach out to us to get a partner ID via dropping a mail to [product@sophon.xyz](mailto:product@sophon.xyz).
 
 ## Motivation
 
