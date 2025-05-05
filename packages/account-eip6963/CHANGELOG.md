@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.9
+
+### Patch Changes
+
+- Updating react version
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.9
+
 ## 1.1.8
 
 ### Patch Changes

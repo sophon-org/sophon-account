@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.9
+
+### Patch Changes
+
+- Updating react version
+
 ## 1.1.8
 
 ### Patch Changes
