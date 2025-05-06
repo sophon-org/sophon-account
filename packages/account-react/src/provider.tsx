@@ -5,10 +5,9 @@ import {
 } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa-zksync";
-import { JSX } from "react";
 import { WalletConfig, WalletTestnetConfig } from "@sophon-labs/account-core";
 import { PartnerGate } from "./partner-gate";
-import type { SdkView } from "@dynamic-labs/sdk-api";
+import { cssOverrides, hideWalletOperationsStyle } from "./cssOverrides";
 
 export type CustomViewsType =
   DynamicContextProps["settings"]["overrides"]["views"];
@@ -16,7 +15,6 @@ export type CustomViewsType =
 interface Props {
   children: React.ReactNode;
   partnerId: string;
-  cssOverrides?: string | JSX.Element;
   debugError?: boolean;
   events?: DynamicEventsCallbacks;
   logLevel?: "DEBUG" | "INFO" | "WARN" | "ERROR" | "MUTE";
@@ -25,29 +23,14 @@ interface Props {
   redirectUrl?: string;
   onboardingImageUrl?: string;
   sandboxDisabled?: boolean;
-  theme?: "light" | "dark" | "auto";
   views?: CustomViewsType;
   displayWalletOperations?: boolean;
   customAuthUrl?: string;
 }
 
-const hideWalletOperationsStyle = `
-.dynamic-widget-wallet-header__wallet-info {
-  padding-bottom: 0px !important;
-}
-.dynamic-widget-wallet-header__wallet-actions {
-  display: none;
-}
-
-.account-and-security-settings-view__delete-account-container, .settings-view__delete-account-container {
-  display: none !important;
-}
-`;
-
 export const SophonContextProvider = ({
   partnerId,
   children,
-  cssOverrides,
   debugError,
   logLevel,
   events,
@@ -56,24 +39,19 @@ export const SophonContextProvider = ({
   redirectUrl,
   onboardingImageUrl,
   sandboxDisabled,
-  theme,
   views,
   displayWalletOperations,
   customAuthUrl,
 }: Props) => {
   const sophonOverrides = `
-  ${cssOverrides ?? ""} 
-
-  .dynamic-footer {
-    display: none;
-  } 
+  ${cssOverrides} 
 
   ${!displayWalletOperations ? hideWalletOperationsStyle : ""}
   `;
 
   return (
     <DynamicContextProvider
-      theme={theme ?? "auto"}
+      theme={"light"}
       settings={{
         apiBaseUrl: customAuthUrl,
         debugError,
@@ -95,19 +73,6 @@ export const SophonContextProvider = ({
         ],
         termsOfServiceUrl: termsOfServiceUrl ?? "https://sophon.xyz/terms",
         privacyPolicyUrl: privacyPolicyUrl ?? "https://sophon.xyz/privacy",
-        customTermsOfServices: (
-          <a
-            className="powered-by-dynamic powered-by-dynamic--center"
-            href="https://sophon.xyz"
-            style={{
-              marginTop: "8px",
-            }}
-          >
-            <span className="typography typography--body-mini typography--regular typography--tertiary  powered-by-dynamic__text">
-              Powered by <b>Sophon</b>
-            </span>
-          </a>
-        ),
       }}
     >
       <PartnerGate partnerId={partnerId} sandboxDisabled={!!sandboxDisabled}>
