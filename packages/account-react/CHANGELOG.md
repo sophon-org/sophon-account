@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.10
+
+### Patch Changes
+
+- Visual adjustments for Sophon UI
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.10
+
 ## 1.1.9
 
 ### Patch Changes
