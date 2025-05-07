@@ -4,13 +4,30 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useAccount } from "wagmi";
-import { SignMessage } from "./sign";
+import { SignMessage } from "./components/sign";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { SophonConnectButton } from "./components/sophon-connect";
-import { SignTransaction } from "./signTx";
+import { SignTransaction } from "./components/signTx";
+import { VerifySignature } from "./components/verify";
+import { useState } from "react";
+
+enum ConnectionOptions {
+  RainbowKit = "RainbowKit",
+  SophonGlobalAccount = "Sophon Global Account",
+}
+
+enum SignTxOptions {
+  SignTransaction = "Sign Transaction",
+  RecoverAddress = "Recover Address",
+  VerifySignature = "Verify Signature",
+}
 
 const Home: NextPage = () => {
   const { isConnected } = useAccount();
+  const [showConnectionOptions, setShowConnectionOptions] = useState(
+    ConnectionOptions.RainbowKit,
+  );
+  const [showSignTx, setShowSignTx] = useState(SignTxOptions.SignTransaction);
 
   return (
     <div className={styles.container}>
@@ -34,53 +51,141 @@ const Home: NextPage = () => {
             marginBottom: "2rem",
           }}
         >
-          <section
+          <button
+            onClick={() =>
+              setShowConnectionOptions(
+                showConnectionOptions === "RainbowKit"
+                  ? "Sophon Global Account"
+                  : "RainbowKit",
+              )
+            }
             style={{
-              padding: "1.5rem",
-              borderRadius: "12px",
+              padding: "0.5rem 1rem",
+              borderRadius: "8px",
               border: "1px solid #e1e1e1",
-              backgroundColor: "#ffffff",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              backgroundColor: "#3b82f6",
+              color: "white",
+              cursor: "pointer",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginBottom: "1rem",
             }}
           >
-            <h2
-              style={{
-                fontSize: "1.25rem",
-                fontWeight: "600",
-                marginBottom: "1rem",
-                color: "#333",
-              }}
-            >
-              Connect with RainbowKit
-            </h2>
-            <ConnectButton />
-          </section>
+            {showConnectionOptions === "Sophon Global Account"
+              ? "Connect with RainbowKit"
+              : "Connect with Sophon Global Account"}
+          </button>
 
-          <section
-            style={{
-              padding: "1.5rem",
-              borderRadius: "12px",
-              border: "1px solid #e1e1e1",
-              backgroundColor: "#ffffff",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <h2
+          {showConnectionOptions === "RainbowKit" && (
+            <section
               style={{
-                fontSize: "1.25rem",
-                fontWeight: "600",
-                marginBottom: "1rem",
-                color: "#333",
+                padding: "1.5rem",
+                borderRadius: "12px",
+                border: "1px solid #e1e1e1",
+                backgroundColor: "#ffffff",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
-              Connect with Sophon Global Account
-            </h2>
-            <SophonConnectButton authenticatedComponent={<ConnectButton />} />
-          </section>
+              <h2
+                style={{
+                  fontSize: "1.25rem",
+                  fontWeight: "600",
+                  marginBottom: "1rem",
+                  color: "#333",
+                }}
+              >
+                Connect with RainbowKit
+              </h2>
+              <ConnectButton />
+            </section>
+          )}
+
+          {showConnectionOptions === "Sophon Global Account" && (
+            <section
+              style={{
+                padding: "1.5rem",
+                borderRadius: "12px",
+                border: "1px solid #e1e1e1",
+                backgroundColor: "#ffffff",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: "1.25rem",
+                  fontWeight: "600",
+                  marginBottom: "1rem",
+                  color: "#333",
+                }}
+              >
+                Connect with Sophon Global Account
+              </h2>
+              <SophonConnectButton authenticatedComponent={<ConnectButton />} />
+            </section>
+          )}
         </div>
 
-        {isConnected && <SignMessage />}
-        {isConnected && <SignTransaction />}
+        {isConnected && (
+          <>
+            <div
+              style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}
+            >
+              <button
+                onClick={() => setShowSignTx(SignTxOptions.SignTransaction)}
+                style={{
+                  padding: "0.5rem 1rem",
+                  borderRadius: "8px",
+                  border: "1px solid #e1e1e1",
+                  backgroundColor: "#3b82f6",
+                  color: "white",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "16px",
+                }}
+              >
+                Sign Transaction
+              </button>
+              <button
+                onClick={() => setShowSignTx(SignTxOptions.RecoverAddress)}
+                style={{
+                  padding: "0.5rem 1rem",
+                  borderRadius: "8px",
+                  border: "1px solid #e1e1e1",
+                  backgroundColor: "#3b82f6",
+                  color: "white",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "16px",
+                }}
+              >
+                Recover Address
+              </button>
+              <button
+                onClick={() => setShowSignTx(SignTxOptions.VerifySignature)}
+                style={{
+                  padding: "0.5rem 1rem",
+                  borderRadius: "8px",
+                  border: "1px solid #e1e1e1",
+                  backgroundColor: "#3b82f6",
+                  color: "white",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "16px",
+                }}
+              >
+                Verify Signature
+              </button>
+            </div>
+
+            {showSignTx === SignTxOptions.SignTransaction ? (
+              <SignTransaction />
+            ) : showSignTx === SignTxOptions.RecoverAddress ? (
+              <SignMessage />
+            ) : (
+              <VerifySignature />
+            )}
+          </>
+        )}
 
         <h1 className={styles.title}>
           Welcome to <a href="https://www.rainbowkit.com">RainbowKit</a> +{" "}

@@ -3,9 +3,9 @@ import { useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
 
 export function SignTransaction() {
-  const [copied, setCopied] = React.useState<"address" | "transaction" | null>(
-    null,
-  );
+  const [copied, setCopied] = React.useState<
+    "address" | "transaction" | "signature" | null
+  >(null);
   const {
     data: transactionData,
     error,
@@ -15,7 +15,7 @@ export function SignTransaction() {
 
   const copyToClipboard = async (
     text: string,
-    type: "address" | "transaction",
+    type: "address" | "transaction" | "signature",
   ) => {
     await navigator.clipboard.writeText(text);
     setCopied(type);
@@ -24,6 +24,7 @@ export function SignTransaction() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
+      {/* Existing Transaction Form */}
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -170,7 +171,6 @@ export function SignTransaction() {
           </div>
         )}
       </form>
-
       {transactionData && (
         <div
           style={{
