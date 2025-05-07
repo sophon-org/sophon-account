@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.11
+
+### Patch Changes
+
+- More style changes
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.11
+
 ## 1.1.10
 
 ### Patch Changes

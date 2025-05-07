@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.11
+
+### Patch Changes
+
+- More style changes
+
 ## 1.1.10
 
 ### Patch Changes
