@@ -77,22 +77,8 @@ Out of the box, you can use the `partner-custom-button` class to override the st
       language: "tsx",
       fileName: "WidgetCustom.tsx",
       code: await getFileContent("ui/sophon-widget/WidgetCustom.tsx"),
-    },
-    {
-            language: "tsx",
-            fileName: "Provider.tsx",
-            code: `const cssOverrides = \`
-  .partner-custom-button {
-    background-color: #ea3f3f;
-  }
-
-.partner-custom-button:hover:enabled {
-background-color: #ee6969c7;
-}
-\`;`,
-},
-]}
-
+    }
+  ]}
 >
 
   <WidgetCustom />

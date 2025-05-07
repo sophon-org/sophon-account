@@ -8,16 +8,6 @@ import { SophonWagmiConnector } from "@sophon-labs/account-wagmi";
 import { MantineProvider } from "@mantine/core";
 import { useState } from "react";
 
-const cssOverrides = `
-.partner-custom-button {
-  background-color: #ea3f3f;
-}
-
-.partner-custom-button:hover:enabled {
-  background-color: #ee6969c7;
-}
-`;
-
 export default function Providers({
   children,
   initialState,
@@ -34,10 +24,7 @@ export default function Providers({
       withCssVariables
       withGlobalClasses
     >
-      <SophonContextProvider
-        partnerId="123b216c-678e-4611-af9a-2d5b7b061258"
-        cssOverrides={cssOverrides}
-      >
+      <SophonContextProvider partnerId="123b216c-678e-4611-af9a-2d5b7b061258">
         <WagmiProvider config={config} initialState={initialState}>
           <QueryClientProvider client={queryClient}>
             <SophonWagmiConnector>{children}</SophonWagmiConnector>

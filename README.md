@@ -113,9 +113,11 @@ window.addEventListener("eip6963:announceProvider", (event) => {
 
     // Now you can use the provider for transactions, signing, etc.
     // Example: Request accounts
-    sophonProvider.request({ method: "eth_requestAccounts" }).then((accounts) => {
-      console.log("Connected accounts:", accounts);
-    });
+    sophonProvider
+      .request({ method: "eth_requestAccounts" })
+      .then((accounts) => {
+        console.log("Connected accounts:", accounts);
+      });
   }
 });
 

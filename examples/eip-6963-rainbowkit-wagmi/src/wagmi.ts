@@ -4,7 +4,7 @@ import { http } from "wagmi";
 
 export const config = getDefaultConfig({
   appName: "RainbowKit App",
-  projectId: "YOUR_PROJECT_ID",
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
   transports: {
     [sophonTestnet.id]: http(),
   },
