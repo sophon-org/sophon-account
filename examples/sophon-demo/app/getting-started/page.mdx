@@ -15,7 +15,8 @@ import Image from "next/image";
   title="Beta Notice"
   mb={20}
 >
-  Please keep in mind that the SDK is still in beta and some features might be unstable.
+  Please keep in mind that the SDK is still in beta and some features might be
+  unstable.
 </Alert>
 
 The **Sophon Account SDK** is a comprehensive SDK built on top of <a href="https://dynamic.xyz/" target="_blank"><Image src="/dynamic.svg" style={{ display: 'inline-block', verticalAlign: 'middle' }} alt="dynamic" width={90} height={16} /></a>, designed to provide a seamless and secure way to manage user accounts and authentication in your Web3 applications.
@@ -57,7 +58,11 @@ import "@sophon-labs/account-eip6963";
 
 import { config } from "../wagmi";
 
-export default function AppProviders({ children }: { children: React.ReactNode }) {
+export default function AppProviders({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const client = new QueryClient();
 
   return (

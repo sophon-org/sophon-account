@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import { SignMessage } from "./sign";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { SophonConnectButton } from "./components/sophon-connect";
+import { SignTransaction } from "./signTx";
 
 const Home: NextPage = () => {
   const { isConnected } = useAccount();
@@ -79,6 +80,7 @@ const Home: NextPage = () => {
         </div>
 
         {isConnected && <SignMessage />}
+        {isConnected && <SignTransaction />}
 
         <h1 className={styles.title}>
           Welcome to <a href="https://www.rainbowkit.com">RainbowKit</a> +{" "}
