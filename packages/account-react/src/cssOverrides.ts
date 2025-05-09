@@ -30,6 +30,7 @@ body {
 
 .modal-card {
   background: none;
+  box-shadow: none;
 }
 
 :root .modal-card--sharp-mobile-bottom-radius:last-child {
