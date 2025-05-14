@@ -1,5 +1,5 @@
 {
-  "name": "@sophon-labs/examples-eip6963-appkit",
+  "name": "@sophon-labs/examples-eip6963-thirdweb",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@sophon-labs/account-eip6963": "1.1.10",
     "@tanstack/react-query": "^5.72.2",
+    "@thirdweb-dev/wagmi-adapter": "^0.2.77",
     "connectkit": "^1.9.0",
     "next": "15.3.0",
     "react": "^19.1.0",

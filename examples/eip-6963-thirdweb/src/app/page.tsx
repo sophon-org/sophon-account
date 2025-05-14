@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useSignMessage, useSendTransaction, useAccount } from "wagmi";
 import { parseEther } from "viem";
-import { useEffect, useState } from "react";
-import { createThirdwebClient } from "thirdweb";
-import { ConnectButton, useActiveWallet } from "thirdweb/react";
+import { useState } from "react";
+import { createThirdwebClient, defineChain, prepareTransaction, sendTransaction } from "thirdweb";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { signMessage } from "thirdweb/utils";
+import { sophonTestnet } from "viem/chains";
 
 export default function Home() {
   const [copied, setCopied] = useState<"address" | "signature" | "transaction" | null>(null);
@@ -14,33 +15,15 @@ export default function Home() {
     clientId: process.env.NEXT_PUBLIC_THIRDWEB_PROJECT_ID!,
   });
 
-  const wagmiAccount = useAccount();
+  const activeAccount = useActiveAccount();
 
-  // handle disconnecting from wagmi
-  const thirdwebWallet = useActiveWallet();
-  console.log("tww", thirdwebWallet);
+  const [signError, setSignError] = useState<Error | null>(null);
+  const [signMessageData, setSignMessageData] = useState<string | null>(null);
+  const [isSignPending, setIsSignPending] = useState(false);
 
-  useEffect(() => {
-    const disconnectIfNeeded = async () => {
-      if (thirdwebWallet && wagmiAccount.status === "disconnected") {
-        await thirdwebWallet.disconnect();
-      }
-    };
-    disconnectIfNeeded();
-  }, [wagmiAccount, thirdwebWallet]);
-
-  const {
-    data: signMessageData,
-    error: signError,
-    isPending: isSignPending,
-    signMessage,
-  } = useSignMessage();
-  const {
-    data: transactionData,
-    error: txError,
-    isPending: isTxPending,
-    sendTransaction,
-  } = useSendTransaction();
+  const [txError, setTxError] = useState<Error | null>(null);
+  const [transactionData, setTransactionData] = useState<string | null>(null);
+  const [isTxPending, setIsTxPending] = useState(false);
 
   const copyToClipboard = async (text: string, type: "address" | "signature" | "transaction") => {
     await navigator.clipboard.writeText(text);
@@ -71,7 +54,18 @@ export default function Home() {
                 event.preventDefault();
                 const formData = new FormData(event.target as HTMLFormElement);
                 const message = formData.get("message") as string;
-                signMessage({ message });
+
+                if (activeAccount) {
+                  try {
+                    signMessage({ message, account: activeAccount }).then((signature) =>
+                      setSignMessageData(signature)
+                    );
+                  } catch (error) {
+                    setSignError(error as Error);
+                  }
+                } else {
+                  alert("Please connect a wallet.");
+                }
               }}
               className="space-y-4"
             >
@@ -89,10 +83,11 @@ export default function Home() {
 
               <button
                 type="submit"
-                disabled={isSignPending}
+                // disabled={isSignPending}
                 className="w-full rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
               >
-                {isSignPending ? "Waiting for wallet..." : "Sign Message"}
+                {/* {isSignPending ? "Waiting for wallet..." : "Sign Message"} */}
+                Sign Message
               </button>
 
               {signError && (
@@ -135,11 +130,24 @@ export default function Home() {
                   return;
                 }
 
-                sendTransaction({
+                if (!activeAccount) {
+                  alert("Please connect a wallet.");
+                  return;
+                }
+
+                const transaction = prepareTransaction({
                   to: destination as `0x${string}`,
                   value: parseEther(amount),
                   data: "0x",
+                  chain: defineChain(sophonTestnet.id),
+                  client: client,
                 });
+
+                const options = {
+                  account: activeAccount,
+                  transaction,
+                };
+                sendTransaction(options);
               }}
               className="space-y-4"
             >
