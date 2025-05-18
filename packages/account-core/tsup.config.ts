@@ -3,7 +3,7 @@ import path from "path";
 
 export default defineConfig((options) => {
   return {
-    entry: ["src/index.ts", "src/wallet.ts", "src/config.ts"],
+    entry: ["src/index.ts", "src/wallet.ts", "src/config.ts", "src/siws.ts"],
     splitting: true,
     sourcemap: !!options.watch,
     clean: true,

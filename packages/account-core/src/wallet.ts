@@ -19,5 +19,12 @@ export const SophonTestnetWallet: GlobalWalletClient = createGlobalWalletClient(
     popup: {
       url: WalletTestnetConfig.walletUrl,
     },
-  },
+  }
 );
+
+export const getSophonWallet = (network: "mainnet" | "testnet") => {
+  if (network === "mainnet") {
+    return SophonWallet;
+  }
+  return SophonTestnetWallet;
+};
