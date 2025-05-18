@@ -4,7 +4,6 @@ export {
   connect,
   disconnect,
   onEvent,
-  signMessage,
   switchNetwork,
   getWalletNetwork,
   getSupportedEthereumNetworks,
