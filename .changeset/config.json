@@ -11,6 +11,9 @@
     "@sophon-labs/account-sdk-demo",
     "@sophon-labs/examples-eip6963-appkit",
     "@sophon-labs/examples-eip6963-rainbow-wagmi",
-    "@sophon-labs/examples-next-wagmi"
+    "@sophon-labs/examples-next-wagmi",
+    "@sophon-labs/examples-eip6963-thirdweb",
+    "@sophon-labs/examples-eip6963-connectkit",
+    "@sophon-labs/examples-next-authjs"
   ]
 }

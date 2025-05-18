@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.12
+
+### Patch Changes
+
+- Updating dependencies and exposing global wallet native api
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.12
+
 ## 1.1.11
 
 ### Patch Changes

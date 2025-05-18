@@ -1,5 +1,5 @@
 {
-  "name": "next-authjs",
+  "name": "@sophon-labs/examples-next-authjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
