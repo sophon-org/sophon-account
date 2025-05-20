@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react build",
+    "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react --filter sophon-ui build",
     "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react dev ",
     "lint": "eslint .",
     "format": "prettier --write ."
