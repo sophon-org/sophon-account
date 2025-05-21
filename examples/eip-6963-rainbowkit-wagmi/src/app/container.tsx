@@ -15,7 +15,6 @@ import { BlueLink, Button, SendTransactionModal, SignMessageModal } from "./comp
 const MainCard: NextPage = () => {
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
-  const { openChainModal } = useChainModal();
   const { address, isConnected } = useAccount();
   const [showModal, setShowModal] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
@@ -84,7 +83,11 @@ const MainCard: NextPage = () => {
       <div className="self-stretch flex flex-row items-center justify-center gap-[1.5rem] text-left text-[1rem] text-darkslateblue">
         <Button
           variant="primary"
-          onClick={isConnected ? () => openAccountModal() : () => openConnectModal()}
+          onClick={
+            isConnected
+              ? () => (openAccountModal ? openAccountModal() : undefined)
+              : () => (openConnectModal ? openConnectModal() : undefined)
+          }
         >
           {isConnected ? "Open Wallet" : "Connect"}
         </Button>
