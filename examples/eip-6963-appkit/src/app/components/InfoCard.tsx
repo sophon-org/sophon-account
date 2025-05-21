@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const InfoCard: React.FC<{
@@ -6,10 +7,13 @@ const InfoCard: React.FC<{
   title: string;
   description: string;
   ImageComponent: React.ElementType;
+  url: string;
   className?: string;
-}> = ({ iconSrc, alt, title, description, ImageComponent, className }) => {
+}> = ({ iconSrc, alt, title, description, ImageComponent, className, url }) => {
   return (
-    <div
+    <Link
+      href={url}
+      target="_blank"
       className={`h-full relative rounded-xl bg-white border-gray-200 border-solid border-[1px] box-border flex flex-col items-center justify-center py-[2.25rem] px-[1.5rem] gap-[1.5rem] text-center text-[1.25rem] text-gray-100 font-inter ${className}`}
     >
       <ImageComponent
@@ -20,14 +24,12 @@ const InfoCard: React.FC<{
         height={36}
       />
       <div className="self-stretch flex flex-col items-start justify-start">
-        <b className="self-stretch relative leading-[1.75rem] break-words">
-          {title}
-        </b>
+        <b className="self-stretch relative leading-[1.75rem] break-words">{title}</b>
         <div className="self-stretch relative text-[1rem] leading-[1.5rem] text-dimgray break-words">
           {description}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

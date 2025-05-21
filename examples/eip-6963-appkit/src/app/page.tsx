@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { TextHighlight, InfoCard, Background } from "sophon-ui/dist/index";
+import { TextHighlight, InfoCard, Background } from "./components";
 import MainCard from "./container";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         <Image src="/partnership.svg" alt="partnership" width={240} height={60} />
         <div className="w-1/3 font-bold text-gray-100 flex flex-row items-center gap-2 justify-center">
           <span>Get started by editing</span>
-          <TextHighlight label="src/app/page.tsx" url="https://nextjs.org/learn" />
+          <TextHighlight label="src/app/page.tsx" url="https://docs.sophon.xyz" />
         </div>
 
         <MainCard />
@@ -25,6 +25,7 @@ export default function Home() {
               description="Dive into our guides and API"
               className="flex-1"
               ImageComponent={Image}
+              url="https://docs.sophon.xyz"
             />
             <InfoCard
               iconSrc="/ic-git.svg"
@@ -33,6 +34,7 @@ export default function Home() {
               description="View our example repos"
               className="flex-1"
               ImageComponent={Image}
+              url="https://github.com/sophon-org/sophon-account"
             />
             <InfoCard
               iconSrc="/ic-logo-x.svg"
@@ -41,6 +43,7 @@ export default function Home() {
               description="Follow us and stay up to date"
               className="flex-1"
               ImageComponent={Image}
+              url="https://x.com/sophon"
             />
           </div>
         </div>
