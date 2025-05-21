@@ -52,6 +52,7 @@ const MainCard: NextPage = () => {
     setSignedMessage(undefined);
     setSignError(undefined);
     signMessage({
+      account: address as `0x${string}`,
       message,
     });
   };
