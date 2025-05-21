@@ -11,12 +11,10 @@ import {
   ConnectButton,
   useActiveAccount,
   useWalletDetailsModal,
-  useConnect,
   useSendTransaction,
   useConnectModal,
 } from "thirdweb/react";
 import { sophonTestnet } from "viem/chains";
-import { createWallet } from "thirdweb/wallets";
 
 const MainCard: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +28,7 @@ const MainCard: NextPage = () => {
     clientId: process.env.NEXT_PUBLIC_THIRDWEB_PROJECT_ID!,
   });
 
-  const { connect, isConnecting } = useConnectModal();
+  const { connect } = useConnectModal();
   const detailsModal = useWalletDetailsModal();
   const activeAccount = useActiveAccount();
 
@@ -38,7 +36,6 @@ const MainCard: NextPage = () => {
 
   const {
     mutate: sendTransaction,
-    isPending,
     data: transactionResult,
     error: transactionError,
   } = useSendTransaction();
