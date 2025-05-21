@@ -73,9 +73,6 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
-      sophon-ui:
-        specifier: workspace:*
-        version: link:../../packages/sophon-ui
       viem:
         specifier: ^2.28.1
         version: 2.28.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
@@ -134,9 +131,6 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
-      tailwindcss:
-        specifier: ^4.1.6
-        version: 4.1.6
       viem:
         specifier: ^2.28.1
         version: 2.28.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
@@ -150,6 +144,9 @@ importers:
       '@types/react':
         specifier: ^19
         version: 19.1.2
+      tailwindcss:
+        specifier: ^4.1.6
+        version: 4.1.6
       typescript:
         specifier: ^5
         version: 5.8.3
@@ -196,6 +193,9 @@ importers:
       eslint-config-next:
         specifier: ^15.1.7
         version: 15.3.0(eslint@9.25.1(jiti@2.4.2))(typescript@5.5.4)
+      tailwindcss:
+        specifier: ^4.1.6
+        version: 4.1.6
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -600,31 +600,6 @@ importers:
       '@types/react':
         specifier: ^19.1.0
         version: 19.1.2
-      tsup:
-        specifier: ^8.4.0
-        version: 8.4.0(@microsoft/api-extractor@7.52.8(@types/node@22.15.3))(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.3)(yaml@2.7.1)
-
-  packages/sophon-ui:
-    dependencies:
-      react:
-        specifier: ^19.1.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
-    devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.1.4
-      '@types/react':
-        specifier: ^19
-        version: 19.1.2
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.1.2(@types/react@19.1.2)
-      tailwindcss:
-        specifier: ^4
-        version: 4.1.6
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(@microsoft/api-extractor@7.52.8(@types/node@22.15.3))(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.3)(yaml@2.7.1)
