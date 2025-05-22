@@ -1,5 +1,17 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.13
+
+### Patch Changes
+
+- Exposing more methods
+
+## 1.1.12
+
+### Patch Changes
+
+- Updating dependencies and exposing global wallet native api
+
 ## 1.1.11
 
 ### Patch Changes
