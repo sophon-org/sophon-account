@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.13
+
+### Patch Changes
+
+- Exposing more methods
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.13
+
 ## 1.1.12
 
 ### Patch Changes
