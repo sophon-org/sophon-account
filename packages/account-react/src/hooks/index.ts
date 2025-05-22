@@ -4,4 +4,6 @@ export {
   useReinitialize,
   useIsLoggedIn,
   useDynamicEvents as useSophonEvents,
+  useSocialAccounts,
+  useUserUpdateRequest,
 } from "@dynamic-labs/sdk-react-core";
