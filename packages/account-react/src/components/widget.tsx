@@ -31,13 +31,11 @@ export const SophonWidget: React.FC<Props> = ({
   }
 
   return (
-    <>
-      <DynamicWidget
-        variant={variant}
-        innerButtonComponent={label}
-        buttonClassName={className}
-        buttonContainerClassName={containerClassName}
-      />
-    </>
+    <DynamicWidget
+      variant={variant}
+      innerButtonComponent={label}
+      buttonClassName={className}
+      buttonContainerClassName={containerClassName}
+    />
   );
 };
