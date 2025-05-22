@@ -4,3 +4,5 @@ build
 .env
 .qodo
 .next
+anvyl-zksync.log
+.DS_Store
