@@ -1,3 +1,3 @@
-export * from "./SNSRegistry";
+export * from "./SNSRegistryAbi";
 export * from "./SsoAccount";
 export * from "./SessionKeyValidator";

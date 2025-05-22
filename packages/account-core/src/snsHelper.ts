@@ -1,7 +1,7 @@
 import { mainnet } from "viem/chains";
 import { Address, createPublicClient, http } from "viem";
 import { sophonTestnet } from "viem/chains";
-import { snsRegistryAbi } from "./abis/SNSRegistry";
+import { snsRegistryAbi } from "./abis/SNSRegistryAbi";
 
 const SNS_REGISTRY_ADDRESS = "0x5a1f427df38564e764f3e400137252989e92cc96";
 

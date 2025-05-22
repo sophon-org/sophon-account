@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import "./index.module.css";
-import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
+import {
+  useSophonContext,
+  useIsLoggedIn,
+  useUserUpdateRequest,
+} from "@sophon-labs/account-react";
 import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 import styles from "./index.module.css";
 import { parseEther, formatEther } from "viem";
@@ -17,7 +21,7 @@ export default function ExampleMethods({
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
   const [balance, setBalance] = useState<string>("0");
-
+  const { updateUserWithModal } = useUserUpdateRequest();
   const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
@@ -31,7 +35,7 @@ export default function ExampleMethods({
         }
         return value;
       },
-      2,
+      2
     );
   };
 
@@ -99,6 +103,9 @@ export default function ExampleMethods({
   }
 
   async function sendSoph(to: string, amount: number) {
+    await updateUserWithModal(["email"]);
+    return;
+
     if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
     try {

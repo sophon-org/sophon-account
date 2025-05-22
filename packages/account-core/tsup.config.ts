@@ -3,8 +3,15 @@ import path from "path";
 
 export default defineConfig((options) => {
   return {
-    entry: ["src/index.ts", "src/wallet.ts", "src/config.ts", "src/siws.ts", "src/sessionHelper.ts",
-      "src/abis/*"],
+    entry: [
+      "src/index.ts",
+      "src/wallet.ts",
+      "src/config.ts",
+      "src/siws.ts",
+      "src/sessionHelper.ts",
+      "src/abis/*",
+      "src/snsHelper.ts",
+    ],
     splitting: true,
     sourcemap: !!options.watch,
     clean: true,
