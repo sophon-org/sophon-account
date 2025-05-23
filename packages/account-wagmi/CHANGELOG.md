@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.14
+
+### Patch Changes
+
+- CSS Changes and better hook inputs
+
 ## 1.1.13
 
 ### Patch Changes

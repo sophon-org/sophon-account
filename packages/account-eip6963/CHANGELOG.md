@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.14
+
+### Patch Changes
+
+- CSS Changes and better hook inputs
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.14
+
 ## 1.1.13
 
 ### Patch Changes
