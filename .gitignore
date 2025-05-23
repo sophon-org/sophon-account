@@ -4,5 +4,7 @@ build
 .env
 .qodo
 .next
-anvyl-zksync.log
+anvil-zksync.log
 .DS_Store
+.cache
+.vscode
