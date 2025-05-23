@@ -10,7 +10,6 @@ export {
   getEthereumWallets,
 } from "@dynamic-labs/global-wallet-client/features";
 export { createEIP1193Provider } from "@dynamic-labs/global-wallet-client/ethereum";
-export * from "./sessionHelper";
 export * from "./abis";
 export * from "./snsHelper";
 export { isEthereumWallet } from "@dynamic-labs/ethereum";

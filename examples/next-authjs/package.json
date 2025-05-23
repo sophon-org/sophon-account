@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sophon-labs/account-core": "1.1.14",
+    "@sophon-labs/account-core": "1.1.15",
     "@tanstack/react-query": "^5.76.0",
     "next": "15.3.2",
     "next-auth": "^5.0.0-beta.28",
