@@ -3,7 +3,6 @@ import "./index.module.css";
 import {
   useSophonContext,
   useIsLoggedIn,
-  useUserUpdateRequest,
 } from "@sophon-labs/account-react";
 import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
 import styles from "./index.module.css";
@@ -21,7 +20,6 @@ export default function ExampleMethods({
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
   const [balance, setBalance] = useState<string>("0");
-  const { updateUserWithModal } = useUserUpdateRequest();
   const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
@@ -103,16 +101,12 @@ export default function ExampleMethods({
   }
 
   async function sendSoph(to: string, amount: number) {
-    await updateUserWithModal(["email"]);
-    return;
 
     if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
     try {
       const publicClient = await primaryWallet.getPublicClient();
       const walletClient = await primaryWallet.getWalletClient();
-
-      const chain = await primaryWallet.getNetwork();
 
       const transaction = {
         to: to as `0x${string}`,
