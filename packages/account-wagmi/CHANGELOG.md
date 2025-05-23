@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.16
+
+### Patch Changes
+
+- Fixing wrong import
+
 ## 1.1.15
 
 ### Patch Changes

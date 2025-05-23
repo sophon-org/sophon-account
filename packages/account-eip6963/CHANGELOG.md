@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.16
+
+### Patch Changes
+
+- Fixing wrong import
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.16
+
 ## 1.1.15
 
 ### Patch Changes
