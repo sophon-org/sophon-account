@@ -1,5 +1,7 @@
 export * from "./config";
 export * from "./wallet";
+export * from "./client";
+export * from "./sessionHelper";
 export {
   connect,
   disconnect,
@@ -11,5 +13,5 @@ export {
 } from "@dynamic-labs/global-wallet-client/features";
 export { createEIP1193Provider } from "@dynamic-labs/global-wallet-client/ethereum";
 export { isEthereumWallet } from "@dynamic-labs/ethereum";
-export { isZKsyncConnector } from "@dynamic-labs/ethereum-aa-zksync";
+export { isZKsyncConnector as isSophonConnector } from "@dynamic-labs/ethereum-aa-zksync";
 export { SiwsMessage } from "./siws";
