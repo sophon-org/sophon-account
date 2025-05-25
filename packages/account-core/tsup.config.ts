@@ -4,11 +4,13 @@ import path from "path";
 export default defineConfig((options) => {
   return {
     entry: [
+      "src/abis/*",
       "src/index.ts",
       "src/wallet.ts",
       "src/config.ts",
+      "src/snsHelper.ts",
       "src/siws.ts",
-      "src/abis/*",
+      "src/utils.ts",
     ],
     splitting: true,
     sourcemap: !!options.watch,
