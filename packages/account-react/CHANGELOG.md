@@ -1,5 +1,37 @@
 # @sophon-labs/account-react
 
+## 1.1.16
+
+### Patch Changes
+
+- Fixing wrong import
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.16
+
+## 1.1.15
+
+### Patch Changes
+
+- Updating wrong import
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.15
+
+## 1.1.14
+
+### Patch Changes
+
+- CSS Changes and better hook inputs
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.14
+
+## 1.1.13
+
+### Patch Changes
+
+- Exposing more methods
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.13
+
 ## 1.1.12
 
 ### Patch Changes

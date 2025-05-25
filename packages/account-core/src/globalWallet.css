@@ -1,27 +1,20 @@
-export const cssOverrides = `
 :host,
-body, .dynamic-shadow-dom {
+body,
+.dynamic-shadow-dom {
   --dynamic-text-link: rgba(51, 119, 255, 1) !important;
   --dynamic-brand-primary-color: rgba(51, 119, 255, 1) !important;
-  --dynamic-text-primary: #1F1E1B  !important;
+  --dynamic-text-primary: #1f1e1b !important;
   --dynamic-text-secondary: #52514f !important;
 }
 
 /* Containers */
 
-.modal,
-.accordion-item,
+.modal-frame__modal,
 .confirm-connection,
 .wallet-connected {
   border-radius: 0;
   background:
-  linear-gradient(
-    160deg,
-    #CCE4FF 0%,
-    #EBF4FF 20%,
-    transparent 35%
-  ),
-    #faf7f5;
+    linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%), #faf7f5;
 }
 
 .modal-card {
@@ -77,7 +70,7 @@ body, .dynamic-shadow-dom {
 }
 
 .multi-asset-balance-container__accordion {
-    background: none;
+  background: none;
 }
 
 .embedded-widget {
@@ -89,13 +82,7 @@ body, .dynamic-shadow-dom {
 .settings-view,
 .account-and-security-settings-view {
   background:
-    linear-gradient(
-      160deg,
-      #CCE4FF 0%,
-      #EBF4FF 20%,
-      transparent 35%
-    ),
-    #faf7f5;
+    linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%), #faf7f5;
 }
 
 .login-view__scroll {
@@ -192,7 +179,10 @@ body, .dynamic-shadow-dom {
 .sign-message-confirmation__message-container {
   border-radius: 18px;
   background: #fff;
-  box-shadow: 0px 0px 0px 1px rgba(15, 14, 13, 0.08), 0px 2px 4px 0px rgba(15, 14, 13, 0.08), 0px 12px 24px 0px rgba(15, 14, 13, 0.08);
+  box-shadow:
+    0px 0px 0px 1px rgba(15, 14, 13, 0.08),
+    0px 2px 4px 0px rgba(15, 14, 13, 0.08),
+    0px 12px 24px 0px rgba(15, 14, 13, 0.08);
   margin-bottom: 1.5rem;
 }
 
@@ -284,16 +274,13 @@ body, .dynamic-shadow-dom {
   color: var(--dynamic-brand-primary-color);
 }
 
-`;
-
-export const hideWalletOperationsStyle = `
 .dynamic-widget-wallet-header__wallet-info {
   padding-bottom: 0px !important;
 }
 .dynamic-widget-wallet-header__wallet-actions {
   display: none;
 }
-.account-and-security-settings-view__delete-account-container, .settings-view__delete-account-container {
+.account-and-security-settings-view__delete-account-container,
+.settings-view__delete-account-container {
   display: none !important;
 }
-`;

@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/account-core",
-  "version": "1.1.12",
+  "version": "1.1.16",
   "description": "",
   "type": "module",
   "keywords": [],
@@ -14,10 +14,14 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "4.18.6",
-    "@dynamic-labs/ethereum-aa": "4.18.6",
-    "@dynamic-labs/ethereum-aa-zksync": "4.18.6",
-    "@dynamic-labs/global-wallet-client": "4.18.6"
+    "@dynamic-labs/ethereum": "4.18.7",
+    "@dynamic-labs/ethereum-aa": "4.18.7",
+    "@dynamic-labs/ethereum-aa-zksync": "4.18.7",
+    "@dynamic-labs/global-wallet-client": "4.18.7",
+    "ethers": "6.14.1",
+    "viem": "^2.28.1",
+    "zksync-ethers": "6.17.0",
+    "zksync-sso": "0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
