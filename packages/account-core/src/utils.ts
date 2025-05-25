@@ -56,32 +56,30 @@ export const generateParamsFromString = (
   inputString: string,
 ): GradientParams => {
   if (!inputString || typeof inputString !== "string") {
-    inputString = "default";
+    throw new Error("Input string is required");
   }
 
   // Generate a hash from the input string
   const hash = hashString(inputString);
 
   // Use the hash to select two different colors from the palette
-  const colorIndex1 = Math.abs(hash % COLOR_PALETTE_200.length);
-  let colorIndex2 = Math.abs((hash >> 8) % COLOR_PALETTE_200.length);
+  let colorIndex1 = Math.abs(hash % COLOR_PALETTE_200.length);
+  const colorIndex2 = Math.abs((hash >> 8) % COLOR_PALETTE_200.length);
 
   // Ensure the colors are different
   if (colorIndex1 === colorIndex2) {
-    colorIndex2 = (colorIndex2 + 1) % COLOR_PALETTE_200.length;
+    colorIndex1 = (colorIndex1 + 1) % COLOR_PALETTE_200.length;
   }
 
   const color1 = COLOR_PALETTE_200[colorIndex1];
   const color2 = COLOR_PALETTE_200[colorIndex2];
 
-  // Generate an angle (Math.PI / something)
-  // Use a value between 2 and 12 for the divisor
-  const divisor = 2 + Math.abs((hash >> 16) % 11);
-  const angle = Math.PI / divisor;
+  // Generate an angle (0 to 2π), counterclockwise
+  const angle = ((Math.abs(hash >> 16) % 1000) / 1000) * 2 * Math.PI; // Range: 0 to 2π
 
-  // Generate a Vector2 with values between 0 and 1
-  const centerX = Math.abs((hash >> 24) % 100) / 100; // Range: 0 to 1
-  const centerY = Math.abs((hash >> 28) % 100) / 100; // Range: 0 to 1
+  // Generate a Vector2 with values between 0.2 and 0.8
+  const centerX = ((Math.abs(hash >> 24) % 101) / 100) * 0.6 + 0.2; // Range: 0.2 to 0.8
+  const centerY = ((Math.abs(hash >> 16) % 101) / 100) * 0.6 + 0.2; // Range: 0.2 to 0.8
 
   const colorText = COLOR_PALETTE_400[colorIndex1];
 
@@ -89,9 +87,9 @@ export const generateParamsFromString = (
     color1,
     color2,
     colorText,
-    angle,
-    centerX,
-    centerY,
+    angle: Number(angle.toFixed(3)),
+    centerX: Number(centerX.toFixed(3)),
+    centerY: Number(centerY.toFixed(3)),
   };
 };
 
@@ -99,9 +97,14 @@ export const getSVGAvatarFromString = (inputString: string): string => {
   const params = generateParamsFromString(inputString);
   const { color1, color2, angle, centerX, centerY } = params;
 
+  // Calculate the gradient end point based on the starting point and angle
+  const gradientLength = 1; // Length of the gradient vector
+  const x2 = centerX + Math.cos(angle) * gradientLength;
+  const y2 = centerY + Math.sin(angle) * gradientLength;
+
   const svg = `<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="gradient" x1="${centerX}" y1="${centerY}" x2="${Math.cos(angle)}" y2="${Math.sin(angle)}">
+      <linearGradient id="gradient" x1="${centerX * 100}%" y1="${centerY * 100}%" x2="${x2 * 100}%" y2="${y2 * 100}%">
         <stop offset="0%" stop-color="${color1}"/>
         <stop offset="100%" stop-color="${color2}"/>
       </linearGradient>
