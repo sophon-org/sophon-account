@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.22
+
+### Patch Changes
+
+- Preventing 0 addresses
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.22
+
 ## 1.1.21
 
 ### Patch Changes
