@@ -1,5 +1,21 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.19
+
+### Patch Changes
+
+- Updating deps
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.19
+
+## 1.1.18
+
+### Patch Changes
+
+- Fixes on SNS integration
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.18
+
 ## 1.1.17
 
 ### Patch Changes

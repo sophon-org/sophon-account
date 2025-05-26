@@ -1,5 +1,4 @@
-import { inAppWalletConnector } from "@thirdweb-dev/wagmi-adapter";
-import { createThirdwebClient, defineChain } from "thirdweb";
+import { createThirdwebClient } from "thirdweb";
 import { http } from "viem";
 import { sophonTestnet } from "viem/chains";
 import { createConfig, injected } from "wagmi";
