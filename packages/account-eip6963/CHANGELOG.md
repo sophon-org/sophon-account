@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.17
+
+### Patch Changes
+
+- Adding SNS support and avatar generation
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.17
+
 ## 1.1.16
 
 ### Patch Changes
