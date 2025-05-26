@@ -1,3 +1,7 @@
+import { createPublicClient, http } from "viem";
+import { sophon, sophonTestnet } from "viem/chains";
+import { sophonAAFactoryAbi } from "./abis/SophonAAFactory";
+
 const COLOR_PALETTE_200 = [
   "#CCE4FF",
   "#FFFAB8",
@@ -13,6 +17,9 @@ const COLOR_PALETTE_400 = [
   "#662548",
   "#341A5C",
 ];
+
+export const SOPHON_AA_FACTORY_ADDRESS =
+  "0x9Bb2603866dD254d4065E5BA50f15F8F058F600E";
 
 type GradientParams = {
   color1: string;
@@ -123,4 +130,25 @@ export const getSVGAvatarFromString = (inputString: string): string => {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 };
 
-console.log(getSVGAvatarFromString("ramon.soph.id"));
+export const isSophonAccount = async (
+  address: string,
+  testnet?: boolean,
+  rpcUrl?: string,
+) => {
+  const client = createPublicClient({
+    chain: testnet ? sophonTestnet : sophon,
+    transport: http(rpcUrl),
+  });
+
+  const account = await client.readContract({
+    address: SOPHON_AA_FACTORY_ADDRESS,
+    abi: sophonAAFactoryAbi,
+    functionName: "getAccount",
+    args: [address],
+  });
+
+  return (
+    (account as any).accountId !==
+    "0x0000000000000000000000000000000000000000000000000000000000000000"
+  );
+};
