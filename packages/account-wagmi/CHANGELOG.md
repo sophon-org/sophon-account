@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.21
+
+### Patch Changes
+
+- Updating versions and improving typing
+
 ## 1.1.20
 
 ### Patch Changes

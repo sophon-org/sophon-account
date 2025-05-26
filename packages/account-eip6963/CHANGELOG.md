@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.1.21
+
+### Patch Changes
+
+- Updating versions and improving typing
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.21
+
 ## 1.1.20
 
 ### Patch Changes
