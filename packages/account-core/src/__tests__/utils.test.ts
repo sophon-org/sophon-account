@@ -7,6 +7,7 @@ describe("isEraVMContract - Integration Tests", () => {
     const result = await isEraVMContract(realContractAddress, true);
 
     expect(typeof result).toBe("boolean");
+    expect(result).toBe(true);
   }, 5000);
 
   it("should work with real mainnet contract", async () => {
@@ -15,5 +16,6 @@ describe("isEraVMContract - Integration Tests", () => {
     const result = await isEraVMContract(realContractAddress, false);
 
     expect(typeof result).toBe("boolean");
+    expect(result).toBe(false);
   }, 5000);
 });
