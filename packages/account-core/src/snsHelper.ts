@@ -16,7 +16,7 @@ export const resolveName = async (
   name: string,
   testnet?: boolean,
   rpcUrl?: string,
-): Promise<Address> => {
+): Promise<Address | null> => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
     transport: http(rpcUrl),
@@ -52,7 +52,7 @@ export const resolveAddress = async (
   address: string,
   testnet?: boolean,
   rpcUrl?: string,
-): Promise<string> => {
+): Promise<string | null> => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
     transport: http(rpcUrl),
@@ -70,7 +70,7 @@ export const resolveAddress = async (
   });
 
   if (!tokenId) {
-    throw new Error("No name found for this address");
+    return null;
   }
 
   const nameHash = pad(toHex(tokenId as bigint), { size: 32 });
