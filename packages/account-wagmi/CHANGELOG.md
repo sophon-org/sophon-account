@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.18
+
+### Patch Changes
+
+- Fixes on SNS integration
+
 ## 1.1.17
 
 ### Patch Changes

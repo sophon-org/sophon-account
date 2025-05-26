@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.18
+
+### Patch Changes
+
+- Fixes on SNS integration
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.18
+
 ## 1.1.17
 
 ### Patch Changes
