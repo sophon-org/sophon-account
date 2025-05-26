@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.20
+
+### Patch Changes
+
+- Updating versions
+
 ## 1.1.19
 
 ### Patch Changes
