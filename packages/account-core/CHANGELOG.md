@@ -1,5 +1,11 @@
 # @sophon-labs/account-core
 
+## 1.1.23
+
+### Patch Changes
+
+- Upgrading dynamic dependencies
+
 ## 1.1.22
 
 ### Patch Changes
