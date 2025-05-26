@@ -26,25 +26,33 @@ type GradientParams = {
 /**
  * Hash function to convert a string to a number
  * @param {string} str - Input string
- * @param {number} seed - Optional seed for the hash
  * @returns {number} - A number derived from the string
  */
-const hashString = (str: string, seed = 0): number => {
-  let h1 = 0xdeadbeef ^ seed;
-  let h2 = 0x41c6ce57 ^ seed;
+const hashString = (str: string): number => {
+  const H1 = 0xdeadbeef ^ 0;
+  const H2 = 0x41c6ce57 ^ 0;
+  const MULT1 = 2654435761; // 2654435761
+  const MULT2 = 1597334677; // 1597334677
+  const FINAL_MULT1 = 2246822507; // 2246822507
+  const FINAL_MULT2 = 3266489909; // 3266489909
+  const UINT32_MAX_PLUS_ONE = 4294967296; // 4294967296
+  const H2_MASK = 2097151; // 2097151
+
+  let h1 = H1;
+  let h2 = H2;
 
   for (let i = 0, ch; i < str.length; i++) {
     ch = str.charCodeAt(i);
-    h1 = Math.imul(h1 ^ ch, 2654435761);
-    h2 = Math.imul(h2 ^ ch, 1597334677);
+    h1 = Math.imul(h1 ^ ch, MULT1);
+    h2 = Math.imul(h2 ^ ch, MULT2);
   }
 
-  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
-  h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
-  h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  h1 = Math.imul(h1 ^ (h1 >>> 16), FINAL_MULT1);
+  h1 ^= Math.imul(h2 ^ (h2 >>> 13), FINAL_MULT2);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), FINAL_MULT1);
+  h2 ^= Math.imul(h1 ^ (h1 >>> 13), FINAL_MULT2);
 
-  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+  return UINT32_MAX_PLUS_ONE * (H2_MASK & h2) + (h1 >>> 0);
 };
 
 /**
@@ -114,3 +122,5 @@ export const getSVGAvatarFromString = (inputString: string): string => {
 
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 };
+
+console.log(getSVGAvatarFromString("ramon.soph.id"));
