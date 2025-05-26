@@ -38,10 +38,7 @@ export const resolveName = async (
     args: [hash],
   });
 
-  if (
-    resolved ===
-    "0x0000000000000000000000000000000000000000000000000000000000000000"
-  ) {
+  if (resolved === "0x0000000000000000000000000000000000000000") {
     return null;
   }
 
