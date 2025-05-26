@@ -1,5 +1,11 @@
 # @sophon-labs/account-core
 
+## 1.1.22
+
+### Patch Changes
+
+- Preventing 0 addresses
+
 ## 1.1.21
 
 ### Patch Changes
