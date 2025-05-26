@@ -11,7 +11,7 @@
   "dependencies": {
     "@reown/appkit": "^1.7.6",
     "@reown/appkit-adapter-wagmi": "^1.7.6",
-    "@sophon-labs/account-eip6963": "1.1.16",
+    "@sophon-labs/account-eip6963": "1.1.17",
     "@tanstack/react-query": "^5.72.2",
     "next": "15.3.0",
     "react": "^19.1.0",

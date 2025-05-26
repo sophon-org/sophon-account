@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.17
+
+### Patch Changes
+
+- Adding SNS support and avatar generation
+
 ## 1.1.16
 
 ### Patch Changes
