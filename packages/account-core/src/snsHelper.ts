@@ -1,4 +1,12 @@
-import { Address, createPublicClient, http, isAddress, namehash, pad, toHex } from "viem";
+import {
+  Address,
+  createPublicClient,
+  http,
+  isAddress,
+  namehash,
+  pad,
+  toHex,
+} from "viem";
 import { sophonTestnet, sophon } from "viem/chains";
 import { snsRegistryAbi } from "./abis/SNSRegistryAbi";
 
@@ -29,6 +37,14 @@ export const resolveName = async (
     functionName: "addr",
     args: [hash],
   });
+
+  if (
+    resolved ===
+    "0x0000000000000000000000000000000000000000000000000000000000000000"
+  ) {
+    return null;
+  }
+
   return resolved as Address;
 };
 
@@ -58,7 +74,7 @@ export const resolveAddress = async (
   }
 
   const nameHash = pad(toHex(tokenId as bigint), { size: 32 });
-  
+
   const name = await client.readContract({
     address: SNS_REGISTRY_ADDRESS,
     abi: snsRegistryAbi,
