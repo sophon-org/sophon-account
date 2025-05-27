@@ -10,7 +10,7 @@ import {
 import { sophonTestnet, sophon } from "viem/chains";
 import { snsRegistryAbi } from "./abis/SNSRegistryAbi";
 
-const SNS_REGISTRY_ADDRESS = "0x3951eDF6D554FcB0327b4D5218Dd1B8BD90B456e";
+const SNS_REGISTRY_ADDRESS = "0xc1Ef891D1b17AB8E1af3a8Bb24cdA68aBfFD1F49";
 
 export const resolveName = async (
   name: string,
