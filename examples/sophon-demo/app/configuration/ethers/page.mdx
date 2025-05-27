@@ -58,7 +58,8 @@ You can sign messages using the primary wallet:
 
 ```tsx
 import { useSophonContext } from "@sophon-labs/account-react";
-import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
+import { isEthereumWallet } from "@sophon-labs/account-core";
+import { isZKsyncConnector } from "@sophon-labs/account-react";
 
 export function SignMessage() {
   const { primaryWallet } = useSophonContext();

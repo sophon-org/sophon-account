@@ -4,7 +4,8 @@ import {
   useSophonContext,
   useIsLoggedIn,
 } from "@sophon-labs/account-react";
-import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
+import { isEthereumWallet } from "@sophon-labs/account-core";
+import { isZKsyncConnector } from "@sophon-labs/account-react";
 import styles from "./index.module.css";
 import { parseEther, formatEther } from "viem";
 import { eip712WalletActions, getGeneralPaymasterInput } from "viem/zksync";

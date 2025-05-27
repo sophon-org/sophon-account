@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.2.0
+
+### Minor Changes
+
+- Moving ethereum-aa package to react
+
 ## 1.1.24
 
 ### Patch Changes

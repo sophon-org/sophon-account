@@ -1,5 +1,16 @@
 # @sophon-labs/account-react
 
+## 1.2.0
+
+### Minor Changes
+
+- Moving ethereum-aa package to react
+
+### Patch Changes
+
+- Updated dependencies
+  - @sophon-labs/account-core@1.2.0
+
 ## 1.1.24
 
 ### Patch Changes
@@ -192,7 +203,7 @@
 - Updated dependencies
   - @sophon-labs/account-core@1.1.1
 
-## 2.0.0
+## 1.2.0
 
 ### Minor Changes
 
