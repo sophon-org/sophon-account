@@ -8,7 +8,7 @@ describe("Signature Utils E2E Tests", () => {
   let walletClient;
   let testAccount;
 
-  const TEST_SMART_ACCOUNT: Hex = "0x109c82721b653e79d700Ed823ba34930C8E6d09b"; // Test AA contract on Sophon testnet
+  const TEST_SMART_ACCOUNT: Hex = "0xE8345Dc6c2c81E8490e7F10f3B3d9F687503F2F4"; // Test AA contract on Sophon testnet
 
   beforeAll(() => {
     // Create real viem clients
@@ -17,12 +17,8 @@ describe("Signature Utils E2E Tests", () => {
       transport: http(),
     });
 
-    // Create test account
-    const privateKey = generatePrivateKey();
-    testAccount = privateKeyToAccount(privateKey);
-
     walletClient = createWalletClient({
-      account: testAccount,
+      account: TEST_SMART_ACCOUNT,
       chain: sophonTestnet,
       transport: http(),
     });
@@ -37,7 +33,7 @@ describe("Signature Utils E2E Tests", () => {
     it("should get latest block number", async () => {
       const blockNumber = await publicClient.getBlockNumber();
       expect(typeof blockNumber).toBe("bigint");
-      expect(blockNumber > 0n).toBe(true);
+      expect(blockNumber > BigInt(0)).toBe(true);
     }, 1000);
   });
 
@@ -47,9 +43,8 @@ describe("Signature Utils E2E Tests", () => {
       const signature = await walletClient.signMessage({
         message,
         account: testAccount,
+        raw: true,
       });
-
-      console.log("signature is:", signature);
 
       try {
         const result = await validateERC1271Signature(publicClient, {
@@ -59,8 +54,6 @@ describe("Signature Utils E2E Tests", () => {
           isMessageHashed: false,
         });
 
-        // Log the result for debugging
-        console.log("ERC-1271 validation result:", result);
         expect(typeof result).toBe("boolean");
       } catch (error) {
         console.log("Expected error for non-ERC-1271 contract:", error.message);
@@ -74,6 +67,7 @@ describe("Signature Utils E2E Tests", () => {
       const signature = await walletClient.signMessage({
         message,
         account: testAccount,
+        raw: true,
       });
 
       const result = await validateERC1271Signature(publicClient, {
@@ -92,7 +86,6 @@ describe("Signature Utils E2E Tests", () => {
       try {
         const domain = await getEIP712Domain(publicClient, TEST_SMART_ACCOUNT);
 
-        console.log("EIP-712 domain:", domain);
         expect(domain).toHaveProperty("name");
         expect(domain).toHaveProperty("version");
         expect(domain).toHaveProperty("chainId");
@@ -112,6 +105,7 @@ describe("Signature Utils E2E Tests", () => {
       const signature = await walletClient.signMessage({
         message,
         account: testAccount,
+        raw: true,
       });
 
       try {
@@ -147,7 +141,7 @@ describe("Signature Utils E2E Tests", () => {
         primaryType: "TestStruct" as const,
         message: {
           message: "Hello, world!",
-          value: 42n,
+          value: BigInt(42),
         },
       };
 
@@ -178,7 +172,7 @@ describe("Signature Utils E2E Tests", () => {
       // Create client with very short timeout
       const timeoutClient = createPublicClient({
         chain: sophonTestnet,
-        transport: http("https://rpc.testnet.sophon.xyz", { timeout: 1 }), // 1ms timeout
+        transport: http("https://rpc.testnet.sophon.xyz", { timeout: 1000 }), // 100ms timeout
       }) as unknown as PublicClient;
 
       try {
@@ -218,7 +212,6 @@ describe("Signature Utils E2E Tests", () => {
         const endTime = Date.now();
 
         const duration = endTime - startTime;
-        console.log(`Contract code fetch took ${duration}ms`);
 
         // Should complete within reasonable time
         expect(duration).toBeLessThan(10000); // 10 seconds max
