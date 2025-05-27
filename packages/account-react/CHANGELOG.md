@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.1.24
+
+### Patch Changes
+
+- More hooks for addresses type detection
+- Updated dependencies
+  - @sophon-labs/account-core@1.1.24
+
 ## 1.1.23
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.1.24
+
+### Patch Changes
+
+- More hooks for addresses type detection
+
 ## 1.1.23
 
 ### Patch Changes

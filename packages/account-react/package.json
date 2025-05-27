@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/account-react",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "description": "",
   "type": "module",
   "keywords": [],
@@ -34,7 +34,7 @@
   "peerDependencies": {
     "react": ">=19.1.0",
     "viem": ">=2.26.0",
-    "@sophon-labs/account-core": "1.1.23"
+    "@sophon-labs/account-core": "1.1.24"
   },
   "exports": {
     ".": {
