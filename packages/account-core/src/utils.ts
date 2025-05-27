@@ -138,18 +138,27 @@ export const isSophonAccount = async (address: string, testnet?: boolean, rpcUrl
   );
 };
 
-export const isEraVMContract = async (address: `0x${string}`, testnet?: boolean) => {
+/**
+ * Returns true if the address is an EraVM contract(An EraVM contract is a contract compiled by zkzsolc and deployed on the zkVM)
+ * @param address - The address of the contract to check
+ * @param testnet - Whether to use the testnet chain
+ * @param customRpc - A custom RPC URL to use for the client
+ * @returns True if the address is an EraVM contract, false otherwise
+ */
+export const isEraVMContract = async (
+  address: `0x${string}`,
+  testnet?: boolean,
+  customRpc?: string
+) => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
-    transport: http(),
+    transport: customRpc ? http(customRpc) : http(),
   });
-  console.log("client chain id", client.chain.id);
 
   const code = await client.getCode({ address });
   if (!code || code === "0x") {
     return false;
   }
-  console.log("code", code);
 
   const isAccountEVM = await client.readContract({
     address: SOPHON_ACCOUNT_CODE_STORAGE_CONTRACT_ADDRESS,
@@ -157,8 +166,6 @@ export const isEraVMContract = async (address: `0x${string}`, testnet?: boolean)
     functionName: "isAccountEVM",
     args: [address],
   });
-
-  console.log("isAccountEVM", isAccountEVM);
 
   return !isAccountEVM;
 };
