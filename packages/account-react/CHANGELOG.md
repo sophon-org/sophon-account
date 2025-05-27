@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.2.1
+
+### Patch Changes
+
+- Bumping versions to correct wrong plublish
+- Updated dependencies
+  - @sophon-labs/account-core@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
