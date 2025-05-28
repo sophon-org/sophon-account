@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react build",
+    "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react --filter sophon-ui build",
     "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react dev ",
     "lint": "eslint .",
     "format": "prettier --write ."
@@ -39,13 +39,14 @@
     "viem": "2.30.0",
     "wagmi": "2.15.4",
     "@wagmi/core": "2.17.2",
-    "@dynamic-labs/ethereum": "4.18.7",
-    "@dynamic-labs/ethereum-aa": "4.18.7",
-    "@dynamic-labs/ethereum-aa-zksync": "4.18.7",
-    "@dynamic-labs/global-wallet-client": "4.18.7",
-    "@dynamic-labs/wallet-connector-core": "4.18.7",
-    "@dynamic-labs/sdk-react-core": "4.18.7",
-    "@dynamic-labs/types": "4.18.7",
-    "@dynamic-labs/wagmi-connector": "4.18.7"
+    "zksync-sso": "0.2.0",
+    "@dynamic-labs/ethereum": "4.19.1",
+    "@dynamic-labs/ethereum-aa": "4.19.1",
+    "@dynamic-labs/ethereum-aa-zksync": "4.19.1",
+    "@dynamic-labs/global-wallet-client": "4.19.1",
+    "@dynamic-labs/wallet-connector-core": "4.19.1",
+    "@dynamic-labs/sdk-react-core": "4.19.1",
+    "@dynamic-labs/types": "4.19.1",
+    "@dynamic-labs/wagmi-connector": "4.19.1"
   }
 }

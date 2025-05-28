@@ -1,5 +1,83 @@
 # @sophon-labs/account-core
 
+## 1.2.1
+
+### Patch Changes
+
+- Bumping versions to correct wrong plublish
+
+## 1.2.0
+
+### Minor Changes
+
+- Moving ethereum-aa package to react
+
+## 1.1.24
+
+### Patch Changes
+
+- More hooks for addresses type detection
+
+## 1.1.23
+
+### Patch Changes
+
+- Upgrading dynamic dependencies
+
+## 1.1.22
+
+### Patch Changes
+
+- Preventing 0 addresses
+
+## 1.1.21
+
+### Patch Changes
+
+- Updating versions and improving typing
+
+## 1.1.20
+
+### Patch Changes
+
+- Updating versions
+
+## 1.1.19
+
+### Patch Changes
+
+- Updating deps
+
+## 1.1.18
+
+### Patch Changes
+
+- Fixes on SNS integration
+
+## 1.1.17
+
+### Patch Changes
+
+- Adding SNS support and avatar generation
+
+## 1.1.16
+
+### Patch Changes
+
+- Fixing wrong import
+
+## 1.1.15
+
+### Patch Changes
+
+- Updating wrong import
+
+## 1.1.14
+
+### Patch Changes
+
+- CSS Changes and better hook inputs
+
 ## 1.1.13
 
 ### Patch Changes

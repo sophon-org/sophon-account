@@ -1,30 +1,26 @@
 export const cssOverrides = `
 :host,
-body {
-  --dynamic-text-link: #4597f5 !important;
-  --dynamic-brand-primary-color: #4597f5 !important;
-  --dynamic-text-primary: #000 !important;
+body, .dynamic-shadow-dom {
+  --dynamic-text-link: rgba(51, 119, 255, 1) !important;
+  --dynamic-brand-primary-color: rgba(51, 119, 255, 1) !important;
+  --dynamic-text-primary: #1F1E1B  !important;
   --dynamic-text-secondary: #52514f !important;
 }
 
 /* Containers */
 
-:root .modal,
+.modal,
 .accordion-item,
 .confirm-connection,
 .wallet-connected {
   border-radius: 0;
   background:
-    radial-gradient(
-      168.59% 77.78% at 2.27% 0%,
-      rgba(158, 143, 255, 0.36) 0%,
-      rgba(255, 255, 255, 0) 34%
-    ),
-    radial-gradient(
-      166.26% 67.67% at 78.44% 0%,
-      rgba(132, 197, 254, 0.36) 0%,
-      rgba(255, 255, 255, 0) 34%
-    ),
+  linear-gradient(
+    160deg,
+    #CCE4FF 0%,
+    #EBF4FF 20%,
+    transparent 35%
+  ),
     #faf7f5;
 }
 
@@ -32,23 +28,21 @@ body {
   background: none;
   box-shadow: none;
 }
-
-:root .modal-card--sharp-mobile-bottom-radius:last-child {
+.modal-card--sharp-mobile-bottom-radius:last-child {
   border-radius: 0;
 }
 
 .modal-frame__modal,
-:root .modal-card {
+.modal-card {
   height: 100%;
   width: 100%;
   border-radius: 0;
 }
 
-:root .modal,
+.modal,
 .confirm-connection,
 .wallet-connected {
   width: 100%;
-  height: 100%;
   max-width: 420px;
   max-height: 640px !important;
   overflow: hidden;
@@ -61,8 +55,12 @@ body {
   overflow: hidden;
 }
 
+.balance-container {
+  display: none;
+}
+
 @media (min-width: 421px) {
-  :root .modal,
+  .modal,
   .accordion-item--full-height,
   .confirm-connection,
   .wallet-connected {
@@ -82,12 +80,6 @@ body {
     background: none;
 }
 
-.vertical-accordion__container {
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-
 .embedded-widget {
   height: 100%;
   width: 100%;
@@ -97,15 +89,11 @@ body {
 .settings-view,
 .account-and-security-settings-view {
   background:
-    radial-gradient(
-      168.59% 77.78% at 2.27% 0%,
-      rgba(158, 143, 255, 0.36) 0%,
-      rgba(255, 255, 255, 0) 34%
-    ),
-    radial-gradient(
-      166.26% 67.67% at 78.44% 0%,
-      rgba(132, 197, 254, 0.36) 0%,
-      rgba(255, 255, 255, 0) 34%
+    linear-gradient(
+      160deg,
+      #CCE4FF 0%,
+      #EBF4FF 20%,
+      transparent 35%
     ),
     #faf7f5;
 }
@@ -121,6 +109,10 @@ body {
 .user-profile__fields,
 .user-profile__social-accounts {
   gap: 0.75rem;
+}
+
+.active-wallet-information {
+  border-bottom: none !important;
 }
 
 /* Wallet settings */
@@ -174,7 +166,6 @@ body {
   outline: none !important;
 }
 
-.input__container--dense .input__label,
 .input__container--dense .input:placeholder-shown ~ .input__label {
   left: 1rem;
   top: 1rem;
@@ -182,6 +173,7 @@ body {
 
 .input__container--dense .input:focus ~ .input__label {
   top: 0.4375rem;
+  left: 1rem;
 }
 
 /* Misc */
@@ -197,47 +189,58 @@ body {
   background: rgba(255, 255, 255, 0.96);
 }
 
-/* Buttons */
-.button--brand-primary {
-  border-radius: 60px;
-  border: 2px solid #ccb0f5;
-  color: #253747;
-  background: linear-gradient(72deg, #ccb0f5 12%, #cce4ff 72.12%);
+.sign-message-confirmation__message-container {
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0px 0px 0px 1px rgba(15, 14, 13, 0.08), 0px 2px 4px 0px rgba(15, 14, 13, 0.08), 0px 12px 24px 0px rgba(15, 14, 13, 0.08);
+  margin-bottom: 1.5rem;
 }
 
-.button--brand-primary:hover {
-  border: 2px solid #cce4ff;
-  box-shadow: 0px 2px 4px -2px rgba(15, 14, 13, 0.2);
+/* Buttons */
+
+.button {
+  border-radius: 60px;
+  transition: border-radius 0.2s linear;
+  box-shadow: none !important;
+  color: rgba(18, 43, 92, 1);
+}
+
+.button:hover:not(:disabled) {
+  border-radius: 8px;
+  box-shadow: none !important;
+}
+
+.button--brand-primary {
+  color: #253747;
+  border: none !important;
+  background: linear-gradient(72deg, #ebf4ff 12%, #cce4ff 72.12%);
 }
 
 .button--brand-primary:disabled:not(.button--loading) {
-  border: 2px solid rgba(15, 14, 13, 0.08);
-  background: #fff;
-  color: rgba(204, 202, 200, 1);
+  background: rgba(15, 14, 13, 0.08);
 }
 
 .button--primary {
-  border-radius: 60px;
   background: white;
-  border: 2px solid #9e8fff;
+  border: 2px solid #cce4ff;
   color: #253747;
 }
 
-.button--primary:hover {
-  background:
-    linear-gradient(
-      0deg,
-      rgba(15, 14, 13, 0.04) 0%,
-      rgba(15, 14, 13, 0.04) 100%
-    ),
-    #fff;
-  box-shadow: 0px 2px 4px -2px rgba(15, 14, 13, 0.2);
+.button--primary:disabled:not(.button--loading) {
+  border: 2px solid rgba(204, 202, 200, 1);
+  background: #fff;
 }
 
-.button--primary:disabled:not(.button--loading) {
-  border: 2px solid rgba(15, 14, 13, 0.08);
-  background: #fff;
-  color: rgba(204, 202, 200, 1);
+.typography--button-primary {
+  color: rgba(18, 43, 92, 1) !important;
+}
+
+.button:disabled .typography--button-primary {
+  color: rgba(204, 202, 200, 1) !important;
+}
+
+.connect-button:hover:enabled {
+  border: 2px solid #cce4ff;
 }
 
 .button--padding-medium,

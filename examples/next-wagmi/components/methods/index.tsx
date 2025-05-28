@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import "./index.module.css";
-import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
-import { isEthereumWallet, isZKsyncConnector } from "@sophon-labs/account-core";
+import {
+  useSophonContext,
+  useIsLoggedIn,
+} from "@sophon-labs/account-react";
+import { isEthereumWallet } from "@sophon-labs/account-core";
+import { isZKsyncConnector } from "@sophon-labs/account-react";
 import styles from "./index.module.css";
 import { parseEther, formatEther } from "viem";
 import { eip712WalletActions, getGeneralPaymasterInput } from "viem/zksync";
@@ -17,7 +21,6 @@ export default function ExampleMethods({
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState("");
   const [balance, setBalance] = useState<string>("0");
-
   const safeStringify = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(
@@ -31,7 +34,7 @@ export default function ExampleMethods({
         }
         return value;
       },
-      2,
+      2
     );
   };
 
@@ -99,13 +102,12 @@ export default function ExampleMethods({
   }
 
   async function sendSoph(to: string, amount: number) {
+
     if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
     try {
       const publicClient = await primaryWallet.getPublicClient();
       const walletClient = await primaryWallet.getWalletClient();
-
-      const chain = await primaryWallet.getNetwork();
 
       const transaction = {
         to: to as `0x${string}`,

@@ -1,4 +1,4 @@
-import { Hex, type Address, type Hash } from "viem";
+import { type Address, getAddress, type Hash, type Hex } from "viem";
 
 export enum LimitType {
   Unlimited = 0,
@@ -131,22 +131,47 @@ export type SessionState = {
   }[];
 };
 
-export type CreateSessionArgs = {
+export const getPeriodIdsForTransaction = (args: {
   sessionConfig: SessionConfig;
-  contracts: {
-    session: Address;
-  };
-  paymaster?: {
-    address: Address;
-    paymasterInput?: Hex;
-  };
-  onTransactionSent?: (hash: Hash) => void;
-};
+  target: Address;
+  selector?: Hex;
+  timestamp?: bigint;
+}) => {
+  const timestamp = args.timestamp || BigInt(Math.floor(Date.now() / 1000));
+  const target = getAddress(args.target.toLowerCase());
 
-export type InstallSessionKeyModuleArgs = {
-  accountAddress: Address;
-  paymaster?: {
-    address: Address;
-    paymasterInput?: Hex;
+  const getId = (limit: Limit): bigint => {
+    if (limit.limitType === LimitType.Allowance) {
+      return timestamp / limit.period;
+    }
+    return 0n;
   };
+
+  const findTransferPolicy = () => {
+    return args.sessionConfig.transferPolicies.find(
+      (policy) => policy.target === target,
+    );
+  };
+  const findCallPolicy = () => {
+    return args.sessionConfig.callPolicies.find(
+      (policy) => policy.target === target && policy.selector == args.selector,
+    );
+  };
+
+  const isContractCall = !!args.selector;
+  const policy: TransferPolicy | CallPolicy | undefined = isContractCall
+    ? findCallPolicy()
+    : findTransferPolicy();
+  if (!policy) throw new Error("Transaction does not fit any policy");
+
+  const periodIds = [
+    getId(args.sessionConfig.feeLimit),
+    getId(policy.valueLimit),
+    ...(isContractCall
+      ? (policy as CallPolicy).constraints.map((constraint) =>
+          getId(constraint.limit),
+        )
+      : []),
+  ];
+  return periodIds;
 };
