@@ -2,10 +2,12 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useEffect, useState } from "react";
-import { useSendTransaction, useSignMessage } from "wagmi";
-import { parseEther } from "viem";
+import { useSendTransaction, useSignMessage, useWalletClient } from "wagmi";
+import { createWalletClient, custom, http, parseEther } from "viem";
 
 import { BlueLink, Button, SendTransactionModal, SignMessageModal } from "./components";
+import { sophonTestnet } from "viem/chains";
+import { erc7739Actions } from "viem/experimental";
 
 const MainCard: NextPage = () => {
   const { open } = useAppKit();
@@ -17,17 +19,44 @@ const MainCard: NextPage = () => {
   const [txHash, setTxHash] = useState<string | undefined>();
   const [txError, setTxError] = useState<string | undefined>();
 
-  const { data: signMessageData, error: signErrorWagmi, signMessage } = useSignMessage();
+  const walletClient = createWalletClient({
+    account: address as `0x${string}`,
+    chain: sophonTestnet,
+    transport: custom(window.ethereum as any),
+  }).extend(erc7739Actions());
+
+  console.log("walletClient", walletClient);
+
+  const signMessage = async (message: string) => {
+    if (!walletClient.account) {
+      setSignError("No account found");
+      return;
+    }
+    try {
+      console.log("walletClient.account.address", walletClient.account.address);
+      console.log("walletClient.chain.id", walletClient.chain.id);
+      const signature = await walletClient.signMessage({
+        message,
+        account: walletClient.account ?? "0x",
+        verifier: walletClient.account.address,
+      });
+      setSignedMessage(signature);
+    } catch (error) {
+      setSignError(error instanceof Error ? error.message : "An unknown error occurred");
+    }
+  };
+
+  // const { data: signMessageData, error: signErrorWagmi, signMessage } = useSignMessage();
   const { data: transactionData, error: txErrorWagmi, sendTransaction } = useSendTransaction();
 
-  useEffect(() => {
-    if (signMessageData) {
-      setSignedMessage(signMessageData as string);
-    }
-    if (signErrorWagmi) {
-      setSignError(signErrorWagmi.message);
-    }
-  }, [signMessageData, signErrorWagmi]);
+  // useEffect(() => {
+  //   if (signMessageData) {
+  //     setSignedMessage(signMessageData as string);
+  //   }
+  //   if (signErrorWagmi) {
+  //     setSignError(signErrorWagmi.message);
+  //   }
+  // }, [signMessageData, signErrorWagmi]);
 
   useEffect(() => {
     if (transactionData) {
@@ -51,10 +80,7 @@ const MainCard: NextPage = () => {
   const handleSignMessage = (message: string) => {
     setSignedMessage(undefined);
     setSignError(undefined);
-    signMessage({
-      account: address as `0x${string}`,
-      message,
-    });
+    signMessage(message);
   };
 
   return (
