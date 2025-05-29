@@ -118,7 +118,7 @@ export async function validateERC1271Signature(
       functionName: "isValidSignature",
       args: [messageHash, signature],
     });
-
+    console.log("verification result is:", result);
     return result === ERC1271_MAGIC_VALUE;
   } catch (error) {
     console.error("Error validating ERC-1271 signature:", error);
