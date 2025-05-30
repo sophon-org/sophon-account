@@ -20,14 +20,14 @@ export type Limit = {
 
 export const LimitUnlimited = {
   limitType: LimitType.Unlimited,
-  limit: 0n,
-  period: 0n,
+  limit: BigInt(0),
+  period: BigInt(0),
 };
 
 export const LimitZero = {
   limitType: LimitType.Lifetime,
-  limit: 0n,
-  period: 0n,
+  limit: BigInt(0),
+  period: BigInt(0),
 };
 
 /**
@@ -144,7 +144,7 @@ export const getPeriodIdsForTransaction = (args: {
     if (limit.limitType === LimitType.Allowance) {
       return timestamp / limit.period;
     }
-    return 0n;
+    return BigInt(0);
   };
 
   const findTransferPolicy = () => {
@@ -174,4 +174,23 @@ export const getPeriodIdsForTransaction = (args: {
       : []),
   ];
   return periodIds;
+};
+
+export type CreateSessionArgs = {
+  sessionConfig: SessionConfig;
+  contracts: {
+    session: Address; // session module
+  };
+  paymaster?: {
+    address: Address;
+    paymasterInput?: Hex;
+  };
+};
+
+export type InstallSessionKeyModuleArgs = {
+  accountAddress: Address;
+  paymaster?: {
+    address: Address;
+    paymasterInput?: Hex;
+  };
 };

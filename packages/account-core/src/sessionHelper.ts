@@ -8,12 +8,15 @@ import {
 } from "viem";
 import { SessionKeyValidatorAbi, SsoAccountAbi } from "zksync-sso/abi";
 import { getGeneralPaymasterInput } from "viem/zksync";
-import { createZksyncSessionClient } from "zksync-sso/client";
+import {
+  createZksyncSessionClient,
+  type ZksyncSsoSessionClient,
+} from "zksync-sso/client";
 import { sophon, sophonTestnet } from "viem/chains";
 import {
-  CreateSessionArgs,
-  InstallSessionKeyModuleArgs,
-  SessionConfig,
+  type CreateSessionArgs,
+  type InstallSessionKeyModuleArgs,
+  type SessionConfig,
 } from "./types/session";
 
 const SESSION_KEY_MODULE_ADDRESS: Address =
@@ -24,7 +27,7 @@ export const getViemSessionClient = (
   accountAddress: Address,
   signerPrivateKey: Hex,
   chain: Chain,
-) => {
+): ZksyncSsoSessionClient => {
   const client = createZksyncSessionClient({
     chain,
     address: accountAddress,
@@ -42,20 +45,24 @@ export const getViemSessionClient = (
 export const isSessionKeyModuleInstalled = async (
   address: Address,
   testnet?: boolean,
-) => {
+): Promise<boolean> => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
     transport: http(),
   });
 
-  const isInstalled = await client.readContract({
-    address: SESSION_KEY_MODULE_ADDRESS,
-    abi: SessionKeyValidatorAbi,
-    functionName: "isInitialized",
-    args: [address],
-  });
+  try {
+    const isInstalled = await client.readContract({
+      address: SESSION_KEY_MODULE_ADDRESS,
+      abi: SessionKeyValidatorAbi,
+      functionName: "isInitialized",
+      args: [address],
+    });
 
-  return isInstalled;
+    return isInstalled as boolean;
+  } catch {
+    return false;
+  }
 };
 
 export const getInstallSessionKeyModuleTxForViem = (
