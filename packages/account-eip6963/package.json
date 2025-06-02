@@ -14,7 +14,7 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/global-wallet-client": "^4.19.1"
+    "@dynamic-labs/global-wallet-client": "4.19.4"
   },
   "peerDependencies": {
     "@sophon-labs/account-core": "1.2.1"
