@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/account-eip6963",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "type": "module",
   "keywords": [],
@@ -17,7 +17,7 @@
     "@dynamic-labs/global-wallet-client": "4.19.4"
   },
   "peerDependencies": {
-    "@sophon-labs/account-core": "1.2.1"
+    "@sophon-labs/account-core": "1.2.2"
   },
   "devDependencies": {
     "tsup": "^8.4.0"

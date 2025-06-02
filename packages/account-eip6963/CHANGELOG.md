@@ -1,5 +1,13 @@
 # @sophon-labs/account-eip6963
 
+## 1.2.2
+
+### Patch Changes
+
+- Updating dynamic packages
+- Updated dependencies
+  - @sophon-labs/account-core@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes
