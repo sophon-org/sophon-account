@@ -73,8 +73,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/account-core
       '@sophon-labs/account-eip6963':
-        specifier: 1.2.1
-        version: 1.2.1(@sophon-labs/account-core@packages+account-core)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
+        specifier: 1.2.2
+        version: 1.2.2(@sophon-labs/account-core@packages+account-core)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zksync-sso@0.2.0(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(typescript@5.8.3)(zod@3.24.3))
       '@tanstack/react-query':
         specifier: ^5.72.2
         version: 5.74.11(react@19.1.0)
@@ -121,6 +121,70 @@ importers:
       tailwindcss:
         specifier: ^4
         version: 4.1.4
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+
+  examples/eip-6963-appkit-sessionkeys:
+    dependencies:
+      '@reown/appkit':
+        specifier: ^1.7.6
+        version: 1.7.6(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      '@reown/appkit-adapter-wagmi':
+        specifier: ^1.7.6
+        version: 1.7.6(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(wagmi@2.15.4(@tanstack/query-core@5.76.0)(@tanstack/react-query@5.76.1(react@19.1.0))(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3))(zod@3.24.3)
+      '@sophon-labs/account-core':
+        specifier: workspace:*
+        version: link:../../packages/account-core
+      '@sophon-labs/account-eip6963':
+        specifier: 1.2.2
+        version: 1.2.2(@sophon-labs/account-core@packages+account-core)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zksync-sso@0.2.0(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(typescript@5.8.3)(zod@3.24.3))
+      '@tanstack/react-query':
+        specifier: ^5.72.2
+        version: 5.76.1(react@19.1.0)
+      next:
+        specifier: 15.3.0
+        version: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
+      viem:
+        specifier: 2.30.0
+        version: 2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      wagmi:
+        specifier: 2.15.4
+        version: 2.15.4(@tanstack/query-core@5.76.0)(@tanstack/react-query@5.76.1(react@19.1.0))(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)
+    devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3
+        version: 3.3.1
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.1.4
+      '@tanstack/react-query-devtools':
+        specifier: ^5.72.2
+        version: 5.74.11(@tanstack/react-query@5.76.1(react@19.1.0))(react@19.1.0)
+      '@types/node':
+        specifier: ^20
+        version: 20.17.32
+      '@types/react':
+        specifier: ^19
+        version: 19.1.2
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.1.2(@types/react@19.1.2)
+      eslint:
+        specifier: ^9
+        version: 9.25.1(jiti@2.4.2)
+      eslint-config-next:
+        specifier: 15.3.0
+        version: 15.3.0(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
+      tailwindcss:
+        specifier: ^4
+        version: 4.1.6
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -342,8 +406,8 @@ importers:
         specifier: 1.2.2
         version: 1.2.2(0cb49e2a11f0da4775dc286da27fb89f)
       '@sophon-labs/account-wagmi':
-        specifier: 1.2.1
-        version: 1.2.1(0b5fb7a738dd41e550c8bb1cad3352cc)
+        specifier: 1.2.2
+        version: 1.2.2(7c1a7fc85a62bbc0e2e16bf5a996aba8)
       '@tanstack/react-query':
         specifier: ^5.27.5
         version: 5.74.11(react@19.1.0)
@@ -415,8 +479,8 @@ importers:
         specifier: 1.2.2
         version: 1.2.2(0cb49e2a11f0da4775dc286da27fb89f)
       '@sophon-labs/account-wagmi':
-        specifier: 1.2.1
-        version: 1.2.1(0b5fb7a738dd41e550c8bb1cad3352cc)
+        specifier: 1.2.2
+        version: 1.2.2(7c1a7fc85a62bbc0e2e16bf5a996aba8)
       '@tabler/icons-react':
         specifier: ^3.31.0
         version: 3.31.0(react@19.1.0)
@@ -620,8 +684,8 @@ importers:
   packages/account-wagmi:
     dependencies:
       '@dynamic-labs/wagmi-connector':
-        specifier: 4.19.1
-        version: 4.19.1(069aa0fd04696877e447f35e171f0ca0)
+        specifier: 4.19.4
+        version: 4.19.4(69beb1c2f325d542abc9ec6debfdfd97)
       '@wagmi/core':
         specifier: 2.17.2
         version: 2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
@@ -11406,7 +11470,7 @@ snapshots:
       eventemitter3: 5.0.1
       tldts: 6.0.16
 
-  '@dynamic-labs/wagmi-connector@4.19.1(069aa0fd04696877e447f35e171f0ca0)':
+  '@dynamic-labs/wagmi-connector@4.19.4(69beb1c2f325d542abc9ec6debfdfd97)':
     dependencies:
       '@dynamic-labs/assert-package-version': 4.19.4
       '@dynamic-labs/ethereum-core': 4.19.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
@@ -11421,7 +11485,7 @@ snapshots:
       viem: 2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
       wagmi: 2.15.4(@tanstack/query-core@5.76.0)(@tanstack/react-query@5.76.1(react@19.1.0))(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)
 
-  '@dynamic-labs/wagmi-connector@4.19.1(0b5fb7a738dd41e550c8bb1cad3352cc)':
+  '@dynamic-labs/wagmi-connector@4.19.4(7c1a7fc85a62bbc0e2e16bf5a996aba8)':
     dependencies:
       '@dynamic-labs/assert-package-version': 4.19.4
       '@dynamic-labs/ethereum-core': 4.19.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
@@ -13423,6 +13487,50 @@ snapshots:
       - utf-8-validate
       - zod
 
+  '@reown/appkit-adapter-wagmi@1.7.6(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(wagmi@2.15.4(@tanstack/query-core@5.76.0)(@tanstack/react-query@5.76.1(react@19.1.0))(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3))(zod@3.24.3)':
+    dependencies:
+      '@reown/appkit': 1.7.6(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      '@reown/appkit-common': 1.7.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      '@reown/appkit-controllers': 1.7.6(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      '@reown/appkit-polyfills': 1.7.6
+      '@reown/appkit-scaffold-ui': 1.7.6(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.2)(react@19.1.0))(zod@3.24.3)
+      '@reown/appkit-utils': 1.7.6(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(valtio@1.13.2(@types/react@19.1.2)(react@19.1.0))(zod@3.24.3)
+      '@reown/appkit-wallet': 1.7.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
+      '@wagmi/core': 2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
+      '@walletconnect/universal-provider': 2.20.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      valtio: 1.13.2(@types/react@19.1.2)(react@19.1.0)
+      viem: 2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+      wagmi: 2.15.4(@tanstack/query-core@5.76.0)(@tanstack/react-query@5.76.1(react@19.1.0))(@types/react@19.1.2)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)
+    optionalDependencies:
+      '@wagmi/connectors': 5.7.13(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@types/react'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/kv'
+      - aws4fetch
+      - bufferutil
+      - db0
+      - encoding
+      - ioredis
+      - react
+      - supports-color
+      - typescript
+      - uploadthing
+      - utf-8-validate
+      - zod
+
   '@reown/appkit-common@1.7.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)':
     dependencies:
       big.js: 6.2.2
@@ -14345,9 +14453,9 @@ snapshots:
       - viem
       - zksync-sso
 
-  '@sophon-labs/account-eip6963@1.2.1(@sophon-labs/account-core@packages+account-core)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))':
+  '@sophon-labs/account-eip6963@1.2.2(@sophon-labs/account-core@packages+account-core)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zksync-sso@0.2.0(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(typescript@5.8.3)(zod@3.24.3))':
     dependencies:
-      '@dynamic-labs/global-wallet-client': 4.19.1(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
+      '@dynamic-labs/global-wallet-client': 4.19.4(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zksync-sso@0.2.0(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(typescript@5.8.3)(zod@3.24.3))
       '@sophon-labs/account-core': link:packages/account-core
     transitivePeerDependencies:
       - '@solana/wallet-standard-features'
@@ -14356,8 +14464,9 @@ snapshots:
       - '@wallet-standard/features'
       - '@wallet-standard/wallet'
       - viem
+      - zksync-sso
 
-  '@sophon-labs/account-react@1.2.1(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@sophon-labs/account-core@1.2.1(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)':
+  '@sophon-labs/account-react@1.2.2(0cb49e2a11f0da4775dc286da27fb89f)':
     dependencies:
       '@dynamic-labs/ethereum': 4.19.4(@types/react@19.1.2)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zod@3.24.3)
       '@dynamic-labs/ethereum-aa': 4.19.4(@zerodev/webauthn-key@5.4.4(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
@@ -14414,9 +14523,9 @@ snapshots:
       - zksync-sso
       - zod
 
-  '@sophon-labs/account-wagmi@1.2.1(0b5fb7a738dd41e550c8bb1cad3352cc)':
+  '@sophon-labs/account-wagmi@1.2.2(7c1a7fc85a62bbc0e2e16bf5a996aba8)':
     dependencies:
-      '@dynamic-labs/wagmi-connector': 4.19.1(0b5fb7a738dd41e550c8bb1cad3352cc)
+      '@dynamic-labs/wagmi-connector': 4.19.4(7c1a7fc85a62bbc0e2e16bf5a996aba8)
       '@wagmi/core': 2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))
       react: 19.1.0
       viem: 2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
@@ -14522,6 +14631,12 @@ snapshots:
     dependencies:
       '@tanstack/query-devtools': 5.74.7
       '@tanstack/react-query': 5.74.11(react@19.1.0)
+      react: 19.1.0
+
+  '@tanstack/react-query-devtools@5.74.11(@tanstack/react-query@5.76.1(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-devtools': 5.74.7
+      '@tanstack/react-query': 5.76.1(react@19.1.0)
       react: 19.1.0
 
   '@tanstack/react-query@5.74.11(react@19.1.0)':
