@@ -1,0 +1,264 @@
+{
+  "0xeDbE09e750287aE088A5e250652430Be9c01F59F": {
+    "jjh2dgnef5e": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749979380",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "axxa6brr0uf": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749979380",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    }
+  },
+  "0xdC97efB15fFbCb82cAe137f88274F41e220D0fD1": {
+    "dc7twp4q5r": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749297060",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "1000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "1000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "1000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "rw4xmmgnkzj": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749297060",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "1000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "1000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "1000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    }
+  },
+  "0x9FebcDCd011B195B2C25F1B89997A570a1053fd0": {
+    "wu8rzh59amh": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "dw3wvo0oyfe": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "mmvtfolqxo": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "4t9fk1cbxkb": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "c6v7745dnf7": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    },
+    "ojejeotiby": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "10000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "10000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "10000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    }
+  },
+  "0xE36B8800b9CD67E224e76B32efEcAb148C6566BC": {
+    "9rrj6oqj4st": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "1000000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "1000000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "1000000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    }
+  },
+  "0xB27C1836ee2b7D6381F663f06A9a9784374A7cdc": {
+    "imnbmfyehol": {
+      "signer": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+      "expiresAt": "1749383460",
+      "feeLimit": {
+        "limitType": 1,
+        "limit": "100000000000000000000000000",
+        "period": "0"
+      },
+      "callPolicies": [],
+      "transferPolicies": [
+        {
+          "target": "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+          "maxValuePerUse": "100000000000000000000000000",
+          "valueLimit": {
+            "limitType": 1,
+            "limit": "100000000000000000000000000",
+            "period": "0"
+          }
+        }
+      ]
+    }
+  }
+}
