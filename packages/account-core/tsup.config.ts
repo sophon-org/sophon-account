@@ -11,6 +11,8 @@ export default defineConfig((options) => {
       "src/snsHelper.ts",
       "src/siws.ts",
       "src/utils.ts",
+      "src/sessionHelper.ts",
+      "src/types/*",
     ],
     splitting: true,
     sourcemap: !!options.watch,
