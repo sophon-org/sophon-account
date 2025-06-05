@@ -8,7 +8,7 @@ import {
 } from "../util";
 import { SessionConfig } from "../../../../../packages/account-core/dist/types/session";
 
-export const sessionFilePath = path.resolve(process.cwd(), "sessionStore.json");
+export const sessionFilePath = path.resolve(process.cwd(), ".sessionStore.json");
 
 export function readSessionData(): SessionStore {
   if (!fs.existsSync(sessionFilePath)) {
@@ -44,7 +44,7 @@ export function getSessionConfig(
   if (!sessionId) {
     const now = Math.floor(Date.now() / 1000);
     const sessionEntry = Object.entries(accountSessions).find(
-      ([id, session]) => {
+      ([_, session]) => {
         const expiresAt =
           typeof session.expiresAt === "string"
             ? parseInt(session.expiresAt, 10)

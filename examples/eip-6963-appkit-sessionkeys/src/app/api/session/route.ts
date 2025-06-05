@@ -18,20 +18,23 @@ export async function POST(req: NextRequest) {
     transferValue,
   } = await req.json();
   try {
-    // Build session config
     const sessionConfig = {
       signer: signer as `0x${string}`,
       expiresAt: BigInt(Math.floor(new Date(expiresAt).getTime() / 1000)),
-      feeLimit: LimitType.Unlimited,
+      feeLimit: {
+        limitType: LimitType.Lifetime, 
+        limit: BigInt(feeLimit),
+        period: 604800n, // 1 week
+      },
       callPolicies: [],
       transferPolicies: [
         {
-          target: transferTarget as `0x${string}`,
+          target: transferTarget as `0x${string}`, // limits the session key to only send to this address
           maxValuePerUse: BigInt(transferValue),
           valueLimit: {
             limitType: LimitType.Lifetime,
             limit: BigInt(transferValue),
-            period: 604800n,
+            period: 604800n, // 1 week
           },
         },
       ],
@@ -63,6 +66,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const smartAccountAddress = searchParams.get("smartAccountAddress");
   const sessionId = searchParams.get("sessionId");
+  const checkOnChain = searchParams.get("checkOnChain");
   if (!smartAccountAddress) {
     return new Response(
       JSON.stringify({ error: "Smart account address is required" }),
@@ -84,25 +88,27 @@ export async function GET(req: NextRequest) {
 
   let sessionStatus = null;
   let sessionState = null;
-  try {
-    sessionStatus = await getSessionStatus({
-      accountAddress: smartAccountAddress as `0x${string}`,
-      sessionConfig: sessionData.sessionConfig,
-    });
-    sessionState = await getSessionState({
-      accountAddress: smartAccountAddress as `0x${string}`,
-      sessionConfig: sessionData.sessionConfig,
-    });
-  } catch (err) {
-    sessionStatus = null;
-    sessionState = null;
+
+  if (checkOnChain === "true") {
+    try {
+      const sessionParams = {
+        accountAddress: smartAccountAddress as `0x${string}`,
+        sessionConfig: sessionData.sessionConfig,
+        testnet: true,
+      };
+
+      sessionStatus = await getSessionStatus(sessionParams);
+      sessionState = await getSessionState(sessionParams);
+    } catch (error) {
+      console.error("Error fetching session data:", error);
+    }
   }
 
   return new Response(
     JSON.stringify({
       ...serializeBigInts(sessionData),
       sessionStatus,
-      sessionState,
+      sessionState:serializeBigInts(sessionState),
     }),
     {
       status: 200,

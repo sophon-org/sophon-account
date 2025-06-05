@@ -13,10 +13,9 @@ export type SessionConfigWithId = {
   sessionConfig: SessionConfig;
 };
 
-export type OnChainSessionState = {
+export type OnChainSessionState = SessionConfigWithId & {
   sessionStatus: SessionStatus;
   sessionState: SessionState;
-  configWithId: SessionConfigWithId;
 };
 
 export function serializeBigInts(obj: any): any {

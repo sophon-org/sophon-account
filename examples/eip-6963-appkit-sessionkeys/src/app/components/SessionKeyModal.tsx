@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import { useAppKitAccount } from "@reown/appkit/react";
 
 interface SessionKeyModalProps {
   open: boolean;
@@ -56,7 +55,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
         >
           ×
         </button>
-        <b className="text-lg mb-2">Create Session Key</b>
+        <b className="text-lg mb-2">{sessionStatus === undefined && sessionState === undefined ? "Create Session Key" : "Session Key Details"}</b>
         {sessionStatus === undefined && sessionState === undefined && (
           <form
             className="gap-4 w-full flex flex-col items-center justify-center"
@@ -124,7 +123,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
         )}
         {result && (
           <div className="w-full mt-4 p-2 rounded bg-white text-sophon-blue-400 break-all text-left border border-gray-200">
-            <div className="font-semibold mb-1">Result:</div>
+            <div className="font-semibold mb-1">Local Session ID:</div>
             <code className="block">{result}</code>
           </div>
         )}

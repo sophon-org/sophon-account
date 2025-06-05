@@ -23,8 +23,7 @@ import {
   isSessionKeyModuleInstalled,
 } from "@sophon-labs/account-core";
 import { sophonTestnet } from "viem/chains";
-import { SessionConfig } from "../../../../packages/account-core/dist/types/session";
-import { SessionConfigWithId, OnChainSessionState, L2_GLOBAL_PAYMASTER } from "./util";
+import { SessionConfigWithId, OnChainSessionState, L2_GLOBAL_PAYMASTER, reviveBigInts } from "./util";
 
 const MainCard: NextPage = () => {
   const { open } = useAppKit();
@@ -39,14 +38,9 @@ const MainCard: NextPage = () => {
   const [txError, setTxError] = useState<string | undefined>();
   const [sessionId, setSessionId] = useState<string | undefined>();
   const [sessionError, setSessionError] = useState<string | undefined>();
-  const [sessionClient, setSessionClient] = useState<any>(undefined);
-  const [backendSignature, setBackendSignature] = useState<
+   const [backendSignError, setBackendSignError] = useState<
     string | undefined
   >();
-  const [backendSignError, setBackendSignError] = useState<
-    string | undefined
-  >();
-  const [backendSigner, setBackendSigner] = useState<string | undefined>();
   const [showSessionDetailsModal, setShowSessionDetailsModal] = useState(false);
   const [sessionDetails, setSessionDetails] = useState<OnChainSessionState | null>(null);
   const [sessionDetailsError, setSessionDetailsError] = useState<string | undefined>();
@@ -95,18 +89,6 @@ const MainCard: NextPage = () => {
     }
   }, [transactionData, txErrorWagmi]);
 
-  const sendTransactionWithSession = async (
-    to: string,
-    amount: string,
-  ): Promise<string> => {
-    if (!sessionClient) throw new Error("Session client not found");
-    const tx = await sessionClient.sendTransaction({
-      to: to as `0x${string}`,
-      value: parseEther(amount),
-      data: "0x",
-    });
-    return tx;
-  };
 
   const handleSendTransaction = (to: string, amount: string) => {
     setTxHash(undefined);
@@ -129,9 +111,7 @@ const MainCard: NextPage = () => {
 
   const handleBackendSendTransaction = async (to: string, amount: string) => {
     if (!sessionId) throw new Error("Session ID is required");
-    setBackendSignature(undefined);
     setBackendSignError(undefined);
-    setBackendSigner(undefined);
     try {
       const body = {
         from: address,
@@ -147,9 +127,7 @@ const MainCard: NextPage = () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unknown error");
-      setBackendSignature(data.signature);
-      setBackendSigner(data.address);
-    } catch (err: any) {
+      } catch (err: any) {
       setBackendSignError(
         String(err.message).slice(0, 100) || String(err).slice(0, 100),
       );
@@ -197,11 +175,11 @@ const MainCard: NextPage = () => {
         throw new Error("Session key creation failed");
       }
       const sessionConfigRes = await fetch(
-        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}`,
+        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}&checkOnChain=false`,
       );
-      const sessionConfig = await sessionConfigRes.json();
-      console.log("sessionConfig", sessionConfig);
-      if (!sessionConfig) throw new Error("Session config not found");
+      const onchainConfig: OnChainSessionState = reviveBigInts(await sessionConfigRes.json());
+      console.log("sessionConfig", onchainConfig);
+      if (!onchainConfig) throw new Error("Session config not found");
 
       if (!(await isSessionKeyModuleInstalled(address as `0x${string}`, true))) {
       // 1. Install session key module if needed
@@ -218,14 +196,16 @@ const MainCard: NextPage = () => {
     }  else {
       console.log("Session key module already installed");
     }
+
       // 2. Create session key
-      const createSessionTx = getCreateSessionTxForViem(
-        { sessionConfig, paymaster: {
+      const createSessionTx = getCreateSessionTxForViem({
+        sessionConfig: onchainConfig.sessionConfig,
+        paymaster: {
           address: L2_GLOBAL_PAYMASTER,
-          paymasterInput: "0x"
-        } },
-        address as `0x${string}`,
-      );
+        }
+      },
+      walletClient.account.address,
+    );
       const sessionHash = await walletClient.sendTransaction(createSessionTx);
       console.log("sessionHash", sessionHash);
       await publicClient.waitForTransactionReceipt({ hash: sessionHash });
@@ -243,9 +223,10 @@ const MainCard: NextPage = () => {
       return;
     }
     try {
-      const res = await fetch(`/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}`);
+      const res = await fetch(`/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unknown error");
+      console.log("data", data);
       setSessionDetails(data as OnChainSessionState);
     } catch (err: any) {
       setSessionDetailsError(err.message || String(err));
@@ -284,12 +265,11 @@ const MainCard: NextPage = () => {
         </div>
       )}
       <div className="self-stretch flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-left text-sm sm:text-base md:text-lg text-darkslateblue">
-        <Button variant="primary" onClick={() => open()}>
-          {isConnected ? "Open Wallet" : "Connect"}
-        </Button>
-        {/* <Button variant="secondary" onClick={() => setShowModal(true)}>
-          Send Transaction
-        </Button> */}
+        {!isConnected && (
+          <Button variant="primary" onClick={() => open()}>
+            Connect
+          </Button>
+        )}
         <Button variant="secondary" onClick={() => setShowMessageModal(true)}>
           Sign Message
         </Button>
@@ -340,9 +320,7 @@ const MainCard: NextPage = () => {
         open={showBackendSignModal}
         onClose={() => {
           setShowBackendSignModal(false);
-          setBackendSignature(undefined);
           setBackendSignError(undefined);
-          setBackendSigner(undefined);
         }}
         onSubmit={handleBackendSendTransaction}
         txHash={txHash}
@@ -375,7 +353,7 @@ const MainCard: NextPage = () => {
           setSessionDetailsError(undefined);
         }}
         onSubmit={() => {}}
-        result={sessionDetails?.configWithId?.sessionId}
+        result={sessionDetails?.sessionId}
         error={sessionDetailsError}
         sessionStatus={sessionDetails?.sessionStatus}
         sessionState={sessionDetails?.sessionState}
