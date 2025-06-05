@@ -5,6 +5,7 @@ import {
   encodeFunctionData,
   type Hex,
   http,
+  keccak256,
 } from "viem";
 import { SessionKeyValidatorAbi, SsoAccountAbi } from "zksync-sso/abi";
 import { getGeneralPaymasterInput } from "viem/zksync";
@@ -23,6 +24,14 @@ import { encodeSession, SessionStatus } from "zksync-sso/utils";
 
 const SESSION_KEY_MODULE_ADDRESS: Address =
   "0x3E9AEF9331C4c558227542D9393a685E414165a3";
+
+export function getSessionHash({
+  sessionConfig,
+}: {
+  sessionConfig: SessionConfig;
+}): `0x${string}` {
+  return keccak256(encodeSession(sessionConfig));
+}
 
 export async function getSessionState({
   accountAddress,
@@ -62,7 +71,7 @@ export async function getSessionStatus({
     transport: http(),
   });
 
-  const sessionHash = encodeSession(sessionConfig);
+  const sessionHash = keccak256(encodeSession(sessionConfig));
 
   // Call the getState function on the session key module
   const result = await client.readContract({
@@ -136,8 +145,7 @@ export const getInstallSessionKeyModuleTxForViem = (
         getGeneralPaymasterInput({ innerInput: "0x" })
       : undefined,
     data: callData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any;
+  };
 
   return sendTransactionArgs;
 };
@@ -166,8 +174,7 @@ export const getCreateSessionTxForViem = (
         getGeneralPaymasterInput({ innerInput: "0x" })
       : undefined,
     data: callData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any;
+  };
 
   return sendTransactionArgs;
 };
