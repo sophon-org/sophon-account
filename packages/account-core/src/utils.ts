@@ -3,14 +3,27 @@ import { sophon, sophonTestnet } from "viem/chains";
 import { sophonAAFactoryAbi } from "./abis/SophonAAFactory";
 import { sophonAccountCodeStorageAbi } from "./abis/SophonAccountStorageAbi";
 
-const COLOR_PALETTE_200 = ["#CCE4FF", "#FFFAB8", "#FFDAC2", "#FABEDE", "#CCB0F5"];
+const COLOR_PALETTE_200 = [
+  "#CCE4FF",
+  "#FFFAB8",
+  "#FFDAC2",
+  "#FABEDE",
+  "#CCB0F5",
+];
 
-const COLOR_PALETTE_400 = ["#122B5C", "#474309", "#5C2907", "#662548", "#341A5C"];
+const COLOR_PALETTE_400 = [
+  "#122B5C",
+  "#474309",
+  "#5C2907",
+  "#662548",
+  "#341A5C",
+];
 
 export const SOPHON_ACCOUNT_CODE_STORAGE_CONTRACT_ADDRESS =
   "0x0000000000000000000000000000000000008002";
 
-export const SOPHON_AA_FACTORY_ADDRESS = "0x9Bb2603866dD254d4065E5BA50f15F8F058F600E";
+export const SOPHON_AA_FACTORY_ADDRESS =
+  "0x9Bb2603866dD254d4065E5BA50f15F8F058F600E";
 
 type GradientParams = {
   color1: string;
@@ -58,7 +71,9 @@ const hashString = (str: string): number => {
  * @param {string} inputString - The input string
  * @returns {Object} - Object containing two colors, an angle, and a Vector2
  */
-export const generateParamsFromString = (inputString: string): GradientParams => {
+export const generateParamsFromString = (
+  inputString: string,
+): GradientParams => {
   if (!inputString || typeof inputString !== "string") {
     throw new Error("Input string is required");
   }
@@ -119,7 +134,11 @@ export const getSVGAvatarFromString = (inputString: string): string => {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 };
 
-export const isSophonAccount = async (address: string, testnet?: boolean, rpcUrl?: string) => {
+export const isSophonAccount = async (
+  address: string,
+  testnet?: boolean,
+  rpcUrl?: string,
+) => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
     transport: http(rpcUrl),
@@ -148,7 +167,7 @@ export const isSophonAccount = async (address: string, testnet?: boolean, rpcUrl
 export const isEraVMContract = async (
   address: `0x${string}`,
   testnet?: boolean,
-  customRpc?: string
+  customRpc?: string,
 ) => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,

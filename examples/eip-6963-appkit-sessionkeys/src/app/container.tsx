@@ -2,7 +2,12 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useEffect, useState } from "react";
-import { useSendTransaction, useSignMessage, usePublicClient, useWalletClient } from "wagmi";
+import {
+  useSendTransaction,
+  useSignMessage,
+  usePublicClient,
+  useWalletClient,
+} from "wagmi";
 import { parseEther } from "viem";
 
 import {
@@ -15,10 +20,11 @@ import {
 import {
   getInstallSessionKeyModuleTxForViem,
   getCreateSessionTxForViem,
+  isSessionKeyModuleInstalled,
 } from "@sophon-labs/account-core";
 import { sophonTestnet } from "viem/chains";
 import { SessionConfig } from "../../../../packages/account-core/dist/types/session";
-import { SessionConfigWithId } from "./util";
+import { SessionConfigWithId, OnChainSessionState, L2_GLOBAL_PAYMASTER } from "./util";
 
 const MainCard: NextPage = () => {
   const { open } = useAppKit();
@@ -34,19 +40,36 @@ const MainCard: NextPage = () => {
   const [sessionId, setSessionId] = useState<string | undefined>();
   const [sessionError, setSessionError] = useState<string | undefined>();
   const [sessionClient, setSessionClient] = useState<any>(undefined);
-  const [backendSignature, setBackendSignature] = useState<string | undefined>();
-  const [backendSignError, setBackendSignError] = useState<string | undefined>();
+  const [backendSignature, setBackendSignature] = useState<
+    string | undefined
+  >();
+  const [backendSignError, setBackendSignError] = useState<
+    string | undefined
+  >();
   const [backendSigner, setBackendSigner] = useState<string | undefined>();
+  const [showSessionDetailsModal, setShowSessionDetailsModal] = useState(false);
+  const [sessionDetails, setSessionDetails] = useState<OnChainSessionState | null>(null);
+  const [sessionDetailsError, setSessionDetailsError] = useState<string | undefined>();
 
-  const { data: signMessageData, error: signErrorWagmi, signMessage } = useSignMessage();
-  const { data: transactionData, error: txErrorWagmi, sendTransaction } = useSendTransaction();
+  const {
+    data: signMessageData,
+    error: signErrorWagmi,
+    signMessage,
+  } = useSignMessage();
+  const {
+    data: transactionData,
+    error: txErrorWagmi,
+    sendTransaction,
+  } = useSendTransaction();
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
   useEffect(() => {
     const fetchLatestSession = async () => {
       if (address && !sessionId) {
-        const validSession = await fetch(`/api/session?smartAccountAddress=${address}`);
+        const validSession = await fetch(
+          `/api/session?smartAccountAddress=${address}`,
+        );
         const validSessionData: SessionConfigWithId = await validSession.json();
         setSessionId(validSessionData.sessionId);
       }
@@ -72,7 +95,10 @@ const MainCard: NextPage = () => {
     }
   }, [transactionData, txErrorWagmi]);
 
-  const sendTransactionWithSession = async (to: string, amount: string): Promise<string> => {
+  const sendTransactionWithSession = async (
+    to: string,
+    amount: string,
+  ): Promise<string> => {
     if (!sessionClient) throw new Error("Session client not found");
     const tx = await sessionClient.sendTransaction({
       to: to as `0x${string}`,
@@ -124,7 +150,9 @@ const MainCard: NextPage = () => {
       setBackendSignature(data.signature);
       setBackendSigner(data.address);
     } catch (err: any) {
-      setBackendSignError(String(err.message).slice(0, 100) || String(err).slice(0, 100));
+      setBackendSignError(
+        String(err.message).slice(0, 100) || String(err).slice(0, 100),
+      );
     }
   };
 
@@ -144,8 +172,10 @@ const MainCard: NextPage = () => {
     setSessionId(undefined);
     setSessionError(undefined);
     try {
-      if (!address || !walletClient || !publicClient) throw new Error("Wallet not connected");
+      if (!address || !walletClient || !publicClient)
+        throw new Error("Wallet not connected");
 
+      
       const res = await fetch("/api/session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -167,22 +197,34 @@ const MainCard: NextPage = () => {
         throw new Error("Session key creation failed");
       }
       const sessionConfigRes = await fetch(
-        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}`
+        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}`,
       );
       const sessionConfig = await sessionConfigRes.json();
       console.log("sessionConfig", sessionConfig);
       if (!sessionConfig) throw new Error("Session config not found");
+
+      if (!(await isSessionKeyModuleInstalled(address as `0x${string}`, true))) {
       // 1. Install session key module if needed
       const installTx = getInstallSessionKeyModuleTxForViem({
         accountAddress: address as `0x${string}`,
+        paymaster: {
+          address: L2_GLOBAL_PAYMASTER,
+          paymasterInput: "0x"
+        }
       });
       const installHash = await walletClient.sendTransaction(installTx);
       console.log("installHash", installHash);
       await publicClient.waitForTransactionReceipt({ hash: installHash });
+    }  else {
+      console.log("Session key module already installed");
+    }
       // 2. Create session key
       const createSessionTx = getCreateSessionTxForViem(
-        { sessionConfig },
-        address as `0x${string}`
+        { sessionConfig, paymaster: {
+          address: L2_GLOBAL_PAYMASTER,
+          paymasterInput: "0x"
+        } },
+        address as `0x${string}`,
       );
       const sessionHash = await walletClient.sendTransaction(createSessionTx);
       console.log("sessionHash", sessionHash);
@@ -190,6 +232,25 @@ const MainCard: NextPage = () => {
     } catch (err: any) {
       setSessionError(err.message || String(err));
     }
+  };
+
+  const handleShowSessionDetails = async () => {
+    setSessionDetails(null);
+    setSessionDetailsError(undefined);
+    if (!address) {
+      setSessionDetailsError("No account connected");
+      setShowSessionDetailsModal(true);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Unknown error");
+      setSessionDetails(data as OnChainSessionState);
+    } catch (err: any) {
+      setSessionDetailsError(err.message || String(err));
+    }
+    setShowSessionDetailsModal(true);
   };
 
   return (
@@ -226,17 +287,23 @@ const MainCard: NextPage = () => {
         <Button variant="primary" onClick={() => open()}>
           {isConnected ? "Open Wallet" : "Connect"}
         </Button>
-        <Button variant="secondary" onClick={() => setShowModal(true)}>
+        {/* <Button variant="secondary" onClick={() => setShowModal(true)}>
           Send Transaction
-        </Button>
+        </Button> */}
         <Button variant="secondary" onClick={() => setShowMessageModal(true)}>
           Sign Message
         </Button>
         <Button variant="secondary" onClick={() => setShowSessionModal(true)}>
           Create Session Key
         </Button>
-        <Button variant="secondary" onClick={() => setShowBackendSignModal(true)}>
+        <Button
+          variant="secondary"
+          onClick={() => setShowBackendSignModal(true)}
+        >
           Send with Session Owner (Backend)
+        </Button>
+        <Button variant="secondary" onClick={handleShowSessionDetails}>
+          Show Current Session Details
         </Button>
       </div>
       <SendTransactionModal
@@ -250,7 +317,10 @@ const MainCard: NextPage = () => {
         txHash={txHash}
         error={txError}
         ResultComponent={
-          <BlueLink href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`} LinkComponent={Link}>
+          <BlueLink
+            href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`}
+            LinkComponent={Link}
+          >
             {txHash}
           </BlueLink>
         }
@@ -277,7 +347,10 @@ const MainCard: NextPage = () => {
         onSubmit={handleBackendSendTransaction}
         txHash={txHash}
         ResultComponent={
-          <BlueLink href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`} LinkComponent={Link}>
+          <BlueLink
+            href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`}
+            LinkComponent={Link}
+          >
             {txHash}
           </BlueLink>
         }
@@ -293,6 +366,19 @@ const MainCard: NextPage = () => {
         onSubmit={handleCreateSessionKey}
         result={sessionId}
         error={sessionError}
+      />
+      <SessionKeyModal
+        open={showSessionDetailsModal}
+        onClose={() => {
+          setShowSessionDetailsModal(false);
+          setSessionDetails(null);
+          setSessionDetailsError(undefined);
+        }}
+        onSubmit={() => {}}
+        result={sessionDetails?.configWithId?.sessionId}
+        error={sessionDetailsError}
+        sessionStatus={sessionDetails?.sessionStatus}
+        sessionState={sessionDetails?.sessionState}
       />
     </div>
   );

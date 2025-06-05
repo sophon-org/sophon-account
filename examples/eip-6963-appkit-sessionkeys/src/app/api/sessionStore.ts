@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { reviveBigInts, serializeBigInts, SessionConfigWithId, SessionStore } from "../util";
+import {
+  reviveBigInts,
+  serializeBigInts,
+  SessionConfigWithId,
+  SessionStore,
+} from "../util";
 import { SessionConfig } from "../../../../../packages/account-core/dist/types/session";
 
 export const sessionFilePath = path.resolve(process.cwd(), "sessionStore.json");
@@ -21,7 +26,7 @@ export function writeSessionData(data: SessionStore) {
 export function setSessionConfig(
   smartAccountAddress: `0x${string}`,
   sessionId: string,
-  config: SessionConfig
+  config: SessionConfig,
 ): void {
   const sessionData = readSessionData();
   sessionData[smartAccountAddress] = sessionData[smartAccountAddress] || {};
@@ -31,20 +36,22 @@ export function setSessionConfig(
 
 export function getSessionConfig(
   smartAccountAddress: `0x${string}`,
-  sessionId?: string
+  sessionId?: string,
 ): SessionConfigWithId | undefined {
   const sessionData = readSessionData();
   const accountSessions = sessionData[smartAccountAddress];
   if (!accountSessions) return undefined;
   if (!sessionId) {
     const now = Math.floor(Date.now() / 1000);
-    const sessionEntry = Object.entries(accountSessions).find(([id, session]) => {
-      const expiresAt =
-        typeof session.expiresAt === "string"
-          ? parseInt(session.expiresAt, 10)
-          : Number(session.expiresAt);
-      return expiresAt > now;
-    });
+    const sessionEntry = Object.entries(accountSessions).find(
+      ([id, session]) => {
+        const expiresAt =
+          typeof session.expiresAt === "string"
+            ? parseInt(session.expiresAt, 10)
+            : Number(session.expiresAt);
+        return expiresAt > now;
+      },
+    );
     if (sessionEntry) {
       sessionId = sessionEntry[0];
     } else {
@@ -58,7 +65,13 @@ export function getSessionConfig(
   };
 }
 
-export function hasSessionConfig(smartAccountAddress: `0x${string}`, sessionId: string): boolean {
+export function hasSessionConfig(
+  smartAccountAddress: `0x${string}`,
+  sessionId: string,
+): boolean {
   const sessionData = readSessionData();
-  return sessionData[smartAccountAddress] && sessionId in sessionData[smartAccountAddress];
+  return (
+    sessionData[smartAccountAddress] &&
+    sessionId in sessionData[smartAccountAddress]
+  );
 }

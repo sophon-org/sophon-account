@@ -1,4 +1,6 @@
-import { SessionConfig } from "../../../../packages/account-core/dist/types/session";
+import { SessionConfig, SessionStatus, SessionState } from "../../../../packages/account-core/dist/types/session";
+
+export const L2_GLOBAL_PAYMASTER = '0x98546B226dbbA8230cf620635a1e4ab01F6A99B2' as `0x${string}`
 
 export type SessionStore = {
   [smartAccountAddress: string]: {
@@ -9,6 +11,12 @@ export type SessionStore = {
 export type SessionConfigWithId = {
   sessionId: string;
   sessionConfig: SessionConfig;
+};
+
+export type OnChainSessionState = {
+  sessionStatus: SessionStatus;
+  sessionState: SessionState;
+  configWithId: SessionConfigWithId;
 };
 
 export function serializeBigInts(obj: any): any {

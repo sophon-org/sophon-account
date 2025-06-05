@@ -14,6 +14,8 @@ interface SessionKeyModalProps {
   }) => void;
   result?: React.ReactNode;
   error?: string;
+  sessionStatus?: string | number | null;
+  sessionState?: any;
 }
 
 const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
@@ -22,6 +24,8 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
   onSubmit,
   result,
   error,
+  sessionStatus,
+  sessionState,
 }) => {
   const [signer, setSigner] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
@@ -34,7 +38,9 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
     setTransferTarget("0x36615Cf349d7F6344891B1e7CA7C72883F5dc049");
     setTransferValue("10000000000000000000");
     setFeeLimit("10000000000000000000");
-    setExpiresAt(new Date(Date.now() + 1000 * 2 * 60 * 60 * 24).toISOString().slice(0, 16)); // 2 days
+    setExpiresAt(
+      new Date(Date.now() + 1000 * 2 * 60 * 60 * 24).toISOString().slice(0, 16),
+    ); // 2 days
   }, []);
 
   if (!open) return null;
@@ -51,61 +57,71 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
           ×
         </button>
         <b className="text-lg mb-2">Create Session Key</b>
-        <form
-          className="gap-4 w-full flex flex-col items-center justify-center"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <input
-            className="w-full rounded-lg border border-gray-200 p-2 text-base"
-            type="text"
-            placeholder="Session Signer Address"
-            value={signer}
-            onChange={(e) => setSigner(e.target.value)}
-            required
-          />
-          <input
-            className="w-full rounded-lg border border-gray-200 p-2 text-base"
-            type="datetime-local"
-            placeholder="Expiration"
-            value={expiresAt}
-            onChange={(e) => setExpiresAt(e.target.value)}
-            required
-          />
-          <input
-            className="w-full rounded-lg border border-gray-200 p-2 text-base"
-            type="number"
-            placeholder="Fee Limit (wei)"
-            value={feeLimit}
-            onChange={(e) => setFeeLimit(e.target.value)}
-            min="0"
-            required
-          />
-          <input
-            className="w-full rounded-lg border border-gray-200 p-2 text-base"
-            type="text"
-            placeholder="Transfer Policy Target Address"
-            value={transferTarget}
-            onChange={(e) => setTransferTarget(e.target.value)}
-            required
-          />
-          <input
-            className="w-full rounded-lg border border-gray-200 p-2 text-base"
-            type="number"
-            placeholder="Transfer Value (wei)"
-            value={transferValue}
-            onChange={(e) => setTransferValue(e.target.value)}
-            min="0"
-            required
-          />
-          <Button
-            variant="primary"
-            onClick={() => onSubmit({ signer, expiresAt, feeLimit, transferTarget, transferValue })}
+        {sessionStatus === undefined && sessionState === undefined && (
+          <form
+            className="gap-4 w-full flex flex-col items-center justify-center"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
           >
-            Create Session Key
-          </Button>
-        </form>
+            <input
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              type="text"
+              placeholder="Session Signer Address"
+              value={signer}
+              onChange={(e) => setSigner(e.target.value)}
+              required
+            />
+            <input
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              type="datetime-local"
+              placeholder="Expiration"
+              value={expiresAt}
+              onChange={(e) => setExpiresAt(e.target.value)}
+              required
+            />
+            <input
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              type="number"
+              placeholder="Fee Limit (wei)"
+              value={feeLimit}
+              onChange={(e) => setFeeLimit(e.target.value)}
+              min="0"
+              required
+            />
+            <input
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              type="text"
+              placeholder="Transfer Policy Target Address"
+              value={transferTarget}
+              onChange={(e) => setTransferTarget(e.target.value)}
+              required
+            />
+            <input
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              type="number"
+              placeholder="Transfer Value (wei)"
+              value={transferValue}
+              onChange={(e) => setTransferValue(e.target.value)}
+              min="0"
+              required
+            />
+            <Button
+              variant="primary"
+              onClick={() =>
+                onSubmit({
+                  signer,
+                  expiresAt,
+                  feeLimit,
+                  transferTarget,
+                  transferValue,
+                })
+              }
+            >
+              Create Session Key
+            </Button>
+          </form>
+        )}
         {result && (
           <div className="w-full mt-4 p-2 rounded bg-white text-sophon-blue-400 break-all text-left border border-gray-200">
             <div className="font-semibold mb-1">Result:</div>
@@ -116,6 +132,18 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
           <div className="w-full mt-4 p-2 rounded bg-red-50 text-red-700 break-all text-left border border-gray-200">
             <div className="font-semibold mb-1">Error:</div>
             <span>{String(error).slice(0, 100)}</span>
+          </div>
+        )}
+        {sessionStatus !== undefined && sessionStatus !== null && (
+          <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
+            <div className="font-semibold mb-1">Session Status (on-chain):</div>
+            <code className="block">{String(sessionStatus)}</code>
+          </div>
+        )}
+        {sessionState && (
+          <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
+            <div className="font-semibold mb-1">Session State (on-chain):</div>
+            <pre className="block whitespace-pre-wrap text-xs">{JSON.stringify(sessionState, null, 2)}</pre>
           </div>
         )}
       </div>

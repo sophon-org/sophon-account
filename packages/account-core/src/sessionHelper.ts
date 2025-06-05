@@ -14,13 +14,66 @@ import {
 } from "zksync-sso/client";
 import { sophon, sophonTestnet } from "viem/chains";
 import {
+  SessionState,
   type CreateSessionArgs,
   type InstallSessionKeyModuleArgs,
   type SessionConfig,
 } from "./types/session";
+import { encodeSession, SessionStatus } from "zksync-sso/utils";
 
 const SESSION_KEY_MODULE_ADDRESS: Address =
   "0x3E9AEF9331C4c558227542D9393a685E414165a3";
+
+export async function getSessionState({
+  accountAddress,
+  sessionConfig,
+  testnet = false,
+}: {
+  accountAddress: Address;
+  sessionConfig: SessionConfig;
+  testnet?: boolean;
+}): Promise<SessionState> {
+  const client = createPublicClient({
+    chain: testnet ? sophonTestnet : sophon,
+    transport: http(),
+  });
+
+  const result = await client.readContract({
+    address: SESSION_KEY_MODULE_ADDRESS,
+    abi: SessionKeyValidatorAbi,
+    functionName: "sessionState",
+    args: [accountAddress, sessionConfig],
+  });
+
+  return result as SessionState;
+}
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionConfig,
+  testnet = false,
+}: {
+  accountAddress: Address;
+  sessionConfig: SessionConfig;
+  testnet?: boolean;
+}): Promise<SessionStatus> {
+  const client = createPublicClient({
+    chain: testnet ? sophonTestnet : sophon,
+    transport: http(),
+  });
+
+  const sessionHash = encodeSession(sessionConfig);
+
+  // Call the getState function on the session key module
+  const result = await client.readContract({
+    address: SESSION_KEY_MODULE_ADDRESS,
+    abi: SessionKeyValidatorAbi,
+    functionName: "sessionStatus",
+    args: [accountAddress, sessionHash],
+  });
+
+  return result;
+}
 
 export const getViemSessionClient = (
   sessionConfig: SessionConfig,
