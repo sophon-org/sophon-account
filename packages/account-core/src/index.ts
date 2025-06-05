@@ -3,6 +3,7 @@ export * from "./wallet";
 export * from "./snsHelper";
 export * from "./abis";
 export * from "./utils";
+export * from "./signature-utils";
 export {
   connect,
   disconnect,

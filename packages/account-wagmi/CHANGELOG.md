@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.2.2
+
+### Patch Changes
+
+- Updating dynamic packages
+
 ## 1.2.1
 
 ### Patch Changes

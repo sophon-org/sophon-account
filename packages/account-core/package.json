@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/account-core",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "type": "module",
   "keywords": [],
@@ -13,7 +13,8 @@
     "build": "tsup",
     "dev": "pnpm run build --watch",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:e2e": "jest --testPathPattern=__tests__/signature-utils.e2e.test.ts"
   },
   "dependencies": {
     "@dynamic-labs/ethereum": "4.19.4",
