@@ -5,4 +5,3 @@ export { default as SendTransactionModal } from "./SendTransactionModal";
 export { default as SignMessageModal } from "./SignMessageModal";
 export { default as TextHighlight } from "./TextHighlight";
 export { default as Background } from "./Background";
-export { default as SessionKeyModal } from "./SessionKeyModal";
