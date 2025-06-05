@@ -8,3 +8,5 @@ build
 anvil-zksync.log
 .cache
 .vscode
+
+.sessionStore.json
