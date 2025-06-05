@@ -1,6 +1,6 @@
 {
   "name": "@sophon-labs/account-eip6963",
-  "version": "1.1.24",
+  "version": "1.2.2",
   "description": "",
   "type": "module",
   "keywords": [],
@@ -14,10 +14,10 @@
     "dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@dynamic-labs/global-wallet-client": "^4.19.1"
+    "@dynamic-labs/global-wallet-client": "4.19.4"
   },
   "peerDependencies": {
-    "@sophon-labs/account-core": "1.1.24"
+    "@sophon-labs/account-core": "1.2.2"
   },
   "devDependencies": {
     "tsup": "^8.4.0"

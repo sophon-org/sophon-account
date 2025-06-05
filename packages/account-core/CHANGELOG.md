@@ -1,5 +1,23 @@
 # @sophon-labs/account-core
 
+## 1.2.2
+
+### Patch Changes
+
+- Updating dynamic packages
+
+## 1.2.1
+
+### Patch Changes
+
+- Bumping versions to correct wrong plublish
+
+## 1.2.0
+
+### Minor Changes
+
+- Moving ethereum-aa package to react
+
 ## 1.1.24
 
 ### Patch Changes
