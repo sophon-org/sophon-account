@@ -60,10 +60,32 @@ export async function getSessionState({
 export async function getSessionStatus({
   accountAddress,
   sessionConfig,
-  testnet = false,
+  testnet,
 }: {
   accountAddress: Address;
   sessionConfig: SessionConfig;
+  testnet?: boolean;
+}): Promise<SessionStatus>;
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionHash,
+  testnet,
+}: {
+  accountAddress: Address;
+  sessionHash: `0x${string}`;
+  testnet?: boolean;
+}): Promise<SessionStatus>;
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionConfig,
+  sessionHash,
+  testnet = false,
+}: {
+  accountAddress: Address;
+  sessionConfig?: SessionConfig;
+  sessionHash?: `0x${string}`;
   testnet?: boolean;
 }): Promise<SessionStatus> {
   const client = createPublicClient({
@@ -71,14 +93,14 @@ export async function getSessionStatus({
     transport: http(),
   });
 
-  const sessionHash = keccak256(encodeSession(sessionConfig));
+  const hash = sessionHash ?? keccak256(encodeSession(sessionConfig!));
 
   // Call the getState function on the session key module
   const result = await client.readContract({
     address: SESSION_KEY_MODULE_ADDRESS,
     abi: SessionKeyValidatorAbi,
     functionName: "sessionStatus",
-    args: [accountAddress, sessionHash],
+    args: [accountAddress, hash],
   });
 
   return result;
