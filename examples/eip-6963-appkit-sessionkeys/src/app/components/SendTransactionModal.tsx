@@ -39,7 +39,6 @@ const SendTransactionModal: React.FC<SendTransactionModalProps> = ({
           className="gap-4 w-full flex flex-col items-center justify-center"
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit(address, amount);
           }}
         >
           <input
