@@ -126,6 +126,7 @@ const MainCard: NextPage = () => {
         body: JSON.stringify(body),
       });
       const data = await res.json();
+      setTxHash(data.txHash);
       if (!res.ok) throw new Error(data.error || "Unknown error");
       } catch (err: any) {
       setBackendSignError(
