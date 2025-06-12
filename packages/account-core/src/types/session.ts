@@ -20,14 +20,14 @@ export type Limit = {
 
 export const LimitUnlimited = {
   limitType: LimitType.Unlimited,
-  limit: 0n,
-  period: 0n,
+  limit: BigInt(0),
+  period: BigInt(0),
 };
 
 export const LimitZero = {
   limitType: LimitType.Lifetime,
-  limit: 0n,
-  period: 0n,
+  limit: BigInt(0),
+  period: BigInt(0),
 };
 
 /**
@@ -144,17 +144,17 @@ export const getPeriodIdsForTransaction = (args: {
     if (limit.limitType === LimitType.Allowance) {
       return timestamp / limit.period;
     }
-    return 0n;
+    return BigInt(0);
   };
 
   const findTransferPolicy = () => {
     return args.sessionConfig.transferPolicies.find(
-      (policy) => policy.target === target
+      (policy) => policy.target === target,
     );
   };
   const findCallPolicy = () => {
     return args.sessionConfig.callPolicies.find(
-      (policy) => policy.target === target && policy.selector == args.selector
+      (policy) => policy.target === target && policy.selector == args.selector,
     );
   };
 
@@ -169,9 +169,28 @@ export const getPeriodIdsForTransaction = (args: {
     getId(policy.valueLimit),
     ...(isContractCall
       ? (policy as CallPolicy).constraints.map((constraint) =>
-          getId(constraint.limit)
+          getId(constraint.limit),
         )
       : []),
   ];
   return periodIds;
+};
+
+export type CreateSessionArgs = {
+  sessionConfig: SessionConfig;
+  contracts: {
+    session: Address; // session module
+  };
+  paymaster?: {
+    address: Address;
+    paymasterInput?: Hex;
+  };
+};
+
+export type InstallSessionKeyModuleArgs = {
+  accountAddress: Address;
+  paymaster?: {
+    address: Address;
+    paymasterInput?: Hex;
+  };
 };

@@ -1,5 +1,6 @@
 export * from "./config";
 export * from "./wallet";
+export * from "./sessionHelper";
 export * from "./snsHelper";
 export * from "./abis";
 export * from "./utils";
