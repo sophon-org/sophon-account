@@ -32,7 +32,7 @@ export function getSessionHash(sessionConfig: SessionConfig): `0x${string}` {
 export async function getSessionState({
   accountAddress,
   sessionConfig,
-  testnet = false,
+  testnet = true,
 }: {
   accountAddress: Address;
   sessionConfig: SessionConfig;
@@ -60,7 +60,7 @@ export async function getSessionStatus({
 }: {
   accountAddress: Address;
   sessionConfig: SessionConfig;
-  testnet?: boolean;
+  testnet: boolean;
 }): Promise<SessionStatus>;
 
 export async function getSessionStatus({
@@ -70,19 +70,19 @@ export async function getSessionStatus({
 }: {
   accountAddress: Address;
   sessionHash: `0x${string}`;
-  testnet?: boolean;
+  testnet: boolean;
 }): Promise<SessionStatus>;
 
 export async function getSessionStatus({
   accountAddress,
   sessionConfig,
   sessionHash,
-  testnet = false,
+  testnet = true,
 }: {
   accountAddress: Address;
   sessionConfig?: SessionConfig;
   sessionHash?: `0x${string}`;
-  testnet?: boolean;
+  testnet: boolean;
 }): Promise<SessionStatus> {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,

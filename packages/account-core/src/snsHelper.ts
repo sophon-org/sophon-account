@@ -14,7 +14,7 @@ const SNS_REGISTRY_ADDRESS = "0xc1Ef891D1b17AB8E1af3a8Bb24cdA68aBfFD1F49";
 
 export const resolveName = async (
   name: string,
-  testnet?: boolean,
+  testnet: boolean = true,
   rpcUrl?: string,
 ): Promise<Address | null> => {
   const client = createPublicClient({
@@ -47,7 +47,7 @@ export const resolveName = async (
 
 export const resolveAddress = async (
   address: string,
-  testnet?: boolean,
+  testnet: boolean = true,
   rpcUrl?: string,
 ): Promise<string | null> => {
   const client = createPublicClient({
