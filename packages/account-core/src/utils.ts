@@ -1,4 +1,4 @@
-import { createPublicClient, http } from "viem";
+import { Address, createPublicClient, http } from "viem";
 import { sophon, sophonTestnet } from "viem/chains";
 import { sophonAAFactoryAbi } from "./abis/SophonAAFactory";
 import { sophonAccountCodeStorageAbi } from "./abis/SophonAccountStorageAbi";
@@ -19,11 +19,14 @@ const COLOR_PALETTE_400 = [
   "#341A5C",
 ];
 
-export const SOPHON_ACCOUNT_CODE_STORAGE_CONTRACT_ADDRESS =
+export const SOPHON_ACCOUNT_CODE_STORAGE_CONTRACT_ADDRESS: Address =
   "0x0000000000000000000000000000000000008002";
 
-export const SOPHON_AA_FACTORY_ADDRESS =
+export const SOPHON_AA_FACTORY_ADDRESS: Address =
   "0x9Bb2603866dD254d4065E5BA50f15F8F058F600E";
+
+export const SOPHON_SESSION_KEY_MODULE_ADDRESS: Address =
+  "0x3E9AEF9331C4c558227542D9393a685E414165a3";
 
 type GradientParams = {
   color1: string;
@@ -33,6 +36,11 @@ type GradientParams = {
   centerX: number;
   centerY: number;
 };
+
+export interface AAFactoryAccount {
+  accountId: `0x${string}`;
+  factoryVersion: Address;
+}
 
 /**
  * Hash function to convert a string to a number
@@ -134,9 +142,16 @@ export const getSVGAvatarFromString = (inputString: string): string => {
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 };
 
+/**
+ * Returns true if the address is a Sophon account
+ * @param address - The address of the account to check
+ * @param testnet - Whether to use the testnet chain
+ * @param rpcUrl - A custom RPC URL to use for the client
+ * @returns True if the address is a Sophon account, false otherwise
+ */
 export const isSophonAccount = async (
   address: string,
-  testnet?: boolean,
+  testnet: boolean = true,
   rpcUrl?: string,
 ) => {
   const client = createPublicClient({
@@ -144,15 +159,15 @@ export const isSophonAccount = async (
     transport: http(rpcUrl),
   });
 
-  const account = await client.readContract({
+  const account = (await client.readContract({
     address: SOPHON_AA_FACTORY_ADDRESS,
     abi: sophonAAFactoryAbi,
     functionName: "getAccount",
     args: [address],
-  });
+  })) as AAFactoryAccount;
 
   return (
-    (account as any).accountId !==
+    account.accountId !==
     "0x0000000000000000000000000000000000000000000000000000000000000000"
   );
 };
@@ -166,7 +181,7 @@ export const isSophonAccount = async (
  */
 export const isEraVMContract = async (
   address: `0x${string}`,
-  testnet?: boolean,
+  testnet: boolean = true,
   customRpc?: string,
 ) => {
   const client = createPublicClient({

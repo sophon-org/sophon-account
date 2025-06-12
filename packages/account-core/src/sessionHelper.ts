@@ -21,9 +21,7 @@ import {
   type SessionConfig,
 } from "./types/session";
 import { encodeSession, SessionStatus } from "zksync-sso/utils";
-
-const SESSION_KEY_MODULE_ADDRESS: Address =
-  "0x3E9AEF9331C4c558227542D9393a685E414165a3";
+import { SOPHON_SESSION_KEY_MODULE_ADDRESS } from "./utils";
 
 export function getSessionHash(sessionConfig: SessionConfig): `0x${string}` {
   return keccak256(encodeSession(sessionConfig));
@@ -36,7 +34,7 @@ export async function getSessionState({
 }: {
   accountAddress: Address;
   sessionConfig: SessionConfig;
-  testnet?: boolean;
+  testnet: boolean;
 }): Promise<SessionState> {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
@@ -44,7 +42,7 @@ export async function getSessionState({
   });
 
   const result = await client.readContract({
-    address: SESSION_KEY_MODULE_ADDRESS,
+    address: SOPHON_SESSION_KEY_MODULE_ADDRESS,
     abi: SessionKeyValidatorAbi,
     functionName: "sessionState",
     args: [accountAddress, sessionConfig],
@@ -93,7 +91,7 @@ export async function getSessionStatus({
 
   // Call the getState function on the session key module
   const result = await client.readContract({
-    address: SESSION_KEY_MODULE_ADDRESS,
+    address: SOPHON_SESSION_KEY_MODULE_ADDRESS,
     abi: SessionKeyValidatorAbi,
     functionName: "sessionStatus",
     args: [accountAddress, hash],
@@ -114,7 +112,7 @@ export const getViemSessionClient = (
     sessionKey: signerPrivateKey,
     sessionConfig,
     contracts: {
-      session: SESSION_KEY_MODULE_ADDRESS,
+      session: SOPHON_SESSION_KEY_MODULE_ADDRESS,
     },
     transport: http(),
   });
@@ -124,7 +122,7 @@ export const getViemSessionClient = (
 
 export const isSessionKeyModuleInstalled = async (
   address: Address,
-  testnet?: boolean,
+  testnet: boolean = true,
 ): Promise<boolean> => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
@@ -133,7 +131,7 @@ export const isSessionKeyModuleInstalled = async (
 
   try {
     const isInstalled = await client.readContract({
-      address: SESSION_KEY_MODULE_ADDRESS,
+      address: SOPHON_SESSION_KEY_MODULE_ADDRESS,
       abi: SessionKeyValidatorAbi,
       functionName: "isInitialized",
       args: [address],
@@ -151,7 +149,7 @@ export const getInstallSessionKeyModuleTxForViem = (
   const callData = encodeFunctionData({
     abi: SsoAccountAbi,
     functionName: "addModuleValidator",
-    args: [SESSION_KEY_MODULE_ADDRESS, "0x"],
+    args: [SOPHON_SESSION_KEY_MODULE_ADDRESS, "0x"],
   });
 
   const sendTransactionArgs = {
@@ -174,7 +172,7 @@ export const getCreateSessionTxForViem = (
 ) => {
   const _args = {
     ...args,
-    contracts: { session: SESSION_KEY_MODULE_ADDRESS },
+    contracts: { session: SOPHON_SESSION_KEY_MODULE_ADDRESS },
   };
 
   const callData = encodeFunctionData({
