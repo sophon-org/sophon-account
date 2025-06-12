@@ -25,11 +25,7 @@ import { encodeSession, SessionStatus } from "zksync-sso/utils";
 const SESSION_KEY_MODULE_ADDRESS: Address =
   "0x3E9AEF9331C4c558227542D9393a685E414165a3";
 
-export function getSessionHash({
-  sessionConfig,
-}: {
-  sessionConfig: SessionConfig;
-}): `0x${string}` {
+export function getSessionHash(sessionConfig: SessionConfig): `0x${string}` {
   return keccak256(encodeSession(sessionConfig));
 }
 
@@ -93,7 +89,7 @@ export async function getSessionStatus({
     transport: http(),
   });
 
-  const hash = sessionHash ?? keccak256(encodeSession(sessionConfig!));
+  const hash = sessionHash ?? getSessionHash(sessionConfig);
 
   // Call the getState function on the session key module
   const result = await client.readContract({
