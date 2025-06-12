@@ -5,6 +5,7 @@ import {
   encodeFunctionData,
   type Hex,
   http,
+  keccak256,
 } from "viem";
 import { SessionKeyValidatorAbi, SsoAccountAbi } from "zksync-sso/abi";
 import { getGeneralPaymasterInput } from "viem/zksync";
@@ -14,13 +15,92 @@ import {
 } from "zksync-sso/client";
 import { sophon, sophonTestnet } from "viem/chains";
 import {
+  SessionState,
   type CreateSessionArgs,
   type InstallSessionKeyModuleArgs,
   type SessionConfig,
 } from "./types/session";
+import { encodeSession, SessionStatus } from "zksync-sso/utils";
 
 const SESSION_KEY_MODULE_ADDRESS: Address =
   "0x3E9AEF9331C4c558227542D9393a685E414165a3";
+
+export function getSessionHash(sessionConfig: SessionConfig): `0x${string}` {
+  return keccak256(encodeSession(sessionConfig));
+}
+
+export async function getSessionState({
+  accountAddress,
+  sessionConfig,
+  testnet = false,
+}: {
+  accountAddress: Address;
+  sessionConfig: SessionConfig;
+  testnet?: boolean;
+}): Promise<SessionState> {
+  const client = createPublicClient({
+    chain: testnet ? sophonTestnet : sophon,
+    transport: http(),
+  });
+
+  const result = await client.readContract({
+    address: SESSION_KEY_MODULE_ADDRESS,
+    abi: SessionKeyValidatorAbi,
+    functionName: "sessionState",
+    args: [accountAddress, sessionConfig],
+  });
+
+  return result as SessionState;
+}
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionConfig,
+  testnet,
+}: {
+  accountAddress: Address;
+  sessionConfig: SessionConfig;
+  testnet?: boolean;
+}): Promise<SessionStatus>;
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionHash,
+  testnet,
+}: {
+  accountAddress: Address;
+  sessionHash: `0x${string}`;
+  testnet?: boolean;
+}): Promise<SessionStatus>;
+
+export async function getSessionStatus({
+  accountAddress,
+  sessionConfig,
+  sessionHash,
+  testnet = false,
+}: {
+  accountAddress: Address;
+  sessionConfig?: SessionConfig;
+  sessionHash?: `0x${string}`;
+  testnet?: boolean;
+}): Promise<SessionStatus> {
+  const client = createPublicClient({
+    chain: testnet ? sophonTestnet : sophon,
+    transport: http(),
+  });
+
+  const hash = sessionHash ?? getSessionHash(sessionConfig);
+
+  // Call the getState function on the session key module
+  const result = await client.readContract({
+    address: SESSION_KEY_MODULE_ADDRESS,
+    abi: SessionKeyValidatorAbi,
+    functionName: "sessionStatus",
+    args: [accountAddress, hash],
+  });
+
+  return result;
+}
 
 export const getViemSessionClient = (
   sessionConfig: SessionConfig,
@@ -83,8 +163,7 @@ export const getInstallSessionKeyModuleTxForViem = (
         getGeneralPaymasterInput({ innerInput: "0x" })
       : undefined,
     data: callData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any;
+  };
 
   return sendTransactionArgs;
 };
@@ -113,8 +192,7 @@ export const getCreateSessionTxForViem = (
         getGeneralPaymasterInput({ innerInput: "0x" })
       : undefined,
     data: callData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any;
+  };
 
   return sendTransactionArgs;
 };

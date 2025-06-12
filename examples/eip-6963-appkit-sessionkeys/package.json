@@ -1,0 +1,35 @@
+{
+  "name": "@sophon-labs/examples-eip6963-appkit-sessionkeys",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reown/appkit": "^1.7.6",
+    "@reown/appkit-adapter-wagmi": "^1.7.6",
+    "@sophon-labs/account-eip6963": "1.2.2",
+    "@sophon-labs/account-core": "workspace:*",
+    "@tanstack/react-query": "^5.72.2",
+    "next": "15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "viem": "^2.30.0",
+    "wagmi": "^2.15.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@tanstack/react-query-devtools": "^5.72.2",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
