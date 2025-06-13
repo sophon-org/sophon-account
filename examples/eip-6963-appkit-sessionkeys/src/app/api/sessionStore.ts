@@ -23,6 +23,15 @@ export function writeSessionData(data: SessionStore) {
   fs.writeFileSync(sessionFilePath, JSON.stringify(serializedBigints, null, 2));
 }
 
+export function deleteSessionConfig(
+  smartAccountAddress: `0x${string}`,
+  sessionId: string,
+): void {
+  const sessionData = readSessionData();
+  delete sessionData[smartAccountAddress][sessionId];
+  writeSessionData(sessionData);
+}
+
 export function setSessionConfig(
   smartAccountAddress: `0x${string}`,
   sessionId: string,

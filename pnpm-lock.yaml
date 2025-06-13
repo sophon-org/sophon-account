@@ -134,8 +134,8 @@ importers:
         specifier: 1.3.2
         version: 1.3.2(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(@zerodev/sdk@5.4.36(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(@zerodev/webauthn-key@5.4.4(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
       '@sophon-labs/account-eip6963':
-        specifier: 1.3.2
-        version: 1.3.2(49bf5a8917687a4e7da719b50d4bc8b9)
+        specifier: 1.3.1
+        version: 1.3.1(49bf5a8917687a4e7da719b50d4bc8b9)
       '@tanstack/react-query':
         specifier: ^5.72.2
         version: 5.76.1(react@19.1.0)
@@ -3623,6 +3623,11 @@ packages:
 
   '@sophon-labs/account-core@1.3.2':
     resolution: {integrity: sha512-+OMveG13FkQr3ZUTO2gvJwDsOIoPXZvR0qFPW8dKL7rzTig/G8yRmbo81Q5lx9CyCO2MtU/KNAc/7R+ZsXI0xQ==}
+
+  '@sophon-labs/account-eip6963@1.3.1':
+    resolution: {integrity: sha512-yhaBMh0Bpqg2E3cG1BQEq0jOXWz0fmSoI8zQR0DydKM8b9BoD9eMf0gkGPk+jn3xLe6nDiWit4N1KEv5vjwNcA==}
+    peerDependencies:
+      '@sophon-labs/account-core': 1.3.1
 
   '@sophon-labs/account-eip6963@1.3.2':
     resolution: {integrity: sha512-rdNbPgzLDp/N7788gUDFGje7ym/6Y2k/I4AwmV22DRQeEAv7WijjP8brQxCpuZ15XddlIXbyXB4hNKBAEkod7g==}
@@ -14586,6 +14591,21 @@ snapshots:
       - uploadthing
       - utf-8-validate
       - zod
+
+  '@sophon-labs/account-eip6963@1.3.1(49bf5a8917687a4e7da719b50d4bc8b9)':
+    dependencies:
+      '@dynamic-labs/global-wallet-client': 4.20.2(@dynamic-labs/ethereum-aa@4.20.2(@zerodev/webauthn-key@5.4.4(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(@zerodev/sdk@5.4.36(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3))(zksync-sso@0.2.0(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(typescript@5.8.3)(zod@3.24.3))
+      '@sophon-labs/account-core': 1.3.2(@simplewebauthn/browser@13.1.0)(@simplewebauthn/server@10.0.1)(@types/react@19.1.2)(@wagmi/core@2.17.2(@tanstack/query-core@5.76.0)(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(@zerodev/sdk@5.4.36(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(@zerodev/webauthn-key@5.4.4(viem@2.30.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.24.3)
+    transitivePeerDependencies:
+      - '@dynamic-labs/ethereum-aa'
+      - '@solana/wallet-standard-features'
+      - '@solana/web3.js'
+      - '@wallet-standard/base'
+      - '@wallet-standard/features'
+      - '@wallet-standard/wallet'
+      - '@zerodev/sdk'
+      - viem
+      - zksync-sso
 
   '@sophon-labs/account-eip6963@1.3.2(49bf5a8917687a4e7da719b50d4bc8b9)':
     dependencies:

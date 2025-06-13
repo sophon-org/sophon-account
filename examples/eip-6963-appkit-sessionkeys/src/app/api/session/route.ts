@@ -2,11 +2,36 @@ import {
   hasSessionConfig,
   getSessionConfig,
   setSessionConfig,
+  deleteSessionConfig,
+  readSessionData,
 } from "../sessionStore";
 import { serializeBigInts } from "@/util";
 import { NextRequest } from "next/server";
-import { LimitType } from "@sophon-labs/account-core";
+import { LimitType, SessionState, SessionStatus } from "@sophon-labs/account-core";
 import { getSessionStatus, getSessionState } from "@sophon-labs/account-core";
+
+export async function DELETE(req: NextRequest) {
+  const { smartAccountAddress, sessionId } = await req.json();
+  try {
+    if (!hasSessionConfig(smartAccountAddress, sessionId)) {
+      return new Response(JSON.stringify({ error: "Session not found" }), {
+        status: 404,
+      });
+    }
+
+    deleteSessionConfig(smartAccountAddress, sessionId);
+
+    return new Response(JSON.stringify({ message: "Session deleted successfully" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err: any) {
+    return new Response(JSON.stringify({ error: err.message || String(err) }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
 
 export async function POST(req: NextRequest) {
   const {
@@ -75,44 +100,53 @@ export async function GET(req: NextRequest) {
       },
     );
   }
-  const sessionData = getSessionConfig(
-    smartAccountAddress as `0x${string}`,
-    sessionId || undefined,
-  );
 
-  if (!sessionData) {
+  const sessions = sessionId
+    ? [getSessionConfig(smartAccountAddress as `0x${string}`, sessionId)]
+    : Object.entries(readSessionData()[smartAccountAddress as `0x${string}`] || {}).map(
+        ([id, config]) => ({
+          sessionId: id,
+          sessionConfig: config,
+        })
+      );
+
+  if (!sessions.length || (sessionId && !sessions[0])) {
     return new Response(JSON.stringify({ error: "Session not found" }), {
       status: 404,
     });
   }
 
-  let sessionStatus = null;
-  let sessionState = null;
+  const results = await Promise.all(
+    sessions.map(async (sessionData) => {
+      let sessionStatus: SessionStatus | null = null;
+      let sessionState: SessionState | null = null;
+      if (!sessionData) return null;
+      if (checkOnChain === "true") {
+        try {
+          const sessionParams = {
+            accountAddress: smartAccountAddress as `0x${string}`,
+            sessionConfig: sessionData.sessionConfig,
+            testnet: true,
+          };
 
-  if (checkOnChain === "true") {
-    try {
-      const sessionParams = {
-        accountAddress: smartAccountAddress as `0x${string}`,
-        sessionConfig: sessionData.sessionConfig,
-        testnet: true,
+          sessionStatus = await getSessionStatus(sessionParams);
+          sessionState = await getSessionState(sessionParams);
+        } catch (error) {
+          console.error("Error fetching session data:", error);
+        }
+      }
+
+      return {
+        ...serializeBigInts(sessionData),
+        sessionStatus,
+        sessionState: serializeBigInts(sessionState),
       };
-
-      sessionStatus = await getSessionStatus(sessionParams);
-      sessionState = await getSessionState(sessionParams);
-    } catch (error) {
-      console.error("Error fetching session data:", error);
-    }
-  }
-
-  return new Response(
-    JSON.stringify({
-      ...serializeBigInts(sessionData),
-      sessionStatus,
-      sessionState:serializeBigInts(sessionState),
-    }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    },
+    })
   );
+
+
+  return new Response(JSON.stringify(results), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
