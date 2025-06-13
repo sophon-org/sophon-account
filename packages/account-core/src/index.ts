@@ -4,6 +4,7 @@ export * from "./sessionHelper";
 export * from "./snsHelper";
 export * from "./abis";
 export * from "./utils";
+export * from "./types/session";
 export {
   connect,
   disconnect,
