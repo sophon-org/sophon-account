@@ -6,7 +6,7 @@ import {
   SessionConfigWithId,
   SessionStore,
 } from "../util";
-import { SessionConfig } from "../../../../../packages/account-core/dist/types/session";
+import { SessionConfig } from "@sophon-labs/account-core";
 
 export const sessionFilePath = path.resolve(process.cwd(), ".sessionStore.json");
 

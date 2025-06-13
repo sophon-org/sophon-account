@@ -1,4 +1,5 @@
-import { SessionConfig, SessionStatus, SessionState } from "../../../../packages/account-core/dist/types/session";
+import { SessionConfig, SessionState, SessionStatus } from "@sophon-labs/account-core";
+
 
 export const L2_GLOBAL_PAYMASTER = '0x98546B226dbbA8230cf620635a1e4ab01F6A99B2' as `0x${string}`
 

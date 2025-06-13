@@ -5,7 +5,7 @@ import {
 } from "../sessionStore";
 import { serializeBigInts } from "@/util";
 import { NextRequest } from "next/server";
-import { LimitType } from "../../../../../../packages/account-core/dist/types/session";
+import { LimitType } from "@sophon-labs/account-core";
 import { getSessionStatus, getSessionState } from "@sophon-labs/account-core";
 
 export async function POST(req: NextRequest) {
