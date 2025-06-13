@@ -15,6 +15,6 @@
     "@sophon-labs/examples-eip6963-thirdweb",
     "@sophon-labs/examples-eip6963-connectkit",
     "@sophon-labs/examples-next-authjs",
-    "sophon-labs/examples-eip6963-appkit-sessionkeys"
+    "@sophon-labs/examples-eip6963-appkit-sessionkeys"
   ]
 }
