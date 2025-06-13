@@ -21,6 +21,8 @@ import {
   getInstallSessionKeyModuleTxForViem,
   getCreateSessionTxForViem,
   isSessionKeyModuleInstalled,
+  getRevokeSessionTxForViem,
+  getSessionHash,
 } from "@sophon-labs/account-core";
 import { sophonTestnet } from "viem/chains";
 import { SessionConfigWithId, OnChainSessionState, L2_GLOBAL_PAYMASTER, reviveBigInts } from "./util";
@@ -35,8 +37,10 @@ const MainCard: NextPage = () => {
   const [signedMessage, setSignedMessage] = useState<string | undefined>();
   const [signError, setSignError] = useState<string | undefined>();
   const [txHash, setTxHash] = useState<string | undefined>();
+  const [revokeTxHash, setRevokeTxHash] = useState<string | undefined>();
   const [txError, setTxError] = useState<string | undefined>();
   const [sessionId, setSessionId] = useState<string | undefined>();
+  const [sessions, setSessions] = useState<SessionConfigWithId[]>([]);
   const [sessionError, setSessionError] = useState<string | undefined>();
    const [backendSignError, setBackendSignError] = useState<
     string | undefined
@@ -64,8 +68,11 @@ const MainCard: NextPage = () => {
         const validSession = await fetch(
           `/api/session?smartAccountAddress=${address}`,
         );
-        const validSessionData: SessionConfigWithId = await validSession.json();
-        setSessionId(validSessionData.sessionId);
+        const validSessionData: SessionConfigWithId[] = await validSession.json();
+        if (validSessionData.length > 0) {
+          setSessionId(validSessionData[0].sessionId);
+          setSessions(validSessionData);
+        }
       }
     };
     fetchLatestSession();
@@ -168,7 +175,6 @@ const MainCard: NextPage = () => {
         }),
       });
       const data = await res.json();
-      console.log("data", data);
       setSessionId(data.sessionId);
       if (!res.ok) throw new Error(data.error || "Unknown error");
       // check if 500
@@ -178,8 +184,8 @@ const MainCard: NextPage = () => {
       const sessionConfigRes = await fetch(
         `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}&checkOnChain=false`,
       );
-      const onchainConfig: OnChainSessionState = reviveBigInts(await sessionConfigRes.json());
-      console.log("sessionConfig", onchainConfig);
+      const config = await sessionConfigRes.json();
+      const onchainConfig: OnChainSessionState = reviveBigInts(config[0]);
       if (!onchainConfig) throw new Error("Session config not found");
 
       if (!(await isSessionKeyModuleInstalled(address as `0x${string}`, true))) {
@@ -192,7 +198,6 @@ const MainCard: NextPage = () => {
         }
       });
       const installHash = await walletClient.sendTransaction(installTx);
-      console.log("installHash", installHash);
       await publicClient.waitForTransactionReceipt({ hash: installHash });
     }  else {
       console.log("Session key module already installed");
@@ -208,10 +213,50 @@ const MainCard: NextPage = () => {
       walletClient.account.address,
     );
       const sessionHash = await walletClient.sendTransaction(createSessionTx);
-      console.log("sessionHash", sessionHash);
       await publicClient.waitForTransactionReceipt({ hash: sessionHash });
+      setSessionId(data.sessionId);
+
     } catch (err: any) {
       setSessionError(err.message || String(err));
+    }
+  };
+
+  const handleRevokeSessionKey = async () => {
+    try {
+      if (!sessionDetails?.sessionConfig) throw new Error("Session config not found");
+      const sessionHash = getSessionHash(sessionDetails?.sessionConfig);
+      const revokeSessionTx = getRevokeSessionTxForViem({
+        sessionHash,
+      }, walletClient?.account.address as `0x${string}`);
+      const revokeHash = await walletClient?.sendTransaction(revokeSessionTx);
+      setRevokeTxHash(revokeHash as `0x${string}`);
+      await fetch("/api/session", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          smartAccountAddress: address,
+          sessionId,
+        }),
+      });
+      setSessions(sessions.filter(session => session.sessionId !== sessionId));
+      setSessionId(undefined);
+      setSessionDetails(null);
+      await publicClient?.waitForTransactionReceipt({ hash: revokeHash as `0x${string}` });
+    } catch (err: any) {
+      setSessionError(err.message || String(err));
+    }
+  };
+
+  const handleSelectSession = async (sessionId: string) => {
+    setSessionId(sessionId);
+    try {
+      const res = await fetch(`/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Unknown error");
+      setSessionDetails(reviveBigInts(data[0]) as OnChainSessionState);
+    } catch (err: any) {
+      console.log("err", err);
+      setSessionDetailsError(err.message || String(err));
     }
   };
 
@@ -227,8 +272,7 @@ const MainCard: NextPage = () => {
       const res = await fetch(`/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unknown error");
-      console.log("data", data);
-      setSessionDetails(data as OnChainSessionState);
+      setSessionDetails(data[0] as OnChainSessionState);
     } catch (err: any) {
       setSessionDetailsError(err.message || String(err));
     }
@@ -274,7 +318,7 @@ const MainCard: NextPage = () => {
         <Button variant="secondary" onClick={() => setShowMessageModal(true)}>
           Sign Message
         </Button>
-        <Button variant="secondary" onClick={() => setShowSessionModal(true)}>
+        <Button variant="secondary" onClick={() => {setSessionId(undefined); setRevokeTxHash(undefined); setShowSessionModal(true)}}>
           Create Session Key
         </Button>
         <Button
@@ -337,27 +381,36 @@ const MainCard: NextPage = () => {
       />
       <SessionKeyModal
         open={showSessionModal}
+        mode="create"
         onClose={() => {
           setShowSessionModal(false);
           setSessionId(undefined);
           setSessionError(undefined);
+          setRevokeTxHash(undefined);
         }}
         onSubmit={handleCreateSessionKey}
+        onRevoke={() => {}}
         result={sessionId}
         error={sessionError}
-      />
+        onSelectSession={() => {}}
+        />
       <SessionKeyModal
         open={showSessionDetailsModal}
+        mode="details"
         onClose={() => {
           setShowSessionDetailsModal(false);
           setSessionDetails(null);
           setSessionDetailsError(undefined);
+          setSessionDetails(null);
         }}
         onSubmit={() => {}}
+        onRevoke={handleRevokeSessionKey}
         result={sessionDetails?.sessionId}
         error={sessionDetailsError}
-        sessionStatus={sessionDetails?.sessionStatus}
-        sessionState={sessionDetails?.sessionState}
+        sessions={sessions}
+        onSelectSession={handleSelectSession}
+        sessionDetails={sessionDetails}
+        revokeTxHash={revokeTxHash}
       />
     </div>
   );

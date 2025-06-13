@@ -40,3 +40,14 @@ export function reviveBigInts(obj: any): any {
   }
   return obj;
 }
+
+export const matchSessionStatus = (status: SessionStatus) => {
+  switch (status) {
+    case SessionStatus.NotInitialized:
+      return "Not Initialized";
+    case SessionStatus.Active:
+      return "Active";
+    case SessionStatus.Closed:
+      return "Closed";
+  }
+}

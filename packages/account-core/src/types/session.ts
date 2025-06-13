@@ -176,21 +176,24 @@ export const getPeriodIdsForTransaction = (args: {
   return periodIds;
 };
 
-export type CreateSessionArgs = {
-  sessionConfig: SessionConfig;
-  contracts: {
-    session: Address; // session module
-  };
+export type BaseTransactionArgs = {
   paymaster?: {
     address: Address;
     paymasterInput?: Hex;
   };
 };
 
-export type InstallSessionKeyModuleArgs = {
-  accountAddress: Address;
-  paymaster?: {
-    address: Address;
-    paymasterInput?: Hex;
+export type CreateSessionArgs = BaseTransactionArgs & {
+  sessionConfig: SessionConfig;
+  contracts: {
+    session: Address; // session module
   };
+};
+
+export type InstallSessionKeyModuleArgs = BaseTransactionArgs & {
+  accountAddress: Address;
+};
+
+export type RevokeSessionArgs = BaseTransactionArgs & {
+  sessionHash: `0x${string}`;
 };

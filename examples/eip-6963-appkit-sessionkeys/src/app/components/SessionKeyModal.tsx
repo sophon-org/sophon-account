@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
+import { matchSessionStatus, OnChainSessionState, SessionConfigWithId } from "@/util";
+import BlueLink from "./BlueLink";
+import Link from "next/link";
+import { SessionStatus } from "@sophon-labs/account-core";
 
 interface SessionKeyModalProps {
   open: boolean;
+  mode: "create" | "details";
   onClose: () => void;
   onSubmit: (config: {
     signer: string;
@@ -11,20 +16,27 @@ interface SessionKeyModalProps {
     transferTarget: string;
     transferValue: string;
   }) => void;
+  onRevoke: () => void;
+  onSelectSession: (sessionId: string) => void;
   result?: React.ReactNode;
   error?: string;
-  sessionStatus?: string | number | null;
-  sessionState?: any;
+  sessionDetails?: OnChainSessionState | null;
+  sessions?: SessionConfigWithId[];
+  revokeTxHash?: string;
 }
 
 const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
   open,
+  mode,
   onClose,
   onSubmit,
+  onRevoke,
+  onSelectSession,
   result,
   error,
-  sessionStatus,
-  sessionState,
+  sessionDetails,
+  sessions,
+  revokeTxHash
 }) => {
   const [signer, setSigner] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
@@ -55,8 +67,8 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
         >
           ×
         </button>
-        <b className="text-lg mb-2">{sessionStatus === undefined && sessionState === undefined ? "Create Session Key" : "Session Key Details"}</b>
-        {sessionStatus === undefined && sessionState === undefined && (
+        <b className="text-lg mb-2">{mode === "create" ? "Create Session Key" : mode === "details" ? "Session Key Details" : "Revoke Session Key"}</b>
+        {mode === "create" && (
           <form
             className="gap-4 w-full flex flex-col items-center justify-center"
             onSubmit={(e) => {
@@ -123,7 +135,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
         )}
         {result && (
           <div className="w-full mt-4 p-2 rounded bg-white text-sophon-blue-400 break-all text-left border border-gray-200">
-            <div className="font-semibold mb-1">Local Session ID:</div>
+            <div className="font-semibold mb-1">Local Session ID/Transaction Hash:</div>
             <code className="block">{result}</code>
           </div>
         )}
@@ -133,17 +145,56 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
             <span>{String(error).slice(0, 100)}</span>
           </div>
         )}
-        {sessionStatus !== undefined && sessionStatus !== null && (
+        {mode === "details" && sessions?.length !== 0 && (
           <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
-            <div className="font-semibold mb-1">Session Status (on-chain):</div>
-            <code className="block">{String(sessionStatus)}</code>
+            <div className="font-semibold mb-1">Select Session ID:</div>
+            <select
+              className="w-full rounded-lg border border-gray-200 p-2 text-base"
+              onChange={(e) => {
+                const selectedSession = sessions?.find(session => session.sessionId === e.target.value);
+                if (selectedSession) {
+                  onSelectSession(selectedSession.sessionId);
+                }
+              }}
+            >
+              {sessions?.map(session => (
+                <option key={session.sessionId} value={session.sessionId}>
+                  {session.sessionId}
+                </option>
+              ))}
+            </select>
           </div>
         )}
-        {sessionState && (
+        {mode === "details" && sessionDetails && (
+          <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
+            <div className="font-semibold mb-1">Session Status (on-chain):</div>
+            <code className="block">{String(sessionDetails.sessionStatus)}({matchSessionStatus(sessionDetails.sessionStatus)})</code>
+          </div>
+        )}
+        {mode === "details" && sessionDetails && (
           <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
             <div className="font-semibold mb-1">Session State (on-chain):</div>
-            <pre className="block whitespace-pre-wrap text-xs">{JSON.stringify(sessionState, null, 2)}</pre>
+            <pre className="block whitespace-pre-wrap text-xs">{JSON.stringify(sessionDetails.sessionState, null, 2)}</pre>
           </div>
+        )}
+        {mode === "details" && revokeTxHash && (
+          <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
+            <div className="font-semibold mb-1">Revoke Transaction Hash:</div>
+            <BlueLink
+              href={`https://explorer.testnet.sophon.xyz/tx/${revokeTxHash}`}
+              LinkComponent={Link}
+            >
+              {revokeTxHash}
+            </BlueLink>
+          </div>
+        )}
+        {mode === "details" && sessionDetails && sessionDetails.sessionStatus !== SessionStatus.Closed && (
+          <Button
+            variant="secondary"
+            onClick={onRevoke}
+          >
+            Revoke Session Key
+          </Button>
         )}
       </div>
     </div>
