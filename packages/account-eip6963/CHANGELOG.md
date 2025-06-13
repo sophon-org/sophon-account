@@ -1,5 +1,16 @@
 # @sophon-labs/account-eip6963
 
+## 1.3.0
+
+### Minor Changes
+
+- a3bd2b0: Adding support for session keys and updating dynamic sdks
+
+### Patch Changes
+
+- Updated dependencies [a3bd2b0]
+  - @sophon-labs/account-core@1.3.0
+
 ## 1.2.2
 
 ### Patch Changes
