@@ -15,6 +15,7 @@ import {
 } from "zksync-sso/client";
 import { sophon, sophonTestnet } from "viem/chains";
 import {
+  RevokeSessionArgs,
   SessionState,
   type CreateSessionArgs,
   type InstallSessionKeyModuleArgs,
@@ -193,4 +194,28 @@ export const getCreateSessionTxForViem = (
   };
 
   return sendTransactionArgs;
+};
+
+export const getRevokeSessionTxForViem = (
+  args: RevokeSessionArgs,
+  accountAddress: Address,
+) => {
+  const callData = encodeFunctionData({
+    abi: SessionKeyValidatorAbi,
+    functionName: "revokeKey",
+    args: [args.sessionHash],
+  });
+
+  const revokeKeyArgs = {
+    from: accountAddress,
+    to: SOPHON_SESSION_KEY_MODULE_ADDRESS,
+    data: callData,
+    paymaster: args.paymaster?.address,
+    paymasterInput: args.paymaster?.address
+      ? args.paymaster?.paymasterInput ||
+        getGeneralPaymasterInput({ innerInput: "0x" })
+      : undefined,
+  };
+
+  return revokeKeyArgs;
 };
