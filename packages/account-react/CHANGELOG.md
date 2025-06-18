@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.3.3
+
+### Patch Changes
+
+- Session revoke support
+- Updated dependencies
+  - @sophon-labs/account-core@1.3.3
+
 ## 1.3.2
 
 ### Patch Changes
