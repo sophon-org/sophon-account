@@ -53,6 +53,7 @@ export function getSessionConfig(
   if (!sessionId) {
     const now = Math.floor(Date.now() / 1000);
     const sessionEntry = Object.entries(accountSessions).find(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([_, session]) => {
         const expiresAt =
           typeof session.expiresAt === "string"

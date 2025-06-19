@@ -9,7 +9,10 @@ export async function POST(req: NextRequest) {
   try {
     const { from, to, value, sessionId, chain } = await req.json();
     if (!from || !to || !value || !sessionId) {
-      return new Response(JSON.stringify({ error: "from, to, value, and sessionId are required" }), { status: 400 });
+      return new Response(
+        JSON.stringify({ error: "from, to, value, and sessionId are required" }),
+        { status: 400 }
+      );
     }
 
     const sessionConfig = getSessionConfig(from as `0x${string}`, sessionId);
@@ -25,7 +28,11 @@ export async function POST(req: NextRequest) {
       value: typeof value === "string" ? BigInt(value) : value,
     });
 
-    return new Response(JSON.stringify({ txHash: tx }), { status: 200, headers: { "Content-Type": "application/json" } });
+    return new Response(JSON.stringify({ txHash: tx }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   } catch (err: any) {
     console.error(err);
     return new Response(JSON.stringify({ error: err.message || String(err) }), { status: 500 });

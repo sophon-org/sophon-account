@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { SessionConfig, SessionState, SessionStatus } from "@sophon-labs/account-core";
 
 
