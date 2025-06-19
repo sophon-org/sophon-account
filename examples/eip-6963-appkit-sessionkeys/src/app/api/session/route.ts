@@ -25,6 +25,7 @@ export async function DELETE(req: NextRequest) {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message || String(err) }), {
       status: 500,
@@ -34,20 +35,14 @@ export async function DELETE(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const {
-    smartAccountAddress,
-    signer,
-    expiresAt,
-    feeLimit,
-    transferTarget,
-    transferValue,
-  } = await req.json();
+  const { smartAccountAddress, signer, expiresAt, feeLimit, transferTarget, transferValue } =
+    await req.json();
   try {
     const sessionConfig = {
       signer: signer as `0x${string}`,
       expiresAt: BigInt(Math.floor(new Date(expiresAt).getTime() / 1000)),
       feeLimit: {
-        limitType: LimitType.Lifetime, 
+        limitType: LimitType.Lifetime,
         limit: BigInt(feeLimit),
         period: 604800n, // 1 week
       },
@@ -65,7 +60,7 @@ export async function POST(req: NextRequest) {
       ],
     };
     const sessionId = Math.random().toString(36).slice(2);
-    
+
     const serializedConfig = serializeBigInts(sessionConfig);
 
     if (hasSessionConfig(smartAccountAddress, sessionId)) {
@@ -80,6 +75,7 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message || String(err) }), {
       status: 500,
@@ -93,12 +89,9 @@ export async function GET(req: NextRequest) {
   const sessionId = searchParams.get("sessionId");
   const checkOnChain = searchParams.get("checkOnChain");
   if (!smartAccountAddress) {
-    return new Response(
-      JSON.stringify({ error: "Smart account address is required" }),
-      {
-        status: 400,
-      },
-    );
+    return new Response(JSON.stringify({ error: "Smart account address is required" }), {
+      status: 400,
+    });
   }
 
   const sessions = sessionId
@@ -143,7 +136,6 @@ export async function GET(req: NextRequest) {
       };
     })
   );
-
 
   return new Response(JSON.stringify(results), {
     status: 200,
