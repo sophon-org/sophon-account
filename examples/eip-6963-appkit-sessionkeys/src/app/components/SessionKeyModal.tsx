@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import { matchSessionStatus, OnChainSessionState, SessionConfigWithId } from "@/util";
+import { matchSessionStatus, OnChainSessionState, serializeBigInts, SessionConfigWithId } from "@/util";
 import BlueLink from "./BlueLink";
 import Link from "next/link";
 import { SessionStatus } from "@sophon-labs/account-core";
@@ -174,7 +174,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
         {mode === "details" && sessionDetails && (
           <div className="w-full mt-4 p-2 rounded bg-white text-indigo-700 break-all text-left border border-gray-200">
             <div className="font-semibold mb-1">Session State (on-chain):</div>
-            <pre className="block whitespace-pre-wrap text-xs">{JSON.stringify(sessionDetails.sessionState, null, 2)}</pre>
+            <pre className="block whitespace-pre-wrap text-xs">{JSON.stringify(serializeBigInts(sessionDetails.sessionState), null, 2)}</pre>
           </div>
         )}
         {mode === "details" && revokeTxHash && (

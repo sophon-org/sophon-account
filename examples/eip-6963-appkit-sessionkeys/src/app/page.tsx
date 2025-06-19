@@ -1,58 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import { TextHighlight, InfoCard, Background } from "./components";
-import MainCard from "./container";
+import { Background } from "./components";
+import GameContainer from "./game-container";
 
 export default function Home() {
   return (
     <Background>
-      <div className="w-full flex flex-col justify-center items-center h-full gap-10">
-        <Image
-          src="/partnership.svg"
-          alt="partnership"
-          width={240}
-          height={60}
-        />
-        <div className="w-1/3 font-bold text-gray-100 flex flex-row items-center gap-2 justify-center">
-          <span>Get started by editing</span>
-          <TextHighlight
-            label="src/app/page.tsx"
-            url="https://docs.sophon.xyz"
-          />
+      <div className="w-full flex flex-col justify-center items-center h-full gap-8 p-8">
+        {/* Game Header */}
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-4">
+            <Image
+              src="/partnership.svg"
+              alt="Sophon x Session Keys"
+              width={200}
+              height={50}
+            />
+          </div>
+          <h1 className="text-4xl font-bold text-white">Chess with Session Keys</h1>
+          <p className="text-black text-lg max-w-2xl">
+            Experience the power of Session Keys through chess! Toggle between manual signing and 
+            session-based moves to feel the dramatic UX difference.
+          </p>
         </div>
 
-        <MainCard />
+        {/* Game Container */}
+        <GameContainer />
 
-        <div className="w-full flex justify-center">
-          <div className="w-full max-w-5xl flex flex-row items-stretch gap-6">
-            <InfoCard
-              iconSrc="/ic-doc.svg"
-              alt="documentation"
-              title="Documentation"
-              description="Dive into our guides and API"
-              className="flex-1"
-              ImageComponent={Image}
-              url="https://docs.sophon.xyz"
-            />
-            <InfoCard
-              iconSrc="/ic-git.svg"
-              alt="github"
-              title="GitHub"
-              description="View our example repos"
-              className="flex-1"
-              ImageComponent={Image}
-              url="https://github.com/sophon-org/sophon-account"
-            />
-            <InfoCard
-              iconSrc="/ic-logo-x.svg"
-              alt="x"
-              title="Sophon on X"
-              description="Follow us and stay up to date"
-              className="flex-1"
-              ImageComponent={Image}
-              url="https://x.com/sophon"
-            />
+        {/* Info Section */}
+        <div className="w-full max-w-4xl mt-8">
+          <div className="bg-slate-900/60 backdrop-blur-sm rounded-lg p-6 border border-white/20 shadow-lg">
+            <h3 className="text-xl font-semibold text-white mb-3">How it works:</h3>
+            <div className="grid md:grid-cols-2 gap-6 text-gray-300">
+              <div>
+                <h4 className="font-medium text-blue-400 mb-2">🐌 Manual Mode:</h4>
+                <p className="text-sm">Every chess move requires wallet confirmation. Watch how the 3-7 second delays break the flow of the game!</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-blue-400 mb-2">⚡ Session Keys Mode:</h4>
+                <p className="text-sm">Pre-approve a session once, then play chess at natural speed with instant moves. Feel the seamless experience!</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

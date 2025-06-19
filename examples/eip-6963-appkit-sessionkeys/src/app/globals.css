@@ -35,3 +35,22 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Fix react-chessboard positioning issues */
+.chessboard-container {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Reset transforms that could interfere with coordinate calculations */
+.chessboard-container > div {
+  transform: none !important;
+  position: static !important;
+}
+
+/* Ensure pieces can be dragged properly */
+.chessboard-container [style*="cursor: grab"],
+.chessboard-container [style*="cursor: grabbing"] {
+  will-change: transform !important;
+  z-index: 1000 !important;
+}
