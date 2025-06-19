@@ -1,13 +1,27 @@
-import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
+import { createConfig, http } from "wagmi";
 import { sophonTestnet } from "wagmi/chains";
-import { http } from "wagmi";
+import { sophonGlobalWallet } from "./wallets/sophonGlobal";
 
-export const config = getDefaultConfig({
-  appName: "RainbowKit App",
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
+const connectors = connectorsForWallets(
+  [
+    {
+      groupName: "Sophon",
+      wallets: [sophonGlobalWallet],
+    },
+  ],
+  {
+    appName: "RainbowKit App",
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
+  },
+);
+
+export const config = createConfig({
+  connectors,
+  chains: [sophonTestnet],
   transports: {
     [sophonTestnet.id]: http(),
   },
-  chains: [sophonTestnet],
+  multiInjectedProviderDiscovery: true,
   ssr: true,
 });
