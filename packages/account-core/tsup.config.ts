@@ -1,3 +1,4 @@
+import { fixImportsPlugin } from "esbuild-fix-imports-plugin";
 import { defineConfig } from "tsup";
 import path from "path";
 
@@ -17,11 +18,13 @@ export default defineConfig((options) => {
     splitting: true,
     sourcemap: !!options.watch,
     clean: true,
+    bundle: false,
     minify: !options.watch,
     dts: true,
     format: ["esm", "cjs"],
     outDir: "dist",
     tsconfig: path.resolve(__dirname, "./tsconfig.json"),
+    esbuildPlugins: [fixImportsPlugin()],
     // banner: {
     //   js: `"use client";`,
     // },
