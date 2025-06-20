@@ -7,7 +7,10 @@
     "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react --filter sophon-ui build",
     "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react dev ",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "release:generate": "changeset",
+    "release:version": "changeset version",
+    "release:publish": "pnpm publish -r --no-git-checks"
   },
   "keywords": [],
   "author": "",
