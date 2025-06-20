@@ -5,7 +5,6 @@ export default defineConfig((options) => {
   return {
     entry: ["src/*", "src/hooks/*", "src/components/*"],
     splitting: true,
-    bundle: false,
     sourcemap: !!options.watch,
     clean: true,
     minify: !options.watch,
