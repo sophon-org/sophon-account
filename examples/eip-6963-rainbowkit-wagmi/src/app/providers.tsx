@@ -3,8 +3,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
-import "@sophon-labs/account-eip6963/testnet";
-
 import { config } from "../wagmi";
 
 export default function AppProviders({
@@ -20,7 +18,7 @@ export default function AppProviders({
         <RainbowKitProvider
           appInfo={{
             appName: "Rainbowkit Demo",
-            learnMoreUrl: "https://learnaboutcryptowallets.example",
+            learnMoreUrl: "https://docs.sophon.xyz",
           }}
         >
           {children}
