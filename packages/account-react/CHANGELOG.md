@@ -1,5 +1,13 @@
 # @sophon-labs/account-react
 
+## 1.3.4
+
+### Patch Changes
+
+- 9041e31: chore: turn off the bundle: false tsup config option that breaks js builds
+- Updated dependencies [9041e31]
+  - @sophon-labs/account-core@1.3.4
+
 ## 1.3.3
 
 ### Patch Changes
