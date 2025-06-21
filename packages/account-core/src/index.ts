@@ -15,5 +15,5 @@ export {
   getEthereumWallets,
 } from "@dynamic-labs/global-wallet-client/features";
 export { createEIP1193Provider } from "@dynamic-labs/global-wallet-client/ethereum";
-export { isEthereumWallet } from "@dynamic-labs/ethereum";
+export { isEthereumWallet } from "@dynamic-labs/ethereum-core";
 export { SiwsMessage } from "./siws";
