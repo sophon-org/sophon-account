@@ -20,7 +20,7 @@
     "wagmi": "^2.15.4"
   },
   "dependencies": {
-    "@dynamic-labs/wagmi-connector": "4.20.2"
+    "@dynamic-labs/wagmi-connector": "4.20.7"
   },
   "devDependencies": {
     "@types/react": "^19.1.0",
