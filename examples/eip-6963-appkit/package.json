@@ -20,14 +20,11 @@
     "wagmi": "^2.15.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@tanstack/react-query-devtools": "^5.72.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
