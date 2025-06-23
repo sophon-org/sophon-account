@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.3.5
+
+### Patch Changes
+
+- chore: replace @dynamic-labs/ethereum for @dynamic-labs/global-wallet-client in @sophon-labs/account-core so that we don't have to rely on react. Also updating Dynamic library dependencies.
+
 ## 1.3.4
 
 ### Patch Changes
