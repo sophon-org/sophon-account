@@ -1,7 +1,11 @@
-import { SessionConfig, SessionState, SessionStatus } from "@sophon-labs/account-core";
+import {
+  type SessionConfig,
+  type SessionState,
+  SessionStatus,
+} from "@sophon-labs/account-core";
 
-
-export const L2_GLOBAL_PAYMASTER = '0x98546B226dbbA8230cf620635a1e4ab01F6A99B2' as `0x${string}`
+export const L2_GLOBAL_PAYMASTER =
+  "0x98546B226dbbA8230cf620635a1e4ab01F6A99B2" as `0x${string}`;
 
 export type SessionStore = {
   [smartAccountAddress: string]: {
@@ -50,4 +54,4 @@ export const matchSessionStatus = (status: SessionStatus) => {
     case SessionStatus.Closed:
       return "Closed";
   }
-}
+};

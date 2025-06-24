@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.module.css";
-import { useSophonContext, useIsLoggedIn } from "@sophon-labs/account-react";
 import { isEthereumWallet } from "@sophon-labs/account-core";
-import { isZKsyncConnector } from "@sophon-labs/account-react";
+import {
+  isZKsyncConnector,
+  useIsLoggedIn,
+  useSophonContext,
+} from "@sophon-labs/account-react";
 
 export default function ExampleMethods({
   isDarkMode,
@@ -18,7 +21,7 @@ export default function ExampleMethods({
     const seen = new WeakSet();
     return JSON.stringify(
       obj,
-      (key, value) => {
+      (_key, value) => {
         if (typeof value === "object" && value !== null) {
           if (seen.has(value)) {
             return "[Circular]";
@@ -66,7 +69,7 @@ export default function ExampleMethods({
 
     if (!isZKsyncConnector(primaryWallet.connector)) {
       const signature = await primaryWallet.signMessage("Hello World");
-      setResult(signature!);
+      if (signature) setResult(signature);
     } else {
       const ecdsaClient =
         primaryWallet.connector.getAccountAbstractionProvider();
@@ -98,18 +101,31 @@ export default function ExampleMethods({
           data-theme={isDarkMode ? "dark" : "light"}
         >
           <div className="methods-container">
-            <button className="btn btn-primary" onClick={showUser}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={showUser}
+            >
               Fetch User
             </button>
             {primaryWallet && isEthereumWallet(primaryWallet) && (
               <>
-                <button className="btn btn-primary" onClick={fetchPublicClient}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={fetchPublicClient}
+                >
                   Fetch Public Client
                 </button>
-                <button className="btn btn-primary" onClick={fetchWalletClient}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={fetchWalletClient}
+                >
                   Fetch Wallet Client
                 </button>
                 <button
+                  type="button"
                   className="btn btn-primary"
                   onClick={signEthereumMessage}
                 >
@@ -130,7 +146,11 @@ export default function ExampleMethods({
           )}
           {result && (
             <div className="clear-container">
-              <button className="btn btn-primary" onClick={clearResult}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={clearResult}
+              >
                 Clear
               </button>
             </div>

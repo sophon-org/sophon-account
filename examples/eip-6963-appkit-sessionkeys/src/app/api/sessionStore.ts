@@ -1,14 +1,17 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
+import type { SessionConfig } from "@sophon-labs/account-core";
 import {
   reviveBigInts,
+  type SessionConfigWithId,
+  type SessionStore,
   serializeBigInts,
-  SessionConfigWithId,
-  SessionStore,
 } from "../util";
-import { SessionConfig } from "@sophon-labs/account-core";
 
-export const sessionFilePath = path.resolve(process.cwd(), ".sessionStore.json");
+export const sessionFilePath = path.resolve(
+  process.cwd(),
+  ".sessionStore.json",
+);
 
 export function readSessionData(): SessionStore {
   if (!fs.existsSync(sessionFilePath)) {

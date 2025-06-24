@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import Button from "./Button";
 
 interface SignMessageModalProps {
@@ -29,6 +30,7 @@ const SignMessageModal: React.FC<SignMessageModalProps> = ({
       <div className="absolute inset-0 backdrop-blur-2xl"></div>
       <div className="relative z-10 w-[400px] shadow-[0px_2px_24px_rgba(15,_14,_13,_0.04),_0px_12px_36px_rgba(15,_14,_13,_0.04),_0px_0px_0px_1px_rgba(15,_14,_13,_0.08)_inset,_0px_1px_0px_rgba(15,_14,_13,_0.08)_inset] rounded-3xl bg-white overflow-hidden flex flex-col items-center justify-start p-[2rem] box-border gap-[2rem] text-center text-[1.1rem] text-gray-100 font-inter">
         <button
+          type="button"
           className="absolute top-4 right-4 text-dimgray hover:text-gray-700 text-xl"
           onClick={onClose}
           aria-label="Close"

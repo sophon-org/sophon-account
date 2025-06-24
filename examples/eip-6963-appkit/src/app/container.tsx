@@ -1,11 +1,16 @@
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useEffect, useState } from "react";
-import { useSendTransaction, useSignMessage } from "wagmi";
 import { parseEther } from "viem";
+import { useSendTransaction, useSignMessage } from "wagmi";
 
-import { BlueLink, Button, SendTransactionModal, SignMessageModal } from "./components";
+import {
+  BlueLink,
+  Button,
+  SendTransactionModal,
+  SignMessageModal,
+} from "./components";
 
 const MainCard: NextPage = () => {
   const { open } = useAppKit();
@@ -17,8 +22,16 @@ const MainCard: NextPage = () => {
   const [txHash, setTxHash] = useState<string | undefined>();
   const [txError, setTxError] = useState<string | undefined>();
 
-  const { data: signMessageData, error: signErrorWagmi, signMessage } = useSignMessage();
-  const { data: transactionData, error: txErrorWagmi, sendTransaction } = useSendTransaction();
+  const {
+    data: signMessageData,
+    error: signErrorWagmi,
+    signMessage,
+  } = useSignMessage();
+  const {
+    data: transactionData,
+    error: txErrorWagmi,
+    sendTransaction,
+  } = useSendTransaction();
 
   useEffect(() => {
     if (signMessageData) {
@@ -109,7 +122,10 @@ const MainCard: NextPage = () => {
         txHash={txHash}
         error={txError}
         ResultComponent={
-          <BlueLink href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`} LinkComponent={Link}>
+          <BlueLink
+            href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`}
+            LinkComponent={Link}
+          >
             {txHash}
           </BlueLink>
         }

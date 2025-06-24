@@ -2,9 +2,9 @@
 
 import { Button, Stack } from "@mantine/core";
 import {
-  shortenAddress,
   SophonConnectButtonWidget,
   SophonUserProfile,
+  shortenAddress,
   useIsLoggedIn,
   useSophonContext,
 } from "@sophon-labs/account-react";
@@ -22,7 +22,9 @@ export default function ExampleComponent() {
           leftSection={<DogIcon />}
           onClick={() => setShowSophonAccountProfile(true)}
         >
-          Hello, {shortenAddress(primaryWallet!.address)}
+          {primaryWallet
+            ? `Hello, ${shortenAddress(primaryWallet.address)}`
+            : "Hello"}
         </Button>
         <SophonUserProfile variant="modal" />
       </Stack>

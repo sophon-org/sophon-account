@@ -2,19 +2,23 @@ import type { NextPage } from "next";
 import Link from "next/link";
 
 import { useEffect, useState } from "react";
-import { parseEther } from "viem";
-
-import { BlueLink, Button, SendTransactionModal, SignMessageModal } from "./components";
 import { createThirdwebClient, defineChain } from "thirdweb";
-import { signMessage } from "thirdweb/utils";
 import {
   ConnectButton,
   useActiveAccount,
-  useWalletDetailsModal,
-  useSendTransaction,
   useConnectModal,
+  useSendTransaction,
+  useWalletDetailsModal,
 } from "thirdweb/react";
+import { signMessage } from "thirdweb/utils";
+import { parseEther } from "viem";
 import { sophonTestnet } from "viem/chains";
+import {
+  BlueLink,
+  Button,
+  SendTransactionModal,
+  SignMessageModal,
+} from "./components";
 
 const MainCard: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +29,7 @@ const MainCard: NextPage = () => {
   const [txError, setTxError] = useState<string | undefined>();
 
   const client = createThirdwebClient({
-    clientId: process.env.NEXT_PUBLIC_THIRDWEB_PROJECT_ID!,
+    clientId: process.env.NEXT_PUBLIC_THIRDWEB_PROJECT_ID ?? "",
   });
 
   const { connect } = useConnectModal();
@@ -117,7 +121,11 @@ const MainCard: NextPage = () => {
       <div className="self-stretch flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-left text-sm sm:text-base md:text-lg text-darkslateblue">
         <Button
           variant="primary"
-          onClick={isConnected ? () => detailsModal.open({ client }) : () => connect({ client })}
+          onClick={
+            isConnected
+              ? () => detailsModal.open({ client })
+              : () => connect({ client })
+          }
         >
           {isConnected ? "Open Wallet" : "Connect"}
         </Button>
@@ -139,7 +147,10 @@ const MainCard: NextPage = () => {
         txHash={txHash}
         error={txError}
         ResultComponent={
-          <BlueLink href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`} LinkComponent={Link}>
+          <BlueLink
+            href={`https://explorer.testnet.sophon.xyz/tx/${txHash}`}
+            LinkComponent={Link}
+          >
             {txHash}
           </BlueLink>
         }

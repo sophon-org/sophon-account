@@ -1,13 +1,13 @@
 "use client";
 
-import { getCsrfToken, signIn } from "next-auth/react";
 import {
-  SiwsMessage,
   connect,
   createEIP1193Provider,
   getSophonWallet,
+  SiwsMessage,
 } from "@sophon-labs/account-core";
-import { createWalletClient, custom, Hex } from "viem";
+import { getCsrfToken, signIn } from "next-auth/react";
+import { createWalletClient, custom, type Hex } from "viem";
 import { sophon, sophonTestnet } from "viem/chains";
 
 export const LoginButton = () => {
@@ -51,6 +51,7 @@ export const LoginButton = () => {
 
   return (
     <button
+      type="button"
       style={{
         backgroundColor: "purple",
         padding: 10,

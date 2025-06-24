@@ -14,14 +14,14 @@ import {
   type ZksyncSsoSessionClient,
 } from "zksync-sso/client/session";
 import { sophon, sophonTestnet } from "viem/chains";
-import {
+import type {
   RevokeSessionArgs,
   SessionState,
-  type CreateSessionArgs,
-  type InstallSessionKeyModuleArgs,
-  type SessionConfig,
+  CreateSessionArgs,
+  InstallSessionKeyModuleArgs,
+  SessionConfig,
 } from "./types/session";
-import { encodeSession, SessionStatus } from "zksync-sso/utils";
+import { encodeSession, type SessionStatus } from "zksync-sso/utils";
 import { SOPHON_SESSION_KEY_MODULE_ADDRESS } from "./utils";
 
 export function getSessionHash(sessionConfig: SessionConfig): `0x${string}` {

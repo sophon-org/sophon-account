@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
+import { useSendTransaction } from "wagmi";
 
 export function SignTransaction() {
   const [copied, setCopied] = React.useState<"address" | "transaction" | null>(
@@ -33,7 +33,7 @@ export function SignTransaction() {
 
           if (
             !destination ||
-            isNaN(parseFloat(amount)) ||
+            Number.isNaN(parseFloat(amount)) ||
             parseFloat(amount) <= 0
           ) {
             alert("Please enter a valid address and amount.");
@@ -117,6 +117,7 @@ export function SignTransaction() {
         </div>
 
         <button
+          type="button"
           disabled={isPending}
           style={{
             padding: "12px 24px",
@@ -192,6 +193,7 @@ export function SignTransaction() {
             >
               <strong style={{ color: "#334155" }}>Transaction Hash</strong>
               <button
+                type="button"
                 onClick={(e) => {
                   e.preventDefault();
                   copyToClipboard(transactionData, "transaction");

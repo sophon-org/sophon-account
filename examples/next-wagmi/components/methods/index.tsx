@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.module.css";
-import {
-  useSophonContext,
-  useIsLoggedIn,
-} from "@sophon-labs/account-react";
 import { isEthereumWallet } from "@sophon-labs/account-core";
-import { isZKsyncConnector } from "@sophon-labs/account-react";
-import styles from "./index.module.css";
-import { parseEther, formatEther } from "viem";
+import {
+  isZKsyncConnector,
+  useIsLoggedIn,
+  useSophonContext,
+} from "@sophon-labs/account-react";
+import { formatEther, parseEther } from "viem";
 import { eip712WalletActions, getGeneralPaymasterInput } from "viem/zksync";
+import styles from "./index.module.css";
 
 export default function ExampleMethods({
   isDarkMode,
@@ -25,7 +25,7 @@ export default function ExampleMethods({
     const seen = new WeakSet();
     return JSON.stringify(
       obj,
-      (key, value) => {
+      (_key, value) => {
         if (typeof value === "object" && value !== null) {
           if (seen.has(value)) {
             return "[Circular]";
@@ -34,7 +34,7 @@ export default function ExampleMethods({
         }
         return value;
       },
-      2
+      2,
     );
   };
 
@@ -90,7 +90,7 @@ export default function ExampleMethods({
 
     if (!isZKsyncConnector(primaryWallet.connector)) {
       const signature = await primaryWallet.signMessage("Hello World");
-      setResult(signature!);
+      if (signature) setResult(signature);
     } else {
       const ecdsaClient =
         primaryWallet.connector.getAccountAbstractionProvider();
@@ -102,7 +102,6 @@ export default function ExampleMethods({
   }
 
   async function sendSoph(to: string, amount: number) {
-
     if (!primaryWallet || !isEthereumWallet(primaryWallet)) return;
 
     try {
@@ -155,7 +154,11 @@ export default function ExampleMethods({
       data-theme={isDarkMode ? "dark" : "light"}
     >
       <div className={styles.methodsGrid}>
-        <button className={styles.methodButton} onClick={showUser}>
+        <button
+          type="button"
+          className={styles.methodButton}
+          onClick={showUser}
+        >
           Fetch User
         </button>
 
@@ -164,13 +167,22 @@ export default function ExampleMethods({
             <div className={styles.balanceDisplay}>
               Your Balance: {balance} SOPH
             </div>
-            <button className={styles.methodButton} onClick={fetchPublicClient}>
+            <button
+              type="button"
+              className={styles.methodButton}
+              onClick={fetchPublicClient}
+            >
               Fetch Public Client
             </button>
-            <button className={styles.methodButton} onClick={fetchWalletClient}>
+            <button
+              type="button"
+              className={styles.methodButton}
+              onClick={fetchWalletClient}
+            >
               Fetch Wallet Client
             </button>
             <button
+              type="button"
               className={styles.methodButton}
               onClick={signEthereumMessage}
             >
@@ -185,7 +197,7 @@ export default function ExampleMethods({
                 const toAddress = formData.get("toAddress") as string;
                 const amount = parseFloat(formData.get("amount") as string);
 
-                if (!toAddress || isNaN(amount) || amount <= 0) {
+                if (!toAddress || Number.isNaN(amount) || amount <= 0) {
                   alert("Please enter a valid address and amount.");
                   return;
                 }
@@ -231,7 +243,11 @@ export default function ExampleMethods({
         <div className={styles.resultSection}>
           <div className={styles.resultHeader}>
             <h3>Result</h3>
-            <button className={styles.clearButton} onClick={clearResult}>
+            <button
+              type="button"
+              className={styles.clearButton}
+              onClick={clearResult}
+            >
               Clear
             </button>
           </div>

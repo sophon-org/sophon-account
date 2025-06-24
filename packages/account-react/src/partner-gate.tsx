@@ -17,7 +17,7 @@ export const PartnerGate = ({
     isValidPartner(partnerId, sandboxDisabled).then((response) => {
       setIsValid(response);
     });
-  }, [partnerId]);
+  }, [partnerId, sandboxDisabled]);
 
   if (!isValid) {
     return (

@@ -6,8 +6,8 @@
   "scripts": {
     "build:core": "pnpm run --stream -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react --filter sophon-ui build",
     "dev:core": "pnpm run --stream --parallel -r --filter @sophon-labs/account-core --filter @sophon-labs/account-wagmi --filter @sophon-labs/account-eip6963 --filter @sophon-labs/account-react dev ",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint": "biome lint . --write",
+    "format": "biome format . --write"
   },
   "keywords": [],
   "author": "",
@@ -19,17 +19,13 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@biomejs/biome": "2.0.4",
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@eslint/js": "^9.20.0",
-    "eslint": "^9.20.1",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "prettier": "^3.5.0",
-    "typescript-eslint": "^8.24.0"
+    "prettier": "^3.5.0"
   },
   "dependencies": {
     "@changesets/cli": "^2.29.4"

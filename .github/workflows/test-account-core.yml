@@ -42,6 +42,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+
+      - name: Validate formatting & linting standards
+        run: pnpm exec biome ci .
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

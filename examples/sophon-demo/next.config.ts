@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+import path from "node:path";
 import createMDX from "@next/mdx";
 import CopyPlugin from "copy-webpack-plugin";
-import path from "path";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],

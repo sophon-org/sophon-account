@@ -1,7 +1,7 @@
 import {
   DynamicContextProvider,
-  DynamicContextProps,
-  DynamicEventsCallbacks,
+  type DynamicContextProps,
+  type DynamicEventsCallbacks,
 } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { ZKsyncSmartWalletConnectors } from "@dynamic-labs/ethereum-aa-zksync";

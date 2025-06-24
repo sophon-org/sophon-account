@@ -1,8 +1,8 @@
 "use client";
 
-import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createConfig, http, State, WagmiProvider } from "wagmi";
+import type { ReactNode } from "react";
+import { createConfig, http, type State, WagmiProvider } from "wagmi";
 
 import "@sophon-labs/account-eip6963/testnet";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
@@ -28,7 +28,7 @@ const config = createConfig(
     appDescription: "Sophon Account",
     appUrl: "https://sophon.xyz",
     appIcon: "https://family.co/logo.png",
-  })
+  }),
 );
 
 export default function Web3ModalProvider({

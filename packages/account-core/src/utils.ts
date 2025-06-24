@@ -1,4 +1,4 @@
-import { Address, createPublicClient, http } from "viem";
+import { type Address, createPublicClient, http } from "viem";
 import { sophon, sophonTestnet } from "viem/chains";
 import { sophonAAFactoryAbi } from "./abis/SophonAAFactory";
 import { sophonAccountCodeStorageAbi } from "./abis/SophonAccountStorageAbi";
@@ -60,7 +60,7 @@ const hashString = (str: string): number => {
   let h1 = H1;
   let h2 = H2;
 
-  for (let i = 0, ch; i < str.length; i++) {
+  for (let i = 0, ch: number; i < str.length; i++) {
     ch = str.charCodeAt(i);
     h1 = Math.imul(h1 ^ ch, MULT1);
     h2 = Math.imul(h2 ^ ch, MULT2);

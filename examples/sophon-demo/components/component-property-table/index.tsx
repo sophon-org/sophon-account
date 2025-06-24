@@ -7,7 +7,7 @@ import {
   TableThead,
   TableTr,
 } from "@mantine/core";
-import React from "react";
+import type React from "react";
 
 interface Property {
   name: string;

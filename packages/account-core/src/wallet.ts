@@ -2,7 +2,7 @@
 
 import {
   createGlobalWalletClient,
-  GlobalWalletClient,
+  type GlobalWalletClient,
 } from "@dynamic-labs/global-wallet-client";
 import { WalletConfig, WalletTestnetConfig } from "./config";
 
