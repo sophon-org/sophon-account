@@ -1,5 +1,29 @@
 # @sophon-labs/account-react
 
+## 1.3.5
+
+### Patch Changes
+
+- chore: replace @dynamic-labs/ethereum for @dynamic-labs/global-wallet-client in @sophon-labs/account-core so that we don't have to rely on react. Also updating Dynamic library dependencies.
+- Updated dependencies
+  - @sophon-labs/account-core@1.3.5
+
+## 1.3.4
+
+### Patch Changes
+
+- 9041e31: chore: turn off the bundle: false tsup config option that breaks js builds
+- Updated dependencies [9041e31]
+  - @sophon-labs/account-core@1.3.4
+
+## 1.3.3
+
+### Patch Changes
+
+- Session revoke support
+- Updated dependencies
+  - @sophon-labs/account-core@1.3.3
+
 ## 1.3.2
 
 ### Patch Changes

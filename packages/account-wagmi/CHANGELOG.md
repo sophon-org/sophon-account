@@ -1,5 +1,23 @@
 # @sophon-labs/account-wagmi
 
+## 1.3.5
+
+### Patch Changes
+
+- chore: replace @dynamic-labs/ethereum for @dynamic-labs/global-wallet-client in @sophon-labs/account-core so that we don't have to rely on react. Also updating Dynamic library dependencies.
+
+## 1.3.4
+
+### Patch Changes
+
+- 9041e31: chore: turn off the bundle: false tsup config option that breaks js builds
+
+## 1.3.3
+
+### Patch Changes
+
+- Session revoke support
+
 ## 1.3.2
 
 ### Patch Changes

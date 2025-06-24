@@ -12,7 +12,6 @@ export default defineConfig((options) => {
     splitting: true,
     sourcemap: !!options.watch,
     clean: true,
-    bundle: false,
     minify: !options.watch,
     dts: true,
     format: ["esm", "cjs"],
