@@ -13,8 +13,8 @@ body,
 .confirm-connection,
 .wallet-connected {
   border-radius: 0;
-  background:
-    linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%), #faf7f5;
+  background: linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%),
+    #faf7f5;
 }
 
 .modal-card {
@@ -81,8 +81,8 @@ body,
 .profile-view,
 .settings-view,
 .account-and-security-settings-view {
-  background:
-    linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%), #faf7f5;
+  background: linear-gradient(160deg, #cce4ff 0%, #ebf4ff 20%, transparent 35%),
+    #faf7f5;
 }
 
 .login-view__scroll {

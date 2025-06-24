@@ -154,7 +154,7 @@ export const getPeriodIdsForTransaction = (args: {
   };
   const findCallPolicy = () => {
     return args.sessionConfig.callPolicies.find(
-      (policy) => policy.target === target && policy.selector == args.selector,
+      (policy) => policy.target === target && policy.selector === args.selector,
     );
   };
 

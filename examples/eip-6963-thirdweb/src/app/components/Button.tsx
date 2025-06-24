@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 const Button = ({
   children,
@@ -11,6 +11,7 @@ const Button = ({
 }) => {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`rounded-full bg-gradient-to-r from-[#ebf4ff] via-[#cce4ff] to-[#cce4ff] flex items-center justify-start p-0.5 cursor-pointer
         ${

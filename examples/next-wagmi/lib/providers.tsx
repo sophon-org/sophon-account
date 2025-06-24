@@ -1,6 +1,6 @@
 "use client";
 
-import { WagmiProvider, State } from "wagmi";
+import { WagmiProvider, type State } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { getConfig } from "@/lib/wagmi";
 import { SophonContextProvider } from "@sophon-labs/account-react";

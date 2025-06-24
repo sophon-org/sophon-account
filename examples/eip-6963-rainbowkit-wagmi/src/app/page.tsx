@@ -8,10 +8,18 @@ export default function Home() {
   return (
     <Background>
       <div className="w-full flex flex-col justify-center items-center h-full gap-10">
-        <Image src="/partnership.svg" alt="partnership" width={240} height={60} />
+        <Image
+          src="/partnership.svg"
+          alt="partnership"
+          width={240}
+          height={60}
+        />
         <div className="w-1/3 font-bold text-gray-100 flex flex-row items-center gap-2 justify-center">
           <span>Get started by editing</span>
-          <TextHighlight label="src/app/page.tsx" url="https://docs.sophon.xyz" />
+          <TextHighlight
+            label="src/app/page.tsx"
+            url="https://docs.sophon.xyz"
+          />
         </div>
 
         <MainCard />

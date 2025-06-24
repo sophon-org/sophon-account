@@ -1,4 +1,4 @@
-import { type NextAuthConfig } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import {
   createPublicClient,
@@ -35,7 +35,7 @@ const providers = [
         placeholder: "0x0",
       },
     },
-    authorize: async (credentials, req) => {
+    authorize: async (credentials) => {
       console.log("credentials", credentials);
 
       const messageHash = hashMessage(toHex(credentials.message as string));
@@ -62,7 +62,7 @@ const providers = [
 
 export const AuthConfig: NextAuthConfig = {
   callbacks: {
-    session: async ({ session, token, user }) => {
+    session: async ({ session, token }) => {
       return {
         ...session,
         // you should store your user and fetch it from the db

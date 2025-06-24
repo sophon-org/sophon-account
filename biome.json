@@ -17,6 +17,15 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      },
+      "nursery": {
+        "useUniqueElementIds": "off"
+      },
       "recommended": true
     }
   },
@@ -29,6 +38,7 @@
     "enabled": true,
     "actions": {
       "source": {
+        "recommended": true,
         "organizeImports": "on"
       }
     }

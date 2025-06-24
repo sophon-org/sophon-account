@@ -1,8 +1,8 @@
 "use client";
 
-import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { State, WagmiProvider } from "wagmi";
+import type { ReactNode } from "react";
+import { type State, WagmiProvider } from "wagmi";
 
 import "@sophon-labs/account-eip6963/testnet";
 import { ThirdwebProvider } from "thirdweb/react";
@@ -21,7 +21,9 @@ export default function Web3ModalProvider({
   return (
     <ThirdwebProvider>
       <WagmiProvider config={config} initialState={initialState}>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </WagmiProvider>
     </ThirdwebProvider>
   );

@@ -2,7 +2,7 @@ import { CodeHighlight, InlineCodeHighlight } from "@mantine/code-highlight";
 import {
   Title,
   Image,
-  ImageProps,
+  type ImageProps,
   Anchor,
   Text,
   Table,

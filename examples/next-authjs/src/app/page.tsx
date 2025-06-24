@@ -1,7 +1,7 @@
 "use client";
 
-import { LoginButton } from "@/components/login";
 import { signOut, useSession } from "next-auth/react";
+import { LoginButton } from "@/components/login";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -13,6 +13,7 @@ export default function Home() {
           You are authenticated as {session.user.id}
         </div>
         <button
+          type="button"
           style={{
             backgroundColor: "purple",
             padding: 10,

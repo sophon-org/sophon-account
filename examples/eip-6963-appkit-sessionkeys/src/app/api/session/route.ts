@@ -1,14 +1,19 @@
 import {
-  hasSessionConfig,
-  getSessionConfig,
-  setSessionConfig,
-  deleteSessionConfig,
-  readSessionData,
-} from "../sessionStore";
+  getSessionState,
+  getSessionStatus,
+  LimitType,
+  type SessionState,
+  type SessionStatus,
+} from "@sophon-labs/account-core";
+import type { NextRequest } from "next/server";
 import { serializeBigInts } from "@/util";
-import { NextRequest } from "next/server";
-import { LimitType, SessionState, SessionStatus } from "@sophon-labs/account-core";
-import { getSessionStatus, getSessionState } from "@sophon-labs/account-core";
+import {
+  deleteSessionConfig,
+  getSessionConfig,
+  hasSessionConfig,
+  readSessionData,
+  setSessionConfig,
+} from "../sessionStore";
 
 export async function DELETE(req: NextRequest) {
   const { smartAccountAddress, sessionId } = await req.json();
@@ -21,10 +26,13 @@ export async function DELETE(req: NextRequest) {
 
     deleteSessionConfig(smartAccountAddress, sessionId);
 
-    return new Response(JSON.stringify({ message: "Session deleted successfully" }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ message: "Session deleted successfully" }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message || String(err) }), {
       status: 500,
@@ -47,7 +55,7 @@ export async function POST(req: NextRequest) {
       signer: signer as `0x${string}`,
       expiresAt: BigInt(Math.floor(new Date(expiresAt).getTime() / 1000)),
       feeLimit: {
-        limitType: LimitType.Lifetime, 
+        limitType: LimitType.Lifetime,
         limit: BigInt(feeLimit),
         period: 604800n, // 1 week
       },
@@ -65,7 +73,7 @@ export async function POST(req: NextRequest) {
       ],
     };
     const sessionId = Math.random().toString(36).slice(2);
-    
+
     const serializedConfig = serializeBigInts(sessionConfig);
 
     if (hasSessionConfig(smartAccountAddress, sessionId)) {
@@ -103,12 +111,12 @@ export async function GET(req: NextRequest) {
 
   const sessions = sessionId
     ? [getSessionConfig(smartAccountAddress as `0x${string}`, sessionId)]
-    : Object.entries(readSessionData()[smartAccountAddress as `0x${string}`] || {}).map(
-        ([id, config]) => ({
-          sessionId: id,
-          sessionConfig: config,
-        })
-      );
+    : Object.entries(
+        readSessionData()[smartAccountAddress as `0x${string}`] || {},
+      ).map(([id, config]) => ({
+        sessionId: id,
+        sessionConfig: config,
+      }));
 
   if (!sessions.length || (sessionId && !sessions[0])) {
     return new Response(JSON.stringify({ error: "Session not found" }), {
@@ -141,9 +149,8 @@ export async function GET(req: NextRequest) {
         sessionStatus,
         sessionState: serializeBigInts(sessionState),
       };
-    })
+    }),
   );
-
 
   return new Response(JSON.stringify(results), {
     status: 200,

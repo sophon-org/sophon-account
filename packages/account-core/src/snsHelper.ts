@@ -1,5 +1,5 @@
 import {
-  Address,
+  type Address,
   createPublicClient,
   http,
   isAddress,

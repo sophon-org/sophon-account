@@ -21,6 +21,7 @@ export const SophonWidget: React.FC<Props> = ({
     return (
       <div className={clsx("sophon-widget-container", containerClassName)}>
         <button
+          type="button"
           className={clsx("sophon-loading-state", "sophon-widget", className)}
           disabled
         >

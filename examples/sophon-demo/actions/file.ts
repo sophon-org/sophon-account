@@ -1,15 +1,6 @@
 "use server";
 
-import { promises as fs } from "fs";
-import path from "path";
 import { z } from "zod";
-
-// Define the response type
-type CodeResponse = {
-  content?: string;
-  error?: string;
-  details?: string;
-};
 
 // Validation schema
 const fileSchema = z.object({
