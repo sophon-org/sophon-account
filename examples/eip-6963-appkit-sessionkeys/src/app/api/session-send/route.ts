@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         JSON.stringify({
           error: "from, to, value, and sessionId are required",
         }),
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     if (!sessionConfig) {
       return new Response(
         JSON.stringify({ error: "Session config not found" }),
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       revivedConfig,
       from,
       PRIVATE_KEY,
-      chain
+      chain,
     );
 
     const tx = await sessionClient.sendTransaction({

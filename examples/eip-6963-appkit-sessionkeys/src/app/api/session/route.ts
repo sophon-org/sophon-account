@@ -31,7 +31,7 @@ export async function DELETE(req: NextRequest) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message || String(err) }), {
@@ -105,14 +105,14 @@ export async function GET(req: NextRequest) {
       JSON.stringify({ error: "Smart account address is required" }),
       {
         status: 400,
-      }
+      },
     );
   }
 
   const sessions = sessionId
     ? [getSessionConfig(smartAccountAddress as `0x${string}`, sessionId)]
     : Object.entries(
-        readSessionData()[smartAccountAddress as `0x${string}`] || {}
+        readSessionData()[smartAccountAddress as `0x${string}`] || {},
       ).map(([id, config]) => ({
         sessionId: id,
         sessionConfig: config,
@@ -149,7 +149,7 @@ export async function GET(req: NextRequest) {
         sessionStatus,
         sessionState: serializeBigInts(sessionState),
       };
-    })
+    }),
   );
 
   return new Response(JSON.stringify(results), {

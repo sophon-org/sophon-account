@@ -105,7 +105,7 @@ export const getViemSessionClient = (
   sessionConfig: SessionConfig,
   accountAddress: Address,
   signerPrivateKey: Hex,
-  chain: Chain
+  chain: Chain,
 ): ZksyncSsoSessionClient => {
   const client = createZksyncSessionClient({
     chain,
@@ -123,7 +123,7 @@ export const getViemSessionClient = (
 
 export const isSessionKeyModuleInstalled = async (
   address: Address,
-  testnet: boolean = true
+  testnet: boolean = true,
 ): Promise<boolean> => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
@@ -145,7 +145,7 @@ export const isSessionKeyModuleInstalled = async (
 };
 
 export const getInstallSessionKeyModuleTxForViem = (
-  args: InstallSessionKeyModuleArgs
+  args: InstallSessionKeyModuleArgs,
 ) => {
   const callData = encodeFunctionData({
     abi: SsoAccountAbi,
@@ -169,7 +169,7 @@ export const getInstallSessionKeyModuleTxForViem = (
 
 export const getCreateSessionTxForViem = (
   args: Omit<CreateSessionArgs, "contracts">,
-  accountAddress: Address
+  accountAddress: Address,
 ) => {
   const _args = {
     ...args,
@@ -198,7 +198,7 @@ export const getCreateSessionTxForViem = (
 
 export const getRevokeSessionTxForViem = (
   args: RevokeSessionArgs,
-  accountAddress: Address
+  accountAddress: Address,
 ) => {
   const callData = encodeFunctionData({
     abi: SessionKeyValidatorAbi,

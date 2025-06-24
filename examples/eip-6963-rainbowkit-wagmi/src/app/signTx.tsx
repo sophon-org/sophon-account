@@ -4,7 +4,7 @@ import { useSendTransaction } from "wagmi";
 
 export function SignTransaction() {
   const [copied, setCopied] = React.useState<"address" | "transaction" | null>(
-    null
+    null,
   );
   const {
     data: transactionData,
@@ -15,7 +15,7 @@ export function SignTransaction() {
 
   const copyToClipboard = async (
     text: string,
-    type: "address" | "transaction"
+    type: "address" | "transaction",
   ) => {
     await navigator.clipboard.writeText(text);
     setCopied(type);

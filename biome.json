@@ -31,8 +31,7 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double",
-      "trailingCommas": "es5"
+      "quoteStyle": "double"
     }
   },
   "assist": {

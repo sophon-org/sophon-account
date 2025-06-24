@@ -55,7 +55,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
     setTransferValue("10000000000000000000");
     setFeeLimit("10000000000000000000");
     setExpiresAt(
-      new Date(Date.now() + 1000 * 2 * 60 * 60 * 24).toISOString().slice(0, 16)
+      new Date(Date.now() + 1000 * 2 * 60 * 60 * 24).toISOString().slice(0, 16),
     ); // 2 days
   }, []);
 
@@ -166,7 +166,7 @@ const SessionKeyModal: React.FC<SessionKeyModalProps> = ({
               className="w-full rounded-lg border border-gray-200 p-2 text-base"
               onChange={(e) => {
                 const selectedSession = sessions?.find(
-                  (session) => session.sessionId === e.target.value
+                  (session) => session.sessionId === e.target.value,
                 );
                 if (selectedSession) {
                   onSelectSession(selectedSession.sessionId);

@@ -10,7 +10,7 @@ import {
 
 export const sessionFilePath = path.resolve(
   process.cwd(),
-  ".sessionStore.json"
+  ".sessionStore.json",
 );
 
 export function readSessionData(): SessionStore {
@@ -28,7 +28,7 @@ export function writeSessionData(data: SessionStore) {
 
 export function deleteSessionConfig(
   smartAccountAddress: `0x${string}`,
-  sessionId: string
+  sessionId: string,
 ): void {
   const sessionData = readSessionData();
   delete sessionData[smartAccountAddress][sessionId];
@@ -38,7 +38,7 @@ export function deleteSessionConfig(
 export function setSessionConfig(
   smartAccountAddress: `0x${string}`,
   sessionId: string,
-  config: SessionConfig
+  config: SessionConfig,
 ): void {
   const sessionData = readSessionData();
   sessionData[smartAccountAddress] = sessionData[smartAccountAddress] || {};
@@ -48,7 +48,7 @@ export function setSessionConfig(
 
 export function getSessionConfig(
   smartAccountAddress: `0x${string}`,
-  sessionId?: string
+  sessionId?: string,
 ): SessionConfigWithId | undefined {
   const sessionData = readSessionData();
   const accountSessions = sessionData[smartAccountAddress];
@@ -62,7 +62,7 @@ export function getSessionConfig(
             ? parseInt(session.expiresAt, 10)
             : Number(session.expiresAt);
         return expiresAt > now;
-      }
+      },
     );
     if (sessionEntry) {
       sessionId = sessionEntry[0];
@@ -79,7 +79,7 @@ export function getSessionConfig(
 
 export function hasSessionConfig(
   smartAccountAddress: `0x${string}`,
-  sessionId: string
+  sessionId: string,
 ): boolean {
   const sessionData = readSessionData();
   return (

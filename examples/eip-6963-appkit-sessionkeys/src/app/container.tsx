@@ -74,7 +74,7 @@ const MainCard: NextPage = () => {
     const fetchLatestSession = async () => {
       if (address && !sessionId) {
         const validSession = await fetch(
-          `/api/session?smartAccountAddress=${address}`
+          `/api/session?smartAccountAddress=${address}`,
         );
         const validSessionData: SessionConfigWithId[] =
           await validSession.json();
@@ -145,7 +145,7 @@ const MainCard: NextPage = () => {
       if (!res.ok) throw new Error(data.error || "Unknown error");
     } catch (err: any) {
       setBackendSignError(
-        String(err.message).slice(0, 100) || String(err).slice(0, 100)
+        String(err.message).slice(0, 100) || String(err).slice(0, 100),
       );
     }
   };
@@ -189,7 +189,7 @@ const MainCard: NextPage = () => {
         throw new Error("Session key creation failed");
       }
       const sessionConfigRes = await fetch(
-        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}&checkOnChain=false`
+        `/api/session?smartAccountAddress=${address}&sessionId=${data.sessionId}&checkOnChain=false`,
       );
       const config = await sessionConfigRes.json();
       const onchainConfig: OnChainSessionState = reviveBigInts(config[0]);
@@ -220,7 +220,7 @@ const MainCard: NextPage = () => {
             address: L2_GLOBAL_PAYMASTER,
           },
         },
-        walletClient.account.address
+        walletClient.account.address,
       );
       const sessionHash = await walletClient.sendTransaction(createSessionTx);
       await publicClient.waitForTransactionReceipt({ hash: sessionHash });
@@ -239,7 +239,7 @@ const MainCard: NextPage = () => {
         {
           sessionHash,
         },
-        walletClient?.account.address as `0x${string}`
+        walletClient?.account.address as `0x${string}`,
       );
       const revokeHash = await walletClient?.sendTransaction(revokeSessionTx);
       setRevokeTxHash(revokeHash as `0x${string}`);
@@ -252,7 +252,7 @@ const MainCard: NextPage = () => {
         }),
       });
       setSessions(
-        sessions.filter((session) => session.sessionId !== sessionId)
+        sessions.filter((session) => session.sessionId !== sessionId),
       );
       setSessionId(undefined);
       setSessionDetails(null);
@@ -268,7 +268,7 @@ const MainCard: NextPage = () => {
     setSessionId(sessionId);
     try {
       const res = await fetch(
-        `/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`
+        `/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`,
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unknown error");
@@ -289,7 +289,7 @@ const MainCard: NextPage = () => {
     }
     try {
       const res = await fetch(
-        `/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`
+        `/api/session?smartAccountAddress=${address}${sessionId ? `&sessionId=${sessionId}` : ""}&checkOnChain=true`,
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unknown error");

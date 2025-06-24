@@ -80,7 +80,7 @@ const hashString = (str: string): number => {
  * @returns {Object} - Object containing two colors, an angle, and a Vector2
  */
 export const generateParamsFromString = (
-  inputString: string
+  inputString: string,
 ): GradientParams => {
   if (!inputString || typeof inputString !== "string") {
     throw new Error("Input string is required");
@@ -152,7 +152,7 @@ export const getSVGAvatarFromString = (inputString: string): string => {
 export const isSophonAccount = async (
   address: string,
   testnet: boolean = true,
-  rpcUrl?: string
+  rpcUrl?: string,
 ) => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
@@ -182,7 +182,7 @@ export const isSophonAccount = async (
 export const isEraVMContract = async (
   address: `0x${string}`,
   testnet: boolean = true,
-  customRpc?: string
+  customRpc?: string,
 ) => {
   const client = createPublicClient({
     chain: testnet ? sophonTestnet : sophon,
