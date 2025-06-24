@@ -28,7 +28,7 @@ const config = createConfig(
     appDescription: "Sophon Account",
     appUrl: "https://sophon.xyz",
     appIcon: "https://family.co/logo.png",
-  }),
+  })
 );
 
 export default function Web3ModalProvider({

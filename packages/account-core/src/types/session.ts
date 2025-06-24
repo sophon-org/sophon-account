@@ -149,12 +149,12 @@ export const getPeriodIdsForTransaction = (args: {
 
   const findTransferPolicy = () => {
     return args.sessionConfig.transferPolicies.find(
-      (policy) => policy.target === target,
+      (policy) => policy.target === target
     );
   };
   const findCallPolicy = () => {
     return args.sessionConfig.callPolicies.find(
-      (policy) => policy.target === target && policy.selector === args.selector,
+      (policy) => policy.target === target && policy.selector === args.selector
     );
   };
 
@@ -169,7 +169,7 @@ export const getPeriodIdsForTransaction = (args: {
     getId(policy.valueLimit),
     ...(isContractCall
       ? (policy as CallPolicy).constraints.map((constraint) =>
-          getId(constraint.limit),
+          getId(constraint.limit)
         )
       : []),
   ];

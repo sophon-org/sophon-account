@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
               to: path.resolve(__dirname, "public", "examples"),
             },
           ],
-        }),
+        })
       );
     }
     return config;
