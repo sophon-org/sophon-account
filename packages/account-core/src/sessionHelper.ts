@@ -12,7 +12,7 @@ import { getGeneralPaymasterInput } from "viem/zksync";
 import {
   createZksyncSessionClient,
   type ZksyncSsoSessionClient,
-} from "zksync-sso/client";
+} from "zksync-sso/client/session";
 import { sophon, sophonTestnet } from "viem/chains";
 import type {
   RevokeSessionArgs,
