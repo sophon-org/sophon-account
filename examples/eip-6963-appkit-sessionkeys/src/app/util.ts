@@ -1,4 +1,10 @@
-import { SessionConfig, SessionState, SessionStatus } from "@sophon-labs/account-core";
+import { 
+  SessionConfig, 
+  SessionState, 
+  SessionStatus,
+  getSessionStatus,
+  getSessionState
+} from "@sophon-labs/account-core";
 
 
 export const L2_GLOBAL_PAYMASTER = '0x98546B226dbbA8230cf620635a1e4ab01F6A99B2' as `0x${string}`
@@ -50,4 +56,27 @@ export const matchSessionStatus = (status: SessionStatus) => {
     case SessionStatus.Closed:
       return "Closed";
   }
+}
+
+// Client-side session validation functions
+export async function validateSessionOnChain(
+  smartAccountAddress: `0x${string}`,
+  sessionConfig: SessionConfig
+): Promise<{ sessionStatus: SessionStatus; sessionState: SessionState }> {
+  if (typeof window === "undefined") {
+    throw new Error("validateSessionOnChain can only be called on the client side");
+  }
+
+  const sessionParams = {
+    accountAddress: smartAccountAddress,
+    sessionConfig,
+    testnet: true,
+  };
+
+  const [sessionStatus, sessionState] = await Promise.all([
+    getSessionStatus(sessionParams),
+    getSessionState(sessionParams),
+  ]);
+
+  return { sessionStatus, sessionState };
 }

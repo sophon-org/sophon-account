@@ -5,10 +5,8 @@ import {
   deleteSessionConfig,
   readSessionData,
 } from "../sessionStore";
-import { serializeBigInts } from "@/util";
+import { serializeBigInts, LimitType, SessionStatus } from "@/util-server";
 import { NextRequest } from "next/server";
-import { LimitType, SessionState, SessionStatus } from "@sophon-labs/account-core";
-import { getSessionStatus, getSessionState } from "@sophon-labs/account-core";
 
 export async function DELETE(req: NextRequest) {
   const { smartAccountAddress, sessionId } = await req.json();
@@ -118,23 +116,12 @@ export async function GET(req: NextRequest) {
 
   const results = await Promise.all(
     sessions.map(async (sessionData) => {
-      let sessionStatus: SessionStatus | null = null;
-      let sessionState: SessionState | null = null;
       if (!sessionData) return null;
-      if (checkOnChain === "true") {
-        try {
-          const sessionParams = {
-            accountAddress: smartAccountAddress as `0x${string}`,
-            sessionConfig: sessionData.sessionConfig,
-            testnet: true,
-          };
-
-          sessionStatus = await getSessionStatus(sessionParams);
-          sessionState = await getSessionState(sessionParams);
-        } catch (error) {
-          console.error("Error fetching session data:", error);
-        }
-      }
+      
+      // Note: On-chain checking is disabled in API routes due to server-side limitations
+      // Client-side code should handle session status validation
+      const sessionStatus = checkOnChain === "true" ? null : null;
+      const sessionState = checkOnChain === "true" ? null : null;
 
       return {
         ...serializeBigInts(sessionData),

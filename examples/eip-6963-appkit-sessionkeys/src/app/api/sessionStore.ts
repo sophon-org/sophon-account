@@ -5,8 +5,8 @@ import {
   serializeBigInts,
   SessionConfigWithId,
   SessionStore,
-} from "../util";
-import { SessionConfig } from "@sophon-labs/account-core";
+  SessionConfig,
+} from "../util-server";
 
 export const sessionFilePath = path.resolve(process.cwd(), ".sessionStore.json");
 
