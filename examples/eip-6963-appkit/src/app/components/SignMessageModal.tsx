@@ -5,6 +5,7 @@ interface SignMessageModalProps {
   open: boolean;
   onClose: () => void;
   onSubmit: (message: string) => void;
+  onVerify: (message: string) => boolean;
   title?: string;
   buttonLabel?: string;
   signature?: string;
@@ -15,6 +16,7 @@ const SignMessageModal: React.FC<SignMessageModalProps> = ({
   open,
   onClose,
   onSubmit,
+  onVerify,
   title = "Sign Message",
   buttonLabel = "Sign",
   signature,
@@ -55,10 +57,15 @@ const SignMessageModal: React.FC<SignMessageModalProps> = ({
           </Button>
         </form>
         {signature && (
+          <>
           <div className="w-full mt-4 p-2 rounded bg-white text-sophon-blue-400 break-all text-left border border-gray-200">
             <div className="font-semibold mb-1">Signature:</div>
             <code className="block">{signature}</code>
           </div>
+          <Button variant="primary" onClick={() => onVerify(signature)}>
+          Verify
+        </Button>
+        </>
         )}
         {error && (
           <div className="w-full mt-4 p-2 rounded bg-red-50 text-red-700 break-all text-left">

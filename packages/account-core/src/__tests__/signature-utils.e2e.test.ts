@@ -1,7 +1,21 @@
-import { createPublicClient, http, createWalletClient, Hex, PublicClient } from "viem";
+import {
+  createPublicClient,
+  http,
+  createWalletClient,
+  Hex,
+  PublicClient,
+  custom,
+} from "viem";
+import { erc7739Actions } from "viem/experimental";
 import { privateKeyToAccount, generatePrivateKey } from "viem/accounts";
 import { sophonTestnet } from "viem/chains";
-import { validateERC1271Signature, validateSignature, getEIP712Domain } from "../signature-utils";
+import {
+  validateERC1271Signature,
+  validateSignature,
+  getEIP712Domain,
+} from "../signature-utils";
+import { createEIP1193Provider } from "@dynamic-labs/global-wallet-client/ethereum";
+import { getSophonWallet } from "../wallet";
 
 describe("Signature Utils E2E Tests", () => {
   let publicClient;
@@ -20,8 +34,8 @@ describe("Signature Utils E2E Tests", () => {
     walletClient = createWalletClient({
       account: TEST_SMART_ACCOUNT,
       chain: sophonTestnet,
-      transport: http(),
-    });
+      transport: custom(createEIP1193Provider(getSophonWallet("testnet"))),
+    }).extend(erc7739Actions());
   });
 
   describe("Real Network Tests", () => {
@@ -41,7 +55,7 @@ describe("Signature Utils E2E Tests", () => {
     it("should attempt to validate signature on smart account", async () => {
       const message = "cookie monster";
       const signature =
-        "0x2d68b841f42070362ef68254ea704d594a9c28cc83e76e31286f772a584b11f020c29053f96fa8e59ccd4505242a54b6a18c4b15caf0ccddd4c1a55b01221b411b";
+        "0x91e0ed920b6cb116cdbc1629ef59c80e19956ccd97d28e3e1fb559fab001f0e022490d3312d14ae2544ba0254eca65175bd57ca28e557b325a49839b8b2991e71b";
 
       try {
         const result = await validateERC1271Signature(publicClient, {
@@ -63,7 +77,7 @@ describe("Signature Utils E2E Tests", () => {
     it("should handle invalid contract address gracefully", async () => {
       const message = "cookie monster";
       const signature =
-        "0x2d68b841f42070362ef68254ea704d594a9c28cc83e76e31286f772a584b11f020c29053f96fa8e59ccd4505242a54b6a18c4b15caf0ccddd4c1a55b01221b411b";
+        "0x91e0ed920b6cb116cdbc1629ef59c80e19956ccd97d28e3e1fb559fab001f0e022490d3312d14ae2544ba0254eca65175bd57ca28e557b325a49839b8b2991e71b";
 
       const result = await validateERC1271Signature(publicClient, {
         account: "0x0000000000000000000000000000000000000001", // Invalid address
@@ -87,7 +101,10 @@ describe("Signature Utils E2E Tests", () => {
         expect(domain).toHaveProperty("verifyingContract");
         expect(domain.chainId).toBe(sophonTestnet.id);
       } catch (error) {
-        console.log("Expected error for contract without EIP-712 domain:", error.message);
+        console.log(
+          "Expected error for contract without EIP-712 domain:",
+          error.message,
+        );
         // This is expected if the contract doesn't implement eip712Domain()
         expect(error).toBeInstanceOf(Error);
       }
@@ -98,7 +115,7 @@ describe("Signature Utils E2E Tests", () => {
     it("should validate message signatures", async () => {
       const message = "cookie monster";
       const signature =
-        "0x2d68b841f42070362ef68254ea704d594a9c28cc83e76e31286f772a584b11f020c29053f96fa8e59ccd4505242a54b6a18c4b15caf0ccddd4c1a55b01221b411b";
+        "0x91e0ed920b6cb116cdbc1629ef59c80e19956ccd97d28e3e1fb559fab001f0e022490d3312d14ae2544ba0254eca65175bd57ca28e557b325a49839b8b2991e71b";
 
       try {
         const result = await validateSignature(publicClient, {

@@ -8,6 +8,7 @@ import { createWalletClient, custom, http, parseEther } from "viem";
 import { BlueLink, Button, SendTransactionModal, SignMessageModal } from "./components";
 import { sophonTestnet } from "viem/chains";
 import { erc7739Actions } from "viem/experimental";
+import { createEIP1193Provider, getSophonWallet } from "@sophon-labs/account-core";
 
 const MainCard: NextPage = () => {
   const { open } = useAppKit();
@@ -22,7 +23,7 @@ const MainCard: NextPage = () => {
   const walletClient = createWalletClient({
     account: address as `0x${string}`,
     chain: sophonTestnet,
-    transport: custom(window.ethereum as any),
+    transport: custom(createEIP1193Provider(getSophonWallet("testnet"))),
   }).extend(erc7739Actions());
 
   console.log("walletClient", walletClient);
@@ -46,17 +47,10 @@ const MainCard: NextPage = () => {
     }
   };
 
+  const verifyMessage = 
+
   // const { data: signMessageData, error: signErrorWagmi, signMessage } = useSignMessage();
   const { data: transactionData, error: txErrorWagmi, sendTransaction } = useSendTransaction();
-
-  // useEffect(() => {
-  //   if (signMessageData) {
-  //     setSignedMessage(signMessageData as string);
-  //   }
-  //   if (signErrorWagmi) {
-  //     setSignError(signErrorWagmi.message);
-  //   }
-  // }, [signMessageData, signErrorWagmi]);
 
   useEffect(() => {
     if (transactionData) {

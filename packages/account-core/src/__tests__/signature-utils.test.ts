@@ -33,14 +33,15 @@ describe("Signature Utils", () => {
       mockClient.readContract.mockResolvedValue(ERC1271_MAGIC_VALUE);
 
       const result = await validateERC1271Signature(mockClient as any, {
-        account: "0x1234567890123456789012345678901234567890",
+        account: "0xE8345Dc6c2c81E8490e7F10f3B3d9F687503F2F4",
         message: "Hello, world!",
-        signature: "0xabcd",
+        signature:
+          "0xa3f724c4e11a2f36b14c63f27d576b6e9f632797d2680a64001eec60bae2619e0bddc01280434f29445b74d540ac95aaf5d37b46c1630d142b184c40d496f6bf1c",
       });
 
       expect(result).toBe(true);
       expect(mockClient.readContract).toHaveBeenCalledWith({
-        address: "0x1234567890123456789012345678901234567890",
+        address: "0xE8345Dc6c2c81E8490e7F10f3B3d9F687503F2F4",
         abi: expect.any(Array),
         functionName: "isValidSignature",
         args: expect.any(Array),
@@ -60,7 +61,9 @@ describe("Signature Utils", () => {
     });
 
     it("should return false when contract call fails", async () => {
-      mockClient.readContract.mockRejectedValue(new Error("Contract call failed"));
+      mockClient.readContract.mockRejectedValue(
+        new Error("Contract call failed"),
+      );
 
       const result = await validateERC1271Signature(mockClient as any, {
         account: "0x1234567890123456789012345678901234567890",
@@ -93,7 +96,8 @@ describe("Signature Utils", () => {
         account: "0x1234567890123456789012345678901234567890",
         signature: "0xabcd",
         type: "hash",
-        messageHash: "0x1234567890123456789012345678901234567890123456789012345678901234",
+        messageHash:
+          "0x1234567890123456789012345678901234567890123456789012345678901234",
       });
 
       expect(result).toBe(true);
