@@ -28,6 +28,10 @@ EIP-6963 is a standard that allows multiple Ethereum wallet providers to be disc
 ```typescript
 import "@sophon-labs/account-eip6963/testnet";
 
+// or
+
+import "@sophon-labs/account-eip6963/mainnet";
+
 // The Sophon wallet will now announce itself via the EIP-6963 protocol
 // No additional setup is required
 ```
@@ -46,13 +50,13 @@ Most modern wallet connection libraries, like RainbowKit, wagmi, or Reown Appkit
 
 ```typescript
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { sophonTestnet } from "wagmi/chains";
+import { sophon, sophonTestnet } from "wagmi/chains";
 import "@sophon-labs/account-eip6963/testnet";
 
 export const config = getDefaultConfig({
   appName: "Your App",
   projectId: "YOUR_PROJECT_ID",
-  chains: [sophonTestnet],
+  chains: [sophon, sophonTestnet],
   ssr: true,
 });
 ```
