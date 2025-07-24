@@ -1,5 +1,11 @@
 # @sophon-labs/account-wagmi
 
+## 1.3.6
+
+### Patch Changes
+
+- Updating dynamic libs for fixing signature errors
+
 ## 1.3.5
 
 ### Patch Changes
